@@ -57,7 +57,15 @@ public class PracticeAssignment02 {
         // Collect today's date
         System.out.printf("Enter today's date [mm-dd]> ");
         userInput.useDelimiter("[-|\\s]+");
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid date format.%n");
+            System.exit(0);
+        }
         month = userInput.nextInt();
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid date format.%n");
+            System.exit(0);
+        }
         day = userInput.nextInt();
 
         // Validate today's month
@@ -78,7 +86,15 @@ public class PracticeAssignment02 {
         // Collect time of sunrise
         System.out.printf("Enter the time of sunrise: [hh:mm]> ");
         userInput.useDelimiter("[:|\\s]+");
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid time format.%n");
+            System.exit(0);
+        }
         sunriseHour = userInput.nextInt();
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid time format.%n");
+            System.exit(0);
+        }
         sunriseMinute = userInput.nextInt();
 
         // Validate sunrise hour
@@ -99,7 +115,15 @@ public class PracticeAssignment02 {
         // Collect time of sunset
         System.out.printf("Enter the time of sunset [hh:mm]> ");
         userInput.useDelimiter("[:|\\s]+");
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid time format.%n");
+            System.exit(0);
+        }
         sunsetHour = userInput.nextInt();
+        if (!userInput.hasNextInt()) {
+            System.out.printf("Error! Invalid time format.%n");
+            System.exit(0);
+        }
         sunsetMinute = userInput.nextInt();
 
         // Validate sunset hour
