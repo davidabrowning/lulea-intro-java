@@ -1,4 +1,4 @@
-public class LectureModule01 {
+public class Module01 {
     public static void main(String[] args) {
         System.out.println("M1Overview");
 
