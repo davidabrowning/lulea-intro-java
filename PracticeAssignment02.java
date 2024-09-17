@@ -41,7 +41,6 @@ public class PracticeAssignment02 {
     private static final double PRICE_SEK_PER_KWH = 0.9;
     private static final double NUM_SOLAR_PANELS = 26.0;
     private static final double AREA_PER_PANEL_M2 = 1.7;
-    private static final double MAX_PRODUCTION_PER_PANEL_W = 290.0;
 
     public static void main(String[] args) {
 
@@ -56,7 +55,6 @@ public class PracticeAssignment02 {
         double sunHours = 0.0;
         double solarPanelSurfaceAreaM2 = 0.0;
         double productionKwh = 0.0;
-        double maxTotalProductionKwh = 0.0;
         double profitSek = 0.0;
 
         // Collect today's date
