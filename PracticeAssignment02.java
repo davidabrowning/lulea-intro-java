@@ -20,11 +20,7 @@ import java.util.Scanner;
  *      - Electricity price is 0.9 SEK / kWh
  *      - Production is radiation * efficiency * surface area * hours of sunshine
  * @author David Browning (davbro-4) 
- * */
-
- // Imports
- import java.util.Scanner;
-
+ */
 public class PracticeAssignment02 {
 
     // Define constants
