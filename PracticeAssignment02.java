@@ -50,8 +50,10 @@ public class PracticeAssignment02 {
         int day = 0;
         int sunriseHour = 0;
         int sunriseMinute = 0;
+        double sunriseTime = 0.0;
         int sunsetHour = 0;
         int sunsetMinute = 0;
+        double sunsetTime = 0.0;
         double sunHours = 0.0;
         double solarPanelSurfaceAreaM2 = 0.0;
         double productionKwh = 0.0;
@@ -96,6 +98,9 @@ public class PracticeAssignment02 {
             System.exit(0);
         }
 
+        // Calculate sunrise time
+        sunriseTime = sunriseHour + 1.0 * sunriseMinute / MINUTES_PER_HOUR;
+
         // Collect time of sunset
         System.out.printf("Enter the time of sunset [hh:mm]> ");
         userInput.useDelimiter("[:|\\s]+");
@@ -114,8 +119,11 @@ public class PracticeAssignment02 {
             System.exit(0);
         }
 
+        // Calculate sunset time
+        sunsetTime = sunsetHour + 1.0 * sunsetMinute / MINUTES_PER_HOUR;
+
         // Validate the sunset is after sunrise
-        if (sunriseHour * MINUTES_PER_HOUR + sunriseMinute >= sunsetHour * MINUTES_PER_HOUR + sunsetMinute) {
+        if (sunriseTime >= sunsetTime) {
             System.out.printf("Error! Sunrise must be before sunset.");
             System.exit(0);
         }
@@ -125,7 +133,7 @@ public class PracticeAssignment02 {
 
         // Calculate sun hours
         // Sun hours = sunset - sunrise
-        sunHours = (sunsetHour + 1.0 * sunsetMinute / MINUTES_PER_HOUR) - (sunriseHour + 1.0 * sunriseMinute / MINUTES_PER_HOUR);
+        sunHours = sunsetTime - sunriseTime;
 
         // Calculate solar panel surface area
         // Total area = area per panel * number of panels
