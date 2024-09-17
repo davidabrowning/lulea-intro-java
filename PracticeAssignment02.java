@@ -37,7 +37,7 @@ public class PracticeAssignment02 {
     private static final double NUM_SOLAR_PANELS = 26.0;
     private static final double AREA_PER_PANEL_M2 = 1.7;
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 
         // Define variables
         Scanner userInput = new Scanner(System.in);
