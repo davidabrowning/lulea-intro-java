@@ -24,11 +24,7 @@ import java.util.Scanner;
  * 
  * 
  * @author David Browning (davbro-4) 
- * */
-
- // Imports
- import java.util.Scanner;
-
+ */
 public class PracticeAssignment02 {
 
     // Define constants
