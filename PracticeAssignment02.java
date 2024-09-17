@@ -19,10 +19,6 @@ import java.util.Scanner;
  *      - Solar radiation is 166 Wh / m^2 / hour
  *      - Electricity price is 0.9 SEK / kWh
  *      - Production is radiation * efficiency * surface area * hours of sunshine
- *  - Other:
- *      - 
- * 
- * 
  * @author David Browning (davbro-4) 
  * */
 
