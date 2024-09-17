@@ -15,7 +15,7 @@ import java.util.Scanner;
  *      - Calculate profit
  *      - Present results to two decimal place accuracy
  *  - Assumptions:
- *      - Solar panels work at 100% efficiency
+ *      - Solar panels work at 20% efficiency
  *      - Solar radiation is 166 Wh / m^2 / hour
  *      - Electricity price is 0.9 SEK / kWh
  *      - Production is radiation * efficiency * surface area * hours of sunshine
@@ -24,7 +24,11 @@ import java.util.Scanner;
  * 
  * 
  * @author David Browning (davbro-4) 
- */
+ * */
+
+ // Imports
+ import java.util.Scanner;
+
 public class PracticeAssignment02 {
 
     // Define constants
