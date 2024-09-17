@@ -1,3 +1,6 @@
+// Imports
+import java.util.Scanner;
+
 /**
  * Program description:
  *  - Steps:
