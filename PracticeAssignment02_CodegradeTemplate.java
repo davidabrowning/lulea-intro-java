@@ -3,7 +3,7 @@
 * 
 @author Your Name (Your LTU username)
 */
-class Main {
+class PracticeAssignment02_CodegradeTemplate {
     public static void main(final String[] args) {
       System.out.println("This is Practice Assignment 1");
   
