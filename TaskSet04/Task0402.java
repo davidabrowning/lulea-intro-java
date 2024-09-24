@@ -58,9 +58,9 @@ public class Task0402 {
             }
 
             // 2. Create warning message
-            if (temperatureReading < 100) {
+            if (temperatureReading < BOILING_POINT_DEGREES) {
                 warningMessage = "Immersion heater is on.";
-            } else if (temperatureReading == 100) {
+            } else if (temperatureReading == BOILING_POINT_DEGREES) {
                 warningMessage = "The water is boiling.";
             } else {
                 warningMessage = "Immersion heater is off.";
