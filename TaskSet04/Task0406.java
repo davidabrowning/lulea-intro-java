@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class Task0406 {
 
     // Constants
+    private static String INPUT_INSTRUCTIONS = "Enter a number not greater than zero to exit this loop: ";
 
     public static void main(String[] args) {
 
@@ -29,7 +30,10 @@ public class Task0406 {
 
         do {
 
-        } while (!(enteredNum > 0))
+            // 1. Print instructions
+            System.out.printf("%s", INPUT_INSTRUCTIONS);
+
+        } while (!(enteredNum > 0));
 
     }
     
