@@ -17,6 +17,7 @@ package TaskSet04;
  *      female simultaneously shows the result of hermaphrodite.
  * 
  * PROGRAM DESCRIPTION:
+ * 0. Loop through three animals
  * 1. Check if male
  * 2. Check if female
  * 3. Check if hermaphrodite
@@ -37,6 +38,7 @@ public class Task0405 {
         boolean isMale = false;
         boolean isFemale = false;
 
+        // 0. Loop through three animals
         for (int i = 0; i < 3; i++) {
             if (i == 0) {
                 currentAnimal = ANIMAL_1;
