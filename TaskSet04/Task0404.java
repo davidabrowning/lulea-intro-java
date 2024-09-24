@@ -43,6 +43,11 @@ public class Task0404 {
         int currentTime = 0;
         String lunchtimeAnnouncement = "";
 
+        // Menu loop
+        while (true) {
+
+        }
+
     }
     
 }
