@@ -55,6 +55,7 @@ public class Task0405 {
             }
 
             // Print animal header
+            System.out.printf("%n%s%n", currentAnimal);
 
             // 1. Check if male
 
