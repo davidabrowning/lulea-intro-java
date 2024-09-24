@@ -1,3 +1,4 @@
+package ModuleNotes;
 /**
  * Use this file as a general sandbox.
  * @author David Browning (davbro-4)

@@ -4,23 +4,25 @@ package TaskSet04;
 import java.util.Scanner;
 
 /**
- * Instructions:
+ * TASK INSTRUCTIONS
  * In Sweden, the driving license age is currently 18 years. 
  * Write a program that reads in a particular person's age 
  * and then, based on the person's age, prints whether the 
  * person is eligible for a driving license.
  * 
- * Program description:
+ * PROGRAM DESCRIPTION
  * 1. Ask user for age
  * 2. Check if the user can drive
  * 3. Print the result
+ * 4. Close the Scanner
  * 
  * @author David Browning (davbro-4)
  */
-public class Task4dot1 {
+public class Task0401 {
 
     // Declare constants
-    int DRIVING_AGE = 18;
+    public static int DRIVING_AGE = 18;
+    
     public static void main(String[] args) {
 
         // Declare local variables
@@ -41,6 +43,11 @@ public class Task4dot1 {
                 System.out.printf("%nI'm sorry, I didn't understand that.");
             }
         } while (!validInput);
+
+        // 2. Check if user can drive
+        if (userAge >= DRIVING_AGE) {
+            drivingEligibility = true;
+        }
 
         System.out.printf("%nYou entered: %d", userAge);
 

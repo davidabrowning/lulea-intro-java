@@ -1,3 +1,4 @@
+package PracticeAssignments;
 /**
 * Program description:
 * 1. Calculate charging time for an electric car

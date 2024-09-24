@@ -1,3 +1,4 @@
+package PracticeAssignments;
 // Imports
 import java.util.Scanner;
 

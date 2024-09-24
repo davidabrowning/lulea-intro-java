@@ -5,7 +5,7 @@ package TaskSet01;
  * Example showing output operations in Java
  * @author David Browning (davbro-4)
  */
- public class TaskSet01X {
+ public class Task01 {
     public static void main(String[] args) {
 
         System.out.printf("%nTask 1.1: Initial exercises on compilation and program execution%n");

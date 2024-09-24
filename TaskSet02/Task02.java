@@ -4,7 +4,7 @@ package TaskSet02;
  * @author: David Browning (davbro-4)
  */
 
- public class TaskSet02 {
+ public class Task02 {
     static final double PI = 3.14159;
     public static void main(String[] args) {
 
