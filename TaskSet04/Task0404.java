@@ -32,6 +32,7 @@ public class Task0404 {
     private static String INPUT_PROMPT = "Please enter the current time (HHMM, q to quit): ";
     private static String INVALID_INPUT_MESSAGE = "Invalid time.";
     private static String MENU_EXIT_STRING = "Q";
+    private static String MENU_EXIT_MESSAGE = "Now exiting program.";
     private static int LUNCH_START = 1200;
     private static int LUNCH_END = 1300;
     private static String LOGICAL_HEADER = "*Using compound logical expression*";
@@ -49,8 +50,28 @@ public class Task0404 {
         // Menu loop
         while (true) {
 
-            // Ask user for current time
+            // 1. Ask user for current time
             System.out.printf("%s", INPUT_PROMPT);
+
+            // 2. Validate input
+            if (userInput.hasNextInt()) {
+                currentTime = userInput.nextInt();
+            } else {
+                // Check if user wishes to exit the program
+                if (userInput.next().toUpperCase().equals(MENU_EXIT_STRING)) {
+                    System.out.printf("%s%n", MENU_EXIT_MESSAGE);
+                    userInput.close();
+                    System.exit(0);
+                }
+                System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
+                continue;
+            }
+
+            // 2b. Validate clock time
+            if (currentTime < 0 || currentTime > 2359 || currentTime % 100 > 59) {
+                System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
+                continue;
+            }
 
         }
 
