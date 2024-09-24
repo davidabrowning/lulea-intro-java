@@ -18,6 +18,10 @@ package TaskSet04;
  *          statement inside another if statement)
  * 
  * PROGRAM DESCRIPTION:
+ * 1. Ask user for current time
+ * 2. Validate input
+ * 3. Check if lunchtime (compound logical expression)
+ * 4. Check if lunchtime (nested if statement)
  * 
  * @author David Browning (davbro-4)
  */
