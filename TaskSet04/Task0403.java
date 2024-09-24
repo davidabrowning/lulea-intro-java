@@ -37,6 +37,13 @@ public class Task0403 {
         Scanner userInput = new Scanner(System.in);
         int weeklyAllowance = 0;
 
+        // Menu loop
+        while (true) {
+
+
+            
+        }
+
     }
     
 }
