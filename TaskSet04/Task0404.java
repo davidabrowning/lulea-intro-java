@@ -77,8 +77,12 @@ public class Task0404 {
             // 2c. Confirm input for user
             System.out.printf("%s%d%n", INPUT_CONFIRMATION_MESSAGE, currentTime);
 
-            // 3. Check if lunchtime
+            // 3. Check if lunchtime (compound logical expression)
+            System.out.printf("%s%n", LOGICAL_HEADER);
 
+            // 4. Check if lunchtime (nested if statement)
+            System.out.printf("%s%n", NESTED_IF_HEADER);
+            
 
         }
 
