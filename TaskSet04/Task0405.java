@@ -17,16 +17,24 @@ package TaskSet04;
  *      female simultaneously shows the result of hermaphrodite.
  * 
  * PROGRAM DESCRIPTION:
+ * 1. Check if male
+ * 2. Check if female
+ * 3. Check if hermaphrodite
  * 
  * @author David Browning (davbro-4)
  */
 public class Task0405 {
 
     // Constants
+    private static String ANIMAL_1 = "Male cat";
+    private static String ANIMAL_2 = "Female dog";
+    private static String ANIMAL_3 = "Worm";
 
     public static void main(String[] args) {
 
         // Variables
+        boolean isMale = false;
+        boolean isFemale = false;
 
     }
     
