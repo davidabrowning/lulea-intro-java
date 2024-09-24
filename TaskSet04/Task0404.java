@@ -33,6 +33,7 @@ public class Task0404 {
     private static String INVALID_INPUT_MESSAGE = "Invalid time.";
     private static String MENU_EXIT_STRING = "Q";
     private static String MENU_EXIT_MESSAGE = "Now exiting program.";
+    private static String INPUT_CONFIRMATION_MESSAGE = "You entered: ";
     private static int LUNCH_START = 1200;
     private static int LUNCH_END = 1300;
     private static String LOGICAL_HEADER = "*Using compound logical expression*";
@@ -72,6 +73,12 @@ public class Task0404 {
                 System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
                 continue;
             }
+
+            // 2c. Confirm input for user
+            System.out.printf("%s%d%n", INPUT_CONFIRMATION_MESSAGE, currentTime);
+
+            // 3. Check if lunchtime
+
 
         }
 
