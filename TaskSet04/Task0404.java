@@ -49,7 +49,8 @@ public class Task0404 {
         // Menu loop
         while (true) {
 
-
+            // Ask user for current time
+            System.out.printf("%s", INPUT_PROMPT);
 
         }
 
