@@ -5,7 +5,7 @@ package TaskSet03;
  */
 
 import java.util.Scanner;
-import java.util.Locale;
+// import java.util.Locale;
 
 public class Task03 {
     public static void main(String[] args) {
@@ -13,16 +13,16 @@ public class Task03 {
         Scanner userInput = new Scanner(System.in);
 
         System.out.println("\nTask 3.1: Input");
-        // runTask3_1(userInput);
+        runTask3_1(userInput);
 
         System.out.println("\nTask 3.2: Problems with mixed input types");
-        // runTask3_2(userInput);
+        runTask3_2(userInput);
 
         System.out.println("\nTask 3.3: Character format (char)");
-        // runTask3_3();
+        runTask3_3();
 
         System.out.println("\nTask 3.4: Locale");
-        // runTask3_4();
+        runTask3_4();
 
         System.out.println("\nTask 3.5: Input/print/formatted print");
         runTask3_5(userInput);
@@ -63,10 +63,13 @@ public class Task03 {
     }
 
     private static void runTask3_4() {
-        Locale svenska = new Locale("sv", "SE");
-        Locale.setDefault(svenska);
-        double testDecimal = 10 / 3.8;
-        System.out.printf("Test decimal in Swedish: %2.2f\n", testDecimal);
+        // Commenting out since this uses a deprecated contructor Locale(String, String)
+        // and will not be addressed
+
+        // Locale svenska = new Locale("sv", "SE");
+        // Locale.setDefault(svenska);
+        // double testDecimal = 10 / 3.8;
+        // System.out.printf("Test decimal in Swedish: %2.2f\n", testDecimal);
     }
 
     private static void runTask3_5(Scanner userInput) {
