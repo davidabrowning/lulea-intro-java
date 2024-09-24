@@ -88,8 +88,16 @@ public class Task0404 {
 
             // 4. Check if lunchtime (nested if statement)
             System.out.printf("%s%n", NESTED_IF_HEADER);
-            
-
+            if (currentTime >= LUNCH_START) {
+                if (currentTime < LUNCH_END) {
+                    lunchtimeAnnouncement = IS_LUNCH;
+                } else {
+                    lunchtimeAnnouncement = NOT_LUNCH;
+                }
+            } else {
+                lunchtimeAnnouncement = NOT_LUNCH;
+            }
+            System.out.printf("%s%n", lunchtimeAnnouncement);
         }
 
     }
