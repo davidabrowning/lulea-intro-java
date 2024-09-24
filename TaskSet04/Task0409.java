@@ -1,5 +1,7 @@
 package TaskSet04;
 
+// Imports
+
 /**
  * TASK:
  * 1.   Try to re-implement the loop that prints the message of love 
@@ -15,5 +17,13 @@ package TaskSet04;
  */
 
 public class Task0409 {
+
+    // Constants
+
+    public static void main(String[] args) {
+
+        // Variables
+
+    }
     
 }
