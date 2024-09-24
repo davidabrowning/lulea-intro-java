@@ -29,29 +29,33 @@ public class Task0401 {
         Scanner userInput = new Scanner(System.in);
         boolean validInput = false;
         int userAge = 0;
-        boolean drivingEligibility = false;
+        String drivingEligibilityStatement = "";
 
         // 1. Ask user for age
         validInput = false;
         do {
-            System.out.printf("%nPlease enter your age: ");
+            System.out.printf("Please enter your age in years: ");
             if (userInput.hasNextInt()) {
                 userAge = userInput.nextInt();
                 validInput = true;
             } else {
                 userInput.nextLine();
-                System.out.printf("%nI'm sorry, I didn't understand that.");
+                System.out.printf("I'm sorry, I didn't understand that.%n");
             }
         } while (!validInput);
 
         // 2. Check if user can drive
         if (userAge >= DRIVING_AGE) {
-            drivingEligibility = true;
+            drivingEligibilityStatement = "You can drive!";
+        } else {
+            drivingEligibilityStatement = "You are too young to drive.";
         }
 
-        System.out.printf("%nYou entered: %d", userAge);
+        // 3. Print the result
+        System.out.printf("You entered an age of: %d%n", userAge);
+        System.out.printf("%s%n", drivingEligibilityStatement);
 
-        // Close the Scanner
+        // 4. Close the Scanner
         userInput.close();
 
     }
