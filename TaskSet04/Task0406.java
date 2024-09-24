@@ -18,7 +18,11 @@ package TaskSet04;
 
 public class Task0406 {
 
+    // Constants
+
     public static void main(String[] args) {
+
+        // Variables
 
     }
     
