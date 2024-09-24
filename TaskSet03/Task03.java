@@ -1,3 +1,4 @@
+package TaskSet03;
 /**
  * Practicing using the Scanner class
  * @author David Browning (davbro-4)
