@@ -29,6 +29,9 @@ import java.util.Scanner;
 public class Task0404 {
 
     // Declare constants
+    private static String INPUT_PROMPT = "Please enter the current time (HHMM, q to quit): ";
+    private static String INVALID_INPUT_MESSAGE = "Invalid time.";
+    private static String MENU_EXIT_STRING = "Q";
     private static int LUNCH_START = 1200;
     private static int LUNCH_END = 1300;
     private static String LOGICAL_HEADER = "*Using compound logical expression*";
@@ -45,6 +48,8 @@ public class Task0404 {
 
         // Menu loop
         while (true) {
+
+
 
         }
 
