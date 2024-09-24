@@ -29,7 +29,10 @@ public class Task0410 {
         // Variables
 
         // 1. Loop to print intervals 0..9
-        
+        System.out.println("Print numbers 0..9:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(i);
+        }
 
 
     }
