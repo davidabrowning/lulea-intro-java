@@ -1,6 +1,7 @@
 package TaskSet04;
 
 // Imports
+import java.util.Scanner;
 
 /**
  * TASK:
@@ -38,6 +39,9 @@ public class Task0404 {
     public static void main(String[] args) {
 
         // Declare variables
+        Scanner userInput = new Scanner(System.in);
+        int currentTime = 0;
+        String lunchtimeAnnouncement = "";
 
     }
     
