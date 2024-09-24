@@ -28,6 +28,12 @@ package TaskSet04;
 public class Task0404 {
 
     // Declare constants
+    private static int LUNCH_START = 1200;
+    private static int LUNCH_END = 1300;
+    private static String LOGICAL_HEADER = "*Using compound logical expression*";
+    private static String NESTED_IF_HEADER = "*Using nested if statements*";
+    private static String IS_LUNCH = "It is currently lunchtime!";
+    private static String NOT_LUNCH = "It is not currently lunchtime.";
 
     public static void main(String[] args) {
 
