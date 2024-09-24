@@ -51,12 +51,12 @@ public class Task0403 {
             System.out.printf(USER_INPUT_PROMPT);
 
             // 2. Validate user input
-            if (userInput.next().toUpperCase().equals(MENU_QUIT_KEY)) {
-                System.out.printf("%s%n", MENU_EXIT_TEXT);
-                userInput.close();
-                return;
-            }
             if (!userInput.hasNextInt()) {
+                if (userInput.next().toUpperCase().equals(MENU_QUIT_KEY)) {
+                    System.out.printf("%s%n", MENU_EXIT_TEXT);
+                    userInput.close();
+                    return;
+                }
                 System.out.printf("%s%n", INVALID_INPUT_TEXT);
                 continue;
             }
