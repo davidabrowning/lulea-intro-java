@@ -71,10 +71,6 @@ public class Task0405 {
             if (isMale && !(isMale ^ isFemale)) {
                 System.out.printf("Is hermaphrodite%n");
             }
-
-
         }
-
     }
-    
 }
