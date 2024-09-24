@@ -33,8 +33,37 @@ public class Task0405 {
     public static void main(String[] args) {
 
         // Variables
+        String currentAnimal = "";
         boolean isMale = false;
         boolean isFemale = false;
+
+        for (int i = 0; i < 3; i++) {
+            if (i == 0) {
+                currentAnimal = ANIMAL_1;
+                isMale = true;
+                isFemale = false;
+            }
+            if (i == 1) {
+                currentAnimal = ANIMAL_2;
+                isMale = false;
+                isFemale = true;
+            }
+            if (i == 2) {
+                currentAnimal = ANIMAL_3;
+                isMale = true;
+                isFemale = true;
+            }
+
+            // Print animal header
+
+            // 1. Check if male
+
+            // 2. Check if female
+
+            // 3. Check if hermaphrodite
+
+
+        }
 
     }
     
