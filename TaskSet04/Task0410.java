@@ -40,6 +40,16 @@ public class Task0410 {
             System.out.println(letter);
         }
 
+        // 3. Loop to print all lowercase letters, indicating vowels and consonants
+        System.out.println("Print lowercase letters, indicating vowels and consonants:");
+        for (char letter = 'a'; letter <= 'z'; letter++) {
+            if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o'
+                || letter == 'u' || letter == 'y') {
+                    System.out.println(letter + " - vowel");
+            } else {
+                System.out.println(letter + " - consonant");
+            }
+        }
 
     }
     
