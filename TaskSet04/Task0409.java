@@ -19,10 +19,16 @@ package TaskSet04;
 public class Task0409 {
 
     // Constants
+    private static String MESSAGE = "Love, love everywhere";
 
     public static void main(String[] args) {
 
         // Variables
+        int i = 1;
+
+        for ( ; i <= 10; ) {
+            System.out.printf("%d. %s%n", i++, MESSAGE);
+        }
 
     }
     
