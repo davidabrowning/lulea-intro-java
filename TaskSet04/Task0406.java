@@ -42,7 +42,7 @@ public class Task0406 {
             // 3. Collect input
             enteredNum = userInput.nextInt();
 
-        } while (!(enteredNum > 0));
+        } while (enteredNum > 0);
 
     }
     
