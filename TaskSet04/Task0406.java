@@ -10,8 +10,8 @@ import java.util.Scanner;
  * 
  * PROGRAM DESCRIPTION:
  * 1. Print instructions
- * 2. Collect input
- * 3. Validate input
+ * 2. Validate input
+ * 3. Collect input
  * 4. Check criterion for exiting loop
  * 
  * @author David Browning (davbro-4)
@@ -32,6 +32,15 @@ public class Task0406 {
 
             // 1. Print instructions
             System.out.printf("%s", INPUT_INSTRUCTIONS);
+
+            // 2. Validate input
+            if (!userInput.hasNextInt()) {
+                userInput.nextLine();
+                continue;
+            }
+
+            // 3. Collect input
+            enteredNum = userInput.nextInt();
 
         } while (!(enteredNum > 0));
 
