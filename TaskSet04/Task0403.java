@@ -43,6 +43,7 @@ public class Task0403 {
         // Declare local variables
         Scanner userInput = new Scanner(System.in);
         int weeklyAllowance = 0;
+        String purchaseAnnouncement = "";
 
         // Menu loop
         while (true) {
@@ -61,17 +62,19 @@ public class Task0403 {
                 continue;
             }
             weeklyAllowance = userInput.nextInt();
+            userInput.nextLine();
 
             // 3. Print which option the user can buy
             if (weeklyAllowance < SINGLE_SEK) {
-                System.out.printf("%s%n", ZERO_STATEMENT);
+                purchaseAnnouncement = ZERO_STATEMENT;
             } else if (weeklyAllowance < DOUBLE_SEK) {
-                System.out.printf("%s%n", SINGLE_STATEMENT);
+                purchaseAnnouncement = SINGLE_STATEMENT;
             } else if (weeklyAllowance < TRIPLE_SEK) {
-                System.out.printf("%s%n", DOUBLE_STATEMENT);
+                purchaseAnnouncement = DOUBLE_STATEMENT;
             } else {
-                System.out.printf("%s%n", TRIPLE_STATEMENT);
+                purchaseAnnouncement = TRIPLE_STATEMENT;
             }
+            System.out.printf("%s%n", purchaseAnnouncement);
 
         }
 
