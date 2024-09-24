@@ -16,13 +16,19 @@ package TaskSet04;
  *      3 scoops - 20 kr
  * 
  * PROGRAM DESCRIPTION:
- * 
+ * 1. Ask user for weekly allowance amount
+ * 2. Validate user input
+ * 3. Print which option user can buy
  * 
  * @author David Browning (davbro-4)
  */
 public class Task0403 {
 
     // Declare constants
+    private static char MENU_QUIT_KEY = 'Q';
+    private static int SINGLE_SEK = 10;
+    private static int DOUBLE_SEK = 15;
+    private static int TRIPLE_SEK = 20;
 
     public static void main(String[] args)
 
