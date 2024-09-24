@@ -34,6 +34,12 @@ public class Task0410 {
             System.out.println(i);
         }
 
+        // 2. Loop to print all lowercase letters
+        System.out.println("Print lowercase letters:");
+        for (char letter = 'a'; letter <= 'z'; letter++) {
+            System.out.println(letter);
+        }
+
 
     }
     
