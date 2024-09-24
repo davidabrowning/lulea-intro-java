@@ -26,7 +26,7 @@ public class Task0406 {
 
         // Variables
         Scanner userInput = new Scanner(System.in);
-        int enteredNum = 0;
+        int enteredNum = 999;
 
         do {
 
@@ -41,8 +41,9 @@ public class Task0406 {
 
             // 3. Collect input
             enteredNum = userInput.nextInt();
+            userInput.nextLine();
 
-        } while (enteredNum > 0);
+        } while (enteredNum >= 0);
 
     }
     
