@@ -1,6 +1,7 @@
 package TaskSet04;
 
 // Imports
+import java.util.Scanner;
 
 /**
  * TASK:
@@ -30,8 +31,12 @@ public class Task0403 {
     private static int DOUBLE_SEK = 15;
     private static int TRIPLE_SEK = 20;
 
-    public static void main(String[] args)
+    public static void main(String[] args) {
 
-    // Declare local variables
+        // Declare local variables
+        Scanner userInput = new Scanner(System.in);
+        int weeklyAllowance = 0;
+
+    }
     
 }
