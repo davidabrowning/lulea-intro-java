@@ -58,10 +58,19 @@ public class Task0405 {
             System.out.printf("%n%s%n", currentAnimal);
 
             // 1. Check if male
+            if (isMale && isMale ^ isFemale) {
+                System.out.printf("Is male%n");
+            }
 
             // 2. Check if female
+            if (isFemale && isMale ^ isFemale) {
+                System.out.printf("Is female%n");
+            }
 
             // 3. Check if hermaphrodite
+            if (isMale && !(isMale ^ isFemale)) {
+                System.out.printf("Is hermaphrodite%n");
+            }
 
 
         }
