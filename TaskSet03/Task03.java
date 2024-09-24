@@ -7,7 +7,7 @@ package TaskSet03;
 import java.util.Scanner;
 import java.util.Locale;
 
-public class TaskSet03 {
+public class Task03 {
     public static void main(String[] args) {
 
         Scanner userInput = new Scanner(System.in);

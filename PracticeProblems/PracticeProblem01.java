@@ -1,10 +1,11 @@
+package PracticeProblems;
 /**
  * Practice problems for Intro Java
  * at Luleå tekniska universitet
  * 
  * @author David Browning (davbro-4)
  */
-public class PracticeProblems01 {
+public class PracticeProblem01 {
     public static void main(String[] args) {
         System.out.println("\nData types: Invitation");
         System.out.println("You are welcome to attend the next Java party");

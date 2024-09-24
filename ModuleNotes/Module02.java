@@ -1,3 +1,4 @@
+package ModuleNotes;
 import java.util.Scanner;
 public class Module02 {
     public static void main(String[] args) {
@@ -5,7 +6,7 @@ public class Module02 {
         Scanner input = new Scanner(System.in);
 
         System.out.println("\nModule 2: Validating input");
-        // runValidateInput(input);
+        runValidateInput(input);
 
         System.out.println("\nModule 2: Operator precedence and associativity");
         runOperatorPrecedenceAndAssociativity();

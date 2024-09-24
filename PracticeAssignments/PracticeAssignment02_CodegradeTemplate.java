@@ -1,3 +1,4 @@
+package PracticeAssignments;
 /**
 * Describe briefly your program in steps.
 * 
@@ -40,8 +41,8 @@ class PracticeAssignment02_CodegradeTemplate {
   
       //Step 6: Calculate the combined hours for both sunrise and sunset
       //Validate
-      double hours = 23;
-      double minutes = 55;
+      // double hours = 23;
+      // double minutes = 55;
   
       double finalSunriseHours = 0.0;
       finalSunriseHours = 23 + 55/60; //Convert minutes to hours
