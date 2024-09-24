@@ -52,7 +52,7 @@ public class Task0404 {
         while (true) {
 
             // 1. Ask user for current time
-            System.out.printf("%s", INPUT_PROMPT);
+            System.out.printf("%n%s", INPUT_PROMPT);
 
             // 2. Validate input
             if (userInput.hasNextInt()) {
@@ -79,6 +79,12 @@ public class Task0404 {
 
             // 3. Check if lunchtime (compound logical expression)
             System.out.printf("%s%n", LOGICAL_HEADER);
+            if (currentTime >= LUNCH_START && currentTime < LUNCH_END) {
+                lunchtimeAnnouncement = IS_LUNCH;
+            } else {
+                lunchtimeAnnouncement = NOT_LUNCH;
+            }
+            System.out.printf("%s%n", lunchtimeAnnouncement);
 
             // 4. Check if lunchtime (nested if statement)
             System.out.printf("%s%n", NESTED_IF_HEADER);
