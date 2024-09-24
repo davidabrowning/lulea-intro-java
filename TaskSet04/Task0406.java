@@ -1,6 +1,7 @@
 package TaskSet04;
 
 // Imports
+import java.util.Scanner;
 
 /**
  * TASK: 
@@ -23,6 +24,12 @@ public class Task0406 {
     public static void main(String[] args) {
 
         // Variables
+        Scanner userInput = new Scanner(System.in);
+        int enteredNum = 0;
+
+        do {
+
+        } while (!(enteredNum > 0))
 
     }
     
