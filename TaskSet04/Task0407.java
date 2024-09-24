@@ -24,5 +24,7 @@ public class Task0407 {
             number = userInput.nextInt(); 
             System.out.println("Number:" + number); 
         } while (number> 0);
+
+        userInput.close();
     }
 }
