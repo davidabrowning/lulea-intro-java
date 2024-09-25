@@ -27,7 +27,7 @@ import java.util.Random;
  */
 public class Main {
 
-    // Declare constants
+    // Constants
     private static final String GAME_START = "Welcome to dice game 12. You must roll 1-3"
         + " dice and try to get the sum of 12 ...\n";
     private static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
@@ -50,20 +50,21 @@ public class Main {
 
     public static void main(final String[] args) {
 
-        int die1Value = 0; // The value of the first die
-        boolean isDie1Rolled = false; // Whether the first die is rolled or not
+        // Variables
+        int die1Value = 0;              // The value of the first die
+        boolean isDie1Rolled = false;   // Whether the first die is rolled or not
 
-        int die2Value = 0; // The value of the second die
-        boolean isDie2Rolled = false; // Whether the second die is rolled or not
+        int die2Value = 0;              // The value of the second die
+        boolean isDie2Rolled = false;   // Whether the second die is rolled or not
 
-        int die3Value = 0; // The value of the third die
-        boolean isDie3Rolled = false; // Whether the third die is rolled or not
+        int die3Value = 0;              // The value of the third die
+        boolean isDie3Rolled = false;   // Whether the third die is rolled or not
 
-        int sum = 0; // The sum of the die values
-        int winCounter = 0; // The number of wins
-        int lossCounter = 0; // The number of losses
+        int sum = 0;                    // The sum of the die values
+        int winCounter = 0;             // The number of wins
+        int lossCounter = 0;            // The number of losses
 
-        boolean isPlaying = true; // Whether the game is being played or not
+        boolean isPlaying = true;       // Whether the game is being played or not
 
         Scanner userInput = new Scanner(System.in);
         Random rand = new Random();
