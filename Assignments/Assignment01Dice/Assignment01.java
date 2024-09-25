@@ -112,8 +112,24 @@ public class Assignment01 {
                 continue;
             }
 
+            // 5. Process die roll
+
+            // 6. Print die status and win/loss status
+
+            // 7. Print win/loss message
+
+            // 8. Print next round message
 
         }
+
+        // 9. If game over:
+        // 9a. Print win/loss status
+        
+        // 9b. Print Game Over
+
+        // 9c. Close Scanner
         userInput.close();
+
+        // 9d. System exit
     }
 }
