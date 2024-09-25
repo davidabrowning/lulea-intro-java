@@ -189,10 +189,12 @@ public class Main {
         System.out.printf("#win: %d #loss: %d%n", winCounter, lossCounter);
 
         // 9b. Print Game Over
+        System.out.printf("%s%n", GAME_OVER);
 
         // 9c. Close Scanner
         userInput.close();
 
         // 9d. System exit
+        System.exit(0);
     }
 }
