@@ -94,15 +94,25 @@ public class Assignment01 {
                     continue;
                 } else {
                     System.out.printf("%s%n", INVALID_ENTRY);
-                    isPlaying = true;
                     continue;
                 }
             }
 
             // 4b. Validate integer input
-            System.out.println("Now playing a round!");
             userDieSelection = userInput.nextInt();
             userInput.nextLine();
+            if (userDieSelection < 1 || userDieSelection > 3) {
+                System.out.printf("%s%n", INVALID_ENTRY);
+                continue;
+            }
+            if (userDieSelection == 1 && isDie1Rolled
+                || userDieSelection == 2 && isDie2Rolled
+                || userDieSelection == 3 && isDie3Rolled) {
+                System.out.printf("%s%n", ALREADY_SELECTED_DICE);
+                continue;
+            }
+
+
         }
         userInput.close();
     }
