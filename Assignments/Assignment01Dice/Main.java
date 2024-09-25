@@ -32,6 +32,8 @@ public class Main {
         + " dice and try to get the sum of 12 ...\n";
     private static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
         + " (exit with q):";
+    private static final String CHOOSE_DIE_DELIMITER = "[\\s]";
+    private static final String EXIT_STRING = "q";
     private static final String ROUND_WON = "You won!!";
     private static final String ROUND_LOST = "You lost!!";
     private static final String ROUND_TIE = "You neither won nor lost the round.";
@@ -79,8 +81,21 @@ public class Main {
             System.out.println(CHOOSE_DIE);
 
             // 4. Validate user's die selection
+            userInput.useDelimiter(CHOOSE_DIE_DELIMITER);
+
+            // 4a. Validate non-integer input
+            if (!userInput.hasNextInt()) {
+                if (userInput.next().equals(EXIT_STRING)) {
+                    isPlaying = false;
+                    continue;
+                } else {
+                    System.out.printf("%s%n", INVALID_ENTRY);
+                }
+            }
+
+            // 4b. Validate integer input
+            System.out.println("Now playing a round!");
             
-            isPlaying = false;
         }
         userInput.close();
     }
