@@ -186,6 +186,7 @@ public class Main {
 
         // 9. If game over:
         // 9a. Print win/loss status
+        System.out.printf("#win: %d #loss: %d%n", winCounter, lossCounter);
 
         // 9b. Print Game Over
 
