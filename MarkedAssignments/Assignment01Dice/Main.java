@@ -1,4 +1,4 @@
-package Assignment01.Assignment01Dice;
+package MarkedAssignments.Assignment01Dice;
 
 import java.util.Random;
 import java.util.Scanner;
