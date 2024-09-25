@@ -40,7 +40,7 @@ public class Main {
     private static final String EXIT_STRING = "q";
     private static final String ROUND_WON = "You won!!";
     private static final String ROUND_LOST = "You lost!!";
-    private static final String ROUND_TIE = "You neither won nor lost the round.";
+    private static final String ROUND_TIE = "You neither won nor lost the game.";
     private static final String NEXT_ROUND = "Next round!";
     private static final String GAME_OVER = "Game Over!";
     private static final String ALREADY_SELECTED_DICE = "Sorry, you have already rolled"
