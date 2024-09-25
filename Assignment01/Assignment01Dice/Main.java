@@ -154,9 +154,10 @@ public class Main {
             }
 
             // 6. Print die status and win/loss status
-            System.out.printf("%d %d %d sum: %d%s%d%s%d%n",
-                die1Value, die2Value, die3Value, sum, AMOUNT_WIN_STRING, 
-                winCounter, AMOUNT_LOST_STRING, lossCounter);
+            System.out.printf("%d %d %d%s%d%s%d%s%d%n",
+                die1Value, die2Value, die3Value, SUM_STRING, sum, 
+                AMOUNT_WIN_STRING, winCounter, AMOUNT_LOST_STRING, 
+                lossCounter);
 
             // 7. If round over
             if (roundIsOver) {
@@ -187,7 +188,8 @@ public class Main {
 
         // 9. If game over:
         // 9a. Print win/loss status
-        System.out.printf("%s%d%s%d%n", AMOUNT_WIN_STRING, winCounter, AMOUNT_LOST_STRING, lossCounter);
+        System.out.printf("%s%d%s%d%n", AMOUNT_WIN_STRING, 
+            winCounter, AMOUNT_LOST_STRING, lossCounter);
 
         // 9b. Print Game Over
         System.out.printf("%s%n", GAME_OVER);
