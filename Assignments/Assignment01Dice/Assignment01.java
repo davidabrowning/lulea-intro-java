@@ -113,6 +113,23 @@ public class Assignment01 {
             }
 
             // 5. Process die roll
+            switch (userDieSelection) {
+                case 1:
+                    die1Value = rand.nextInt(1, 7);
+                    isDie1Rolled = true;
+                    break;
+                case 2:
+                    die2Value = rand.nextInt(1, 7);
+                    isDie2Rolled = true;
+                    break;
+                case 3:
+                    die3Value = rand.nextInt(1, 7);
+                    isDie2Rolled = true;
+                    break;
+                default:
+                    System.out.printf("%s%n", INVALID_ENTRY);
+                    break;
+            }
 
             // 6. Print die status and win/loss status
 
@@ -124,7 +141,7 @@ public class Assignment01 {
 
         // 9. If game over:
         // 9a. Print win/loss status
-        
+
         // 9b. Print Game Over
 
         // 9c. Close Scanner
