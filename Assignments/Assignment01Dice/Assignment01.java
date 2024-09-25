@@ -1,7 +1,7 @@
 package Assignments.Assignment01Dice;
 
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * PROGRAM SUMMARY:
@@ -25,7 +25,7 @@ import java.util.Random;
  *
  * @author David Browning (davbro-4)
  */
-public class Main {
+public class Assignment01 {
 
     // Constants
     private static final String GAME_START = "Welcome to dice game 12. You must roll 1-3"
@@ -33,7 +33,7 @@ public class Main {
     private static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
         + " (exit with q):";
     private static final String CHOOSE_DIE_DELIMITER = "[\\s]";
-    private static final String EXIT_STRING = "q";
+    private static final String EXIT_STRING = "quit";
     private static final String ROUND_WON = "You won!!";
     private static final String ROUND_LOST = "You lost!!";
     private static final String ROUND_TIE = "You neither won nor lost the round.";
@@ -50,7 +50,7 @@ public class Main {
     private static final int MIN_DIE_VALUE = 1;
     private static final int DICE_SUM_TARGET_VALUE = 12;
 
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
 
         // Variables
         int die1Value = 0;              // The value of the first die
