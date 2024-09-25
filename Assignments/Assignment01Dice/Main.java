@@ -77,6 +77,8 @@ public class Main {
 
             // 3. Ask for user to select a die to roll
             System.out.println(CHOOSE_DIE);
+
+            // 4. Validate user's die selection
             
             isPlaying = false;
         }
