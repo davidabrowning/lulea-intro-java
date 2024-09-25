@@ -15,13 +15,15 @@ import java.util.Scanner;
  *  4. Validate user's die selection
  *  5. Process die roll
  *  6. Print die status and win/loss status
- *  7. Print win/loss message
- *  8. Print next round message
- *  9. If game over:
- *      9a. Print win/loss status
- *      9b. Print Game Over
- *      9c. Close Scanner
- *      9d. System exit
+ *  7. If round over:
+ *      7a. Print win/loss message
+ *      7b. Print next round message
+ *      7c. Reset variables
+ *  8. If game over:
+ *      8a. Print win/loss status
+ *      8b. Print Game Over
+ *      8c. Close Scanner
+ *      8d. System exit
  *
  * @author David Browning (davbro-4)
  */
@@ -69,6 +71,7 @@ public class Assignment01 {
         int winCounter = 0;             // The number of wins
         int lossCounter = 0;            // The number of losses
 
+        boolean roundIsOver = false;    // Whether this round is over or not
         boolean isPlaying = true;       // Whether the game is being played or not
 
         Scanner userInput = new Scanner(System.in);
@@ -131,27 +134,52 @@ public class Assignment01 {
                     break;
             }
             sum = die1Value + die2Value + die3Value;
+
+            // 5a. Check for win
             if (sum == 12) {
+                roundIsOver = true;
                 winCounter++;
             }
+
+            // 5b. Check for loss
             if (sum > 12) {
+                roundIsOver = true;
                 lossCounter++;
+            }
+
+            // 5c. Check if all dice have been rolled
+            if (isDie1Rolled && isDie2Rolled && isDie3Rolled) {
+                roundIsOver = true;
             }
 
             // 6. Print die status and win/loss status
             System.out.printf("%d %d %d sum: %d #win: %d #loss: %d",
                 die1Value, die2Value, die3Value, sum, winCounter, lossCounter);
 
-            // 7. Print win/loss message
-            if (sum == 12) {
-                System.out.printf("%s%n", ROUND_WON);
-            }
-            if (sum > 12) {
-                System.out.printf("%s%n", ROUND_LOST);
-            }
+            // 7. If round over
+            if (roundIsOver) {
 
-            // 8. Print next round message
+                // 7a. Print win/loss message
+                if (sum == 12) {
+                    System.out.printf("%s%n", ROUND_WON);
+                } else if (sum > 12) {
+                    System.out.printf("%s%n", ROUND_LOST);
+                } else {
+                    System.out.printf("%s%n", ROUND_TIE);
+                }
 
+                // 7b. Print next round message
+                System.out.printf("%s%n", NEXT_ROUND);
+
+                // 7c. Reset variables
+                die1Value = 0;
+                die2Value = 0;
+                die3Value = 0;
+                isDie1Rolled = false;
+                isDie2Rolled = false;
+                isDie3Rolled = false;
+                roundIsOver = false;
+            }
         }
 
         // 9. If game over:
