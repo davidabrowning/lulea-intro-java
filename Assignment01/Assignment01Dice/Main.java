@@ -59,6 +59,7 @@ public class Main {
         // Variables
         String userMenuSelection = "";  // The user's non-integer menu selection
         int userDieSelection = 0;       // The user's selection of die to roll
+        int userDieRollResult = 0;      // The result of the most current die roll
 
         int die1Value = 0;              // The value of the first die
         boolean isDie1Rolled = false;   // Whether the first die is rolled or not
@@ -119,17 +120,18 @@ public class Main {
             // 5. Process die roll
 
             // 5a. Process this roll
+            userDieRollResult = rand.nextInt(MIN_DIE_VALUE, MAX_DIE_VALUE + 1);
             switch (userDieSelection) {
                 case 1:
-                    die1Value = rand.nextInt(1, 7);
+                    die1Value = userDieRollResult;
                     isDie1Rolled = true;
                     break;
                 case 2:
-                    die2Value = rand.nextInt(1, 7);
+                    die2Value = userDieRollResult;
                     isDie2Rolled = true;
                     break;
                 case 3:
-                    die3Value = rand.nextInt(1, 7);
+                    die3Value = userDieRollResult;
                     isDie3Rolled = true;
                     break;
                 default:
@@ -143,11 +145,11 @@ public class Main {
                 roundIsOver = true;
 
                 // 5c. Check for win/loss
-                if (sum == 12) {
+                if (sum == DICE_SUM_TARGET_VALUE) {
                     roundIsOver = true;
                     winCounter++;
                 }
-                if (sum > 12) {
+                if (sum > DICE_SUM_TARGET_VALUE) {
                     roundIsOver = true;
                     lossCounter++;
                 }                
@@ -163,9 +165,9 @@ public class Main {
             if (roundIsOver) {
 
                 // 7a. Print win/loss message
-                if (sum == 12) {
+                if (sum == DICE_SUM_TARGET_VALUE) {
                     System.out.printf("%s%n", ROUND_WON);
-                } else if (sum > 12) {
+                } else if (sum > DICE_SUM_TARGET_VALUE) {
                     System.out.printf("%s%n", ROUND_LOST);
                 } else {
                     System.out.printf("%s%n", ROUND_TIE);
