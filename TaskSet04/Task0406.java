@@ -45,6 +45,8 @@ public class Task0406 {
 
         } while (enteredNum >= 0);
 
+        userInput.close();
+
     }
     
 }
