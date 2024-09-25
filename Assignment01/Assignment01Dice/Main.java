@@ -13,7 +13,10 @@ import java.util.Scanner;
  *  2. Loop until user enters q
  *  3. Ask for user to select a die to roll
  *  4. Validate user's die selection
- *  5. Process die roll
+ *  5. Process die roll 
+ *      5a. Log this roll
+ *      5b. Check if round over
+ *      5c. Check for win/loss
  *  6. Print die status and win/loss status
  *  7. If round over:
  *      7a. Print win/loss message
@@ -114,6 +117,8 @@ public class Main {
             }
 
             // 5. Process die roll
+
+            // 5a. Process this roll
             switch (userDieSelection) {
                 case 1:
                     die1Value = rand.nextInt(1, 7);
@@ -133,17 +138,15 @@ public class Main {
             }
             sum = die1Value + die2Value + die3Value;
 
-            // 5c. Check if all dice have been rolled
+            // 5b. Check if round over
             if (isDie1Rolled && isDie2Rolled && isDie3Rolled) {
                 roundIsOver = true;
 
-                // 5a. Check for win
+                // 5c. Check for win/loss
                 if (sum == 12) {
                     roundIsOver = true;
                     winCounter++;
                 }
-
-                // 5b. Check for loss
                 if (sum > 12) {
                     roundIsOver = true;
                     lossCounter++;
