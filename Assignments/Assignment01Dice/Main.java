@@ -69,6 +69,7 @@ public class Main {
         Scanner userInput = new Scanner(System.in);
         Random rand = new Random();
 
+        // 1. Print game instructions
         System.out.println(GAME_START);
 
         while (isPlaying) {
