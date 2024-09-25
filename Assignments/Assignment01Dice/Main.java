@@ -1,3 +1,5 @@
+package Assignments.Assignment01Dice;
+
 import java.util.Scanner;
 import java.util.Random;
 
