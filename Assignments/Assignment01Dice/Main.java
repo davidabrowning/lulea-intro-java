@@ -8,7 +8,7 @@ import java.util.Random;
  * 
  * 1.
  *
- * @author Name (LTU username)
+ * @author David Browning (davbro-4)
  */
 class Main {
   /**
