@@ -47,7 +47,7 @@ public class Main {
         + " that dice. Try again";
     private static final String INVALID_ENTRY = "Sorry, that is an invalid entry. Try"
         + " again. Valid entries are 1, 2, 3, and q\n";
-    private static final String AMOUNT_WIN_STRING = "#win: ";
+    private static final String AMOUNT_WIN_STRING = " #win: ";
     private static final String AMOUNT_LOST_STRING = " #loss: ";
     private static final String SUM_STRING = " sum: ";
     private static final int MAX_DIE_VALUE = 6;
@@ -154,8 +154,9 @@ public class Main {
             }
 
             // 6. Print die status and win/loss status
-            System.out.printf("%d %d %d sum: %d #win: %d #loss: %d%n",
-                die1Value, die2Value, die3Value, sum, winCounter, lossCounter);
+            System.out.printf("%d %d %d sum: %d%s%d%s%d%n",
+                die1Value, die2Value, die3Value, sum, AMOUNT_WIN_STRING, 
+                winCounter, AMOUNT_LOST_STRING, lossCounter);
 
             // 7. If round over
             if (roundIsOver) {
@@ -186,7 +187,7 @@ public class Main {
 
         // 9. If game over:
         // 9a. Print win/loss status
-        System.out.printf("#win: %d #loss: %d%n", winCounter, lossCounter);
+        System.out.printf("%s%d%s%d%n", AMOUNT_WIN_STRING, winCounter, AMOUNT_LOST_STRING, lossCounter);
 
         // 9b. Print Game Over
         System.out.printf("%s%n", GAME_OVER);
