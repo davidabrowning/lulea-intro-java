@@ -4,9 +4,24 @@ import java.util.Scanner;
 import java.util.Random;
 
 /**
- * The program is a game where the player will roll 3 dice to get a total sum of 12 in order to win.
+ * PROGRAM SUMMARY:
+ *  The program is a game where the player will roll 3 dice to get a total 
+ *  sum of 12 in order to win.
  * 
- * 1.
+ * PROGRAM DESCRIPTION:
+ *  1. Print game instructions
+ *  2. Loop until user enters q
+ *  3. Ask for user to select a die to roll
+ *  4. Validate user's die selection
+ *  5. Process die roll
+ *  6. Print die status and win/loss status
+ *  7. Print win/loss message
+ *  8. Print next round message
+ *  9. If game over:
+ *      9a. Print win/loss status
+ *      9b. Print Game Over
+ *      9c. Close Scanner
+ *      9d. System exit
  *
  * @author David Browning (davbro-4)
  */
