@@ -33,7 +33,7 @@ public class Assignment01 {
     private static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
         + " (exit with q):";
     private static final String CHOOSE_DIE_DELIMITER = "[\\s]";
-    private static final String EXIT_STRING = "quit";
+    private static final String EXIT_STRING = "q";
     private static final String ROUND_WON = "You won!!";
     private static final String ROUND_LOST = "You lost!!";
     private static final String ROUND_TIE = "You neither won nor lost the round.";
@@ -53,6 +53,9 @@ public class Assignment01 {
     public static void main(String[] args) {
 
         // Variables
+        String userMenuSelection = "";  // The user's non-integer menu selection
+        int userDieSelection = 0;       // The user's selection of die to roll
+
         int die1Value = 0;              // The value of the first die
         boolean isDie1Rolled = false;   // Whether the first die is rolled or not
 
@@ -78,24 +81,28 @@ public class Assignment01 {
         while (isPlaying) {
 
             // 3. Ask for user to select a die to roll
-            System.out.println(CHOOSE_DIE);
+            System.out.printf("%s ", CHOOSE_DIE);
 
             // 4. Validate user's die selection
             userInput.useDelimiter(CHOOSE_DIE_DELIMITER);
 
             // 4a. Validate non-integer input
             if (!userInput.hasNextInt()) {
-                if (userInput.next().equals(EXIT_STRING)) {
+                userMenuSelection = userInput.nextLine();
+                if (userMenuSelection.equals(EXIT_STRING)) {
                     isPlaying = false;
                     continue;
                 } else {
                     System.out.printf("%s%n", INVALID_ENTRY);
+                    isPlaying = true;
+                    continue;
                 }
             }
 
             // 4b. Validate integer input
             System.out.println("Now playing a round!");
-            
+            userDieSelection = userInput.nextInt();
+            userInput.nextLine();
         }
         userInput.close();
     }
