@@ -74,6 +74,8 @@ public class Main {
 
         // 2. Loop until user enters q
         while (isPlaying) {
+
+            // 3. Ask for user to select a die to roll
             System.out.println(CHOOSE_DIE);
             
             isPlaying = false;
