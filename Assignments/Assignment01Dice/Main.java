@@ -72,6 +72,7 @@ public class Main {
         // 1. Print game instructions
         System.out.println(GAME_START);
 
+        // 2. Loop until user enters q
         while (isPlaying) {
             System.out.println(CHOOSE_DIE);
             
