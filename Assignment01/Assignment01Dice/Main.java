@@ -170,7 +170,7 @@ public class Main {
                 }
 
                 // 7b. Print next round message
-                System.out.printf("%s%n", NEXT_ROUND);
+                System.out.printf("%n%s%n%n", NEXT_ROUND);
 
                 // 7c. Reset variables
                 die1Value = 0;
