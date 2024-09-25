@@ -1,4 +1,4 @@
-package Assignments.Assignment01Dice;
+package Assignment01.Assignment01Dice;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -27,14 +27,13 @@ import java.util.Scanner;
  *
  * @author David Browning (davbro-4)
  */
-public class Assignment01 {
+public class Main {
 
     // Constants
     private static final String GAME_START = "Welcome to dice game 12. You must roll 1-3"
         + " dice and try to get the sum of 12 ...\n";
     private static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
         + " (exit with q):";
-    private static final String CHOOSE_DIE_DELIMITER = "[\\s]";
     private static final String EXIT_STRING = "q";
     private static final String ROUND_WON = "You won!!";
     private static final String ROUND_LOST = "You lost!!";
@@ -87,11 +86,10 @@ public class Assignment01 {
             System.out.printf("%s ", CHOOSE_DIE);
 
             // 4. Validate user's die selection
-            userInput.useDelimiter(CHOOSE_DIE_DELIMITER);
 
             // 4a. Validate non-integer input
             if (!userInput.hasNextInt()) {
-                userMenuSelection = userInput.nextLine();
+                userMenuSelection = userInput.next();
                 if (userMenuSelection.equals(EXIT_STRING)) {
                     isPlaying = false;
                     continue;
@@ -103,7 +101,7 @@ public class Assignment01 {
 
             // 4b. Validate integer input
             userDieSelection = userInput.nextInt();
-            userInput.nextLine();
+            // userInput.nextLine();
             if (userDieSelection < 1 || userDieSelection > 3) {
                 System.out.printf("%s%n", INVALID_ENTRY);
                 continue;
