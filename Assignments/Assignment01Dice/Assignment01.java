@@ -42,7 +42,7 @@ public class Assignment01 {
     private static final String NEXT_ROUND = "Next round!";
     private static final String GAME_OVER = "Game Over!";
     private static final String ALREADY_SELECTED_DICE = "Sorry, you have already rolled"
-        + "that dice. Try again";
+        + " that dice. Try again";
     private static final String INVALID_ENTRY = "Sorry, that is an invalid entry. Try"
         + " again. Valid entries are 1, 2, 3, and q\n";
     private static final String AMOUNT_WIN_STRING = "#win: ";
@@ -127,7 +127,7 @@ public class Assignment01 {
                     break;
                 case 3:
                     die3Value = rand.nextInt(1, 7);
-                    isDie2Rolled = true;
+                    isDie3Rolled = true;
                     break;
                 default:
                     System.out.printf("%s%n", INVALID_ENTRY);
@@ -135,25 +135,25 @@ public class Assignment01 {
             }
             sum = die1Value + die2Value + die3Value;
 
-            // 5a. Check for win
-            if (sum == 12) {
-                roundIsOver = true;
-                winCounter++;
-            }
-
-            // 5b. Check for loss
-            if (sum > 12) {
-                roundIsOver = true;
-                lossCounter++;
-            }
-
             // 5c. Check if all dice have been rolled
             if (isDie1Rolled && isDie2Rolled && isDie3Rolled) {
                 roundIsOver = true;
+
+                // 5a. Check for win
+                if (sum == 12) {
+                    roundIsOver = true;
+                    winCounter++;
+                }
+
+                // 5b. Check for loss
+                if (sum > 12) {
+                    roundIsOver = true;
+                    lossCounter++;
+                }                
             }
 
             // 6. Print die status and win/loss status
-            System.out.printf("%d %d %d sum: %d #win: %d #loss: %d",
+            System.out.printf("%d %d %d sum: %d #win: %d #loss: %d%n",
                 die1Value, die2Value, die3Value, sum, winCounter, lossCounter);
 
             // 7. If round over
@@ -178,6 +178,7 @@ public class Assignment01 {
                 isDie1Rolled = false;
                 isDie2Rolled = false;
                 isDie3Rolled = false;
+                sum = 0;
                 roundIsOver = false;
             }
         }
