@@ -130,10 +130,25 @@ public class Assignment01 {
                     System.out.printf("%s%n", INVALID_ENTRY);
                     break;
             }
+            sum = die1Value + die2Value + die3Value;
+            if (sum == 12) {
+                winCounter++;
+            }
+            if (sum > 12) {
+                lossCounter++;
+            }
 
             // 6. Print die status and win/loss status
+            System.out.printf("%d %d %d sum: %d #win: %d #loss: %d",
+                die1Value, die2Value, die3Value, sum, winCounter, lossCounter);
 
             // 7. Print win/loss message
+            if (sum == 12) {
+                System.out.printf("%s%n", ROUND_WON);
+            }
+            if (sum > 12) {
+                System.out.printf("%s%n", ROUND_LOST);
+            }
 
             // 8. Print next round message
 
