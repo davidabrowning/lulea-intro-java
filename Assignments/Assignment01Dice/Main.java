@@ -34,7 +34,7 @@ class Main {
    */
     static final String GAME_START = "Welcome to dice game 12. You must roll 1-3"
         + " dice and try to get the sum of 12 ...\n";
-    static final String CHOOSE_DIE = "Enter which die you want to roll [1,2,3]"
+    static final String CHOOSE_DIE = "Enter which dice you want to roll [1,2,3]"
         + " (exit with q):";
     static final String ROUND_WON = "You won!!";
     static final String ROUND_LOST = "You lost!!";
@@ -42,7 +42,7 @@ class Main {
     static final String NEXT_ROUND = "Next round!";
     static final String GAME_OVER = "Game Over!";
     static final String ALREADY_SELECTED_DICE = "Sorry, you have already rolled"
-        + "that die. Try again";
+        + "that dice. Try again";
     static final String INVALID_ENTRY = "Sorry, that is an invalid entry. Try"
         + " again. Valid entries are 1, 2, 3, and q\n";
     static final String AMOUNT_WIN_STRING = "#win: ";
