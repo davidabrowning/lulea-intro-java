@@ -26,6 +26,13 @@ public class E5Dice {
     public static void main(final String[] args) {
 
         // Variables
+        int timesToRoll = 0;        // User's desired number of dice rolls
+        int count1 = 0;             // Number of 1s rolled
+        int count2 = 0;             // Number of 2s rolled
+        int count3 = 0;             // Number of 3s rolled
+        int count4 = 0;             // Number of 4s rolled
+        int count5 = 0;             // Number of 5s rolled
+        int count6 = 0;             // Number of 6s rolled
 
     }
 
