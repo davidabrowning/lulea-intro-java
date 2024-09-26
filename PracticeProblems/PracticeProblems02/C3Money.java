@@ -35,6 +35,7 @@ public class C3Money {
 
         // Variables
         int totalAmount = 0;        // Total amount to exchange
+        int remainingAmount = 0;    // Remaining amount to exchange
         int numCat1 = 0;            // Amount of denom 1
         int numCat2 = 0;            // Amount of denom 2
         int numCat3 = 0;            // Amount of denom 3
@@ -55,6 +56,15 @@ public class C3Money {
         }
 
         // 3. Separate into kronor amounts
+        remainingAmount = totalAmount;
+        numCat1 = remainingAmount / CAT_1;
+        remainingAmount = remainingAmount % CAT_1;
+        numCat2 = remainingAmount / CAT_2;
+        remainingAmount = remainingAmount % CAT_2;
+        numCat3 = remainingAmount / CAT_3;
+        remainingAmount = remainingAmount % CAT_3;
+        numCat4 = remainingAmount / CAT_4;
+        remainingAmount = remainingAmount % CAT_4;
         
         // 4. Display results
         
