@@ -16,6 +16,13 @@ package PracticeProblems.PracticeProblems02;
 public class C3Money {
 
     // Constants
+    private static String INPUT_PROMPT = "What amount would you like to exchange?";
+    private static int CAT_1 = 20;
+    private static int CAT_2 = 10;
+    private static int CAT_3 = 5;
+    private static int CAT_4 = 1;
+    private static String COL_H1 = "Exchange";
+    private static String COL_UNITS = "kronor";
 
     public static void main(final String[] args) {
 
@@ -28,7 +35,7 @@ public class C3Money {
         // 3. Display results
         
         // 4. Close and exit
-        
+
     }
 
 }
