@@ -70,12 +70,15 @@ public class B2Time {
         }
 
         // 2c. Check for illegal hour/minute/second values
-        if (userHours < 0 || userMinutes < 0 || userMinutes > 59 || userSeconds < 0 || userSeconds > 59) {
+        if (userHours < 0 || userMinutes < 0 || userMinutes > 59 
+            || userSeconds < 0 || userSeconds > 59) {
             System.out.printf("%s%n", INVALID_TIME_MESSAGE);
             System.exit(0);            
         }
 
-        
+        // 3. Calculate number of seconds
+        totalSeconds = userHours * SECONDS_PER_HOUR + userMinutes 
+            * SECONDS_PER_MINUTE + userSeconds;
 
     }
     
