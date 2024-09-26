@@ -6,7 +6,10 @@ package PracticeProblems.PracticeProblems02;
  * 10-kronor, 5-kronor, and 1-kronor
  * 
  * PROGRAM DESCRIPTION:
- * 
+ * 1. Ask user for amount of money to exchange
+ * 2. Separate into kronor amounts
+ * 3. Display results
+ * 4. Close and exit
  * 
  * @author David Browning (davbro-4)
  */
