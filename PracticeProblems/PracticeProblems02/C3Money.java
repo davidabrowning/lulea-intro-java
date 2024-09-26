@@ -29,7 +29,7 @@ public class C3Money {
     private static int CAT_3 = 5;
     private static int CAT_4 = 1;
     private static String COL_H1 = "Exchange";
-    private static String COL_UNITS = "kronor";
+    private static String COL_UNITS = " kronor";
 
     public static void main(final String[] args) {
 
