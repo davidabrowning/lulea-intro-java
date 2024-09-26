@@ -44,6 +44,16 @@ public class E5Dice {
         System.out.printf("%s ", INPUT_PROMPT);
 
         // 2. Validate user input
+        if (userInput.hasNextInt()) {
+            timesToRoll = userInput.nextInt();
+        } else {
+            System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
+            System.exit(0);
+        }
+        if (timesToRoll < 1) {
+            System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
+            System.exit(0);
+        }
 
         // 3. Roll dice
 
