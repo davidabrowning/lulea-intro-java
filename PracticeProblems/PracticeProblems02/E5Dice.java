@@ -1,5 +1,8 @@
 package PracticeProblems.PracticeProblems02;
 
+// Imports
+import java.util.Scanner;
+
 /**
  * TASK:
  * Write a program where the user is first asked to enter the number of dice
@@ -33,6 +36,12 @@ public class E5Dice {
         int count4 = 0;             // Number of 4s rolled
         int count5 = 0;             // Number of 5s rolled
         int count6 = 0;             // Number of 6s rolled
+
+        // Declare Scanner
+        Scanner userInput = new Scanner(System.in);
+
+        // 5. Close and exit
+        userInput.close();
 
     }
 
