@@ -10,6 +10,7 @@ import java.util.Scanner;
  * 
  * PROGRAM DESCRIPTION:
  * 1. Ask user for amount of money to exchange
+ * 2. Validate user input
  * 2. Separate into kronor amounts
  * 3. Display results
  * 4. Close and exit
@@ -40,12 +41,15 @@ public class C3Money {
         Scanner userInput = new Scanner(System.in);
 
         // 1. Ask user for amount of money to exchange
+        System.out.printf("%s ", INPUT_PROMPT);
 
-        // 2. Separate into kronor amounts
+        // 2. Validate user input
+
+        // 3. Separate into kronor amounts
         
-        // 3. Display results
+        // 4. Display results
         
-        // 4. Close and exit
+        // 5. Close and exit
 
     }
 
