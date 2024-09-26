@@ -19,6 +19,9 @@ package PracticeProblems.PracticeProblems02;
 public class E5Dice {
 
     // Constants
+    private static String INPUT_PROMPT = "How many times would you like"
+        + " to roll?";
+    private static String INVALID_INPUT_MESSAGE = "Invalid input. Exiting.";
 
     public static void main(final String[] args) {
 
