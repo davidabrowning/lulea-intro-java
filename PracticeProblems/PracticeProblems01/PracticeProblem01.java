@@ -1,4 +1,4 @@
-package PracticeProblems;
+package PracticeProblems.PracticeProblems01;
 /**
  * Practice problems for Intro Java
  * at Luleå tekniska universitet
