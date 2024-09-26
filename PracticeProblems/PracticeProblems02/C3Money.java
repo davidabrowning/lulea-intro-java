@@ -67,9 +67,14 @@ public class C3Money {
         remainingAmount = remainingAmount % CAT_4;
         
         // 4. Display results
+        System.out.printf("|%-10s|%-10s|%-10s|%-10s|%-10s|%n", COL_H1, 
+            CAT_1 + COL_UNITS, CAT_2 + COL_UNITS, CAT_3 + COL_UNITS, 
+            CAT_4 + COL_UNITS);
+        System.out.printf("|%-10s|%-10s|%-10s|%-10s|%-10s|%n", totalAmount,
+            numCat1, numCat2, numCat3, numCat4);
         
         // 5. Close and exit
-
+        userInput.close();
     }
 
 }
