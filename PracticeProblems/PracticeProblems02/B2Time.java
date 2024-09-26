@@ -19,9 +19,22 @@ package PracticeProblems.PracticeProblems02;
 public class B2Time {
 
     // Constants
+    private static String TIME_INPUT_INSTRUCTIONS = "Please enter a time amount (HH:MM:SS): ";
+    private static String TIME_INPUT_DELIMITER = ":|\\s+";
+    private static String INVALID_TIME_MESSAGE = "Invalid time entered.";
+    private static int SECONDS_PER_MINUTE = 60;
+    private static int SECONDS_PER_HOUR = 3600;
+    private static String TIME_OUTPUT_MESSAGE_START = "The time you entere is";
+    private static String TIME_OUTPUT_MESSAGE_END = "seconds.";
 
     public static void main(final String[] args) {
-        
+
+        // Variables
+        int userHours = 0;          // Tracks user-entered hours
+        int userMinutes = 0;        // Tracks user-entered minutes
+        int userSeconds = 0;        // Tracks user-entered seconds
+        int totalSeconds = 0;       // Tracks total seconds calculated
+
     }
     
 }
