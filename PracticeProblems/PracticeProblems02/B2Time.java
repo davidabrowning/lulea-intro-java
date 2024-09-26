@@ -80,6 +80,14 @@ public class B2Time {
         totalSeconds = userHours * SECONDS_PER_HOUR + userMinutes 
             * SECONDS_PER_MINUTE + userSeconds;
 
+
+        // 4. Display number of seconds
+        System.out.printf("%s%d%s%n", TIME_OUTPUT_MESSAGE_START, totalSeconds, 
+            TIME_OUTPUT_MESSAGE_END);
+
+        // Close Scanner
+        userInput.close();
+
     }
     
 }
