@@ -39,6 +39,14 @@ public class E5Dice {
 
         // Declare Scanner
         Scanner userInput = new Scanner(System.in);
+        
+        // 1. Ask user for number of time to roll dice
+
+        // 2. Validate user input
+
+        // 3. Roll dice
+        
+        // 4. Display result
 
         // 5. Close and exit
         userInput.close();
