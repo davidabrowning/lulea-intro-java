@@ -1,5 +1,8 @@
 package PracticeProblems.PracticeProblems02;
 
+// Imports
+import java.util.Scanner;
+
 /**
  * TASK:
  * Write a Java program that divides the user's amount into 20-kronor, 
@@ -27,6 +30,14 @@ public class C3Money {
     public static void main(final String[] args) {
 
         // Variables
+        int totalAmount = 0;        // Total amount to exchange
+        int numCat1 = 0;            // Amount of denom 1
+        int numCat2 = 0;            // Amount of denom 2
+        int numCat3 = 0;            // Amount of denom 3
+        int numCat4 = 0;            // Amount of denom 4
+
+        // Declare Scanner
+        Scanner userInput = new Scanner(System.in);
 
         // 1. Ask user for amount of money to exchange
 
