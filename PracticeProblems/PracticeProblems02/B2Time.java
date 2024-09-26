@@ -27,8 +27,8 @@ public class B2Time {
     private static String INVALID_TIME_MESSAGE = "Invalid time entered.";
     private static int SECONDS_PER_MINUTE = 60;
     private static int SECONDS_PER_HOUR = 3600;
-    private static String TIME_OUTPUT_MESSAGE_START = "The time you entere is";
-    private static String TIME_OUTPUT_MESSAGE_END = "seconds.";
+    private static String TIME_OUTPUT_MESSAGE_START = "The time you entered is: ";
+    private static String TIME_OUTPUT_MESSAGE_END = " seconds.";
 
     public static void main(final String[] args) {
 
@@ -40,6 +40,9 @@ public class B2Time {
 
         // Initialize Scanner
         Scanner userInput = new Scanner(System.in);
+
+        // 1. Ask for user input (HH:MM:SS)
+        System.out.printf("%s", TIME_INPUT_INSTRUCTIONS);
 
     }
     
