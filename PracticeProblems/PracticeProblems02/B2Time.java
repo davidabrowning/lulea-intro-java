@@ -1,5 +1,8 @@
 package PracticeProblems.PracticeProblems02;
 
+// Imports
+import java.util.Scanner;
+
 /**
  * TASK:
  * Write a Java program that asks for the number of hours, minutes, and 
@@ -34,6 +37,9 @@ public class B2Time {
         int userMinutes = 0;        // Tracks user-entered minutes
         int userSeconds = 0;        // Tracks user-entered seconds
         int totalSeconds = 0;       // Tracks total seconds calculated
+
+        // Initialize Scanner
+        Scanner userInput = new Scanner(System.in);
 
     }
     
