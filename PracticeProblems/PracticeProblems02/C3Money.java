@@ -20,7 +20,10 @@ import java.util.Scanner;
 public class C3Money {
 
     // Constants
-    private static String INPUT_PROMPT = "What amount would you like to exchange?";
+    private static String INPUT_PROMPT = "What amount would you like"
+        + " to exchange?";
+    private static String INVALID_INPUT_MESSAGE = "Invalid amount to"
+        + " exchange. Exiting program.";
     private static int CAT_1 = 20;
     private static int CAT_2 = 10;
     private static int CAT_3 = 5;
@@ -44,6 +47,12 @@ public class C3Money {
         System.out.printf("%s ", INPUT_PROMPT);
 
         // 2. Validate user input
+        if (userInput.hasNextInt()) {
+            totalAmount = userInput.nextInt();
+        } else {
+            System.out.printf("%s%n", INVALID_INPUT_MESSAGE);
+            System.exit(0);
+        }
 
         // 3. Separate into kronor amounts
         
