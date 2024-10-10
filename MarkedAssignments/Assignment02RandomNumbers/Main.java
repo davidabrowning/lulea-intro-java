@@ -10,6 +10,8 @@ package MarkedAssignments.Assignment02RandomNumbers;
  * 4. Order the even integers ascending
  * 5. Order the odd integers descending
  * 6. Print the numbers with a punctuation mark between even and odd
+ * 7. Print a summary of how many even and odd numbers were present
+ * 8. Close the Scanner and exit
  * 
  * @author David Browning (davbro-4)
  * @version 1.0
