@@ -3,7 +3,6 @@ package MarkedAssignments.Assignment02RandomNumbers;
 // Imports
 import java.util.Scanner;
 import java.util.InputMismatchException;
-import java.lang.OutOfMemoryError;
 
 /**
  * PROGRAM DESCRIPTION
@@ -20,7 +19,7 @@ import java.lang.OutOfMemoryError;
  * 8c. Print the odd numbers
  * 9. Print a summary of how many even and odd numbers were present
  * 10. Close the Scanner and exit
- * 
+ *
  * @author David Browning (davbro-4)
  * @version 1.0
  */
@@ -64,7 +63,7 @@ class Main {
         }
         if (numRandomNumbersToGenerate < 1) {
             System.out.println(INVALID_INPUT_MESSAGE);
-            System.exit(0);            
+            System.exit(0);
         }
         if (numRandomNumbersToGenerate > Integer.MAX_VALUE) {
             System.out.println(INVALID_INPUT_MESSAGE);
@@ -113,11 +112,11 @@ class Main {
         for (int i = 0; i < evenNumberCount; i++) {
             foundSwap = false;
             for (int j = 1; j < evenNumberCount; j++) {
-                if (evenNumbers[j] < evenNumbers[j-1]) {
+                if (evenNumbers[j] < evenNumbers[j - 1]) {
                     foundSwap = true;
                     swapPlaceholder = evenNumbers[j];
-                    evenNumbers[j] = evenNumbers[j-1];
-                    evenNumbers[j-1] = swapPlaceholder;
+                    evenNumbers[j] = evenNumbers[j - 1];
+                    evenNumbers[j - 1] = swapPlaceholder;
                 }
             }
             if (!foundSwap) {
@@ -129,11 +128,11 @@ class Main {
         for (int i = 0; i < oddNumberCount; i++) {
             foundSwap = false;
             for (int j = 1; j < oddNumberCount; j++) {
-                if (oddNumbers[j] > oddNumbers[j-1]) {
+                if (oddNumbers[j] > oddNumbers[j - 1]) {
                     foundSwap = true;
                     swapPlaceholder = oddNumbers[j];
-                    oddNumbers[j] = oddNumbers[j-1];
-                    oddNumbers[j-1] = swapPlaceholder;
+                    oddNumbers[j] = oddNumbers[j - 1];
+                    oddNumbers[j - 1] = swapPlaceholder;
                 }
             }
             if (!foundSwap) {
