@@ -46,6 +46,8 @@ class Main {
         int[] oddNumbers = null;                    // Holds odd numbers
         int evenNumberCount = 0;                    // Holds even number count
         int oddNumberCount = 0;                     // Holds odd number count
+        boolean foundSwap = false;                  // Tracks if ints swapped
+        int swapPlaceholder = 0;                    // Helps swap integers
 
         // 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
         System.out.println("\n" + Integer.MAX_VALUE);
@@ -99,6 +101,20 @@ class Main {
         }
 
         // 5. Order the even integers ascending
+        for (int i = 0; i < evenNumberCount; i++) {
+            foundSwap = false;
+            for (int j = 1; j < evenNumberCount; j++) {
+                if (evenNumbers[j] < evenNumbers[j-1]) {
+                    foundSwap = true;
+                    swapPlaceholder = evenNumbers[j];
+                    evenNumbers[j] = evenNumbers[j-1];
+                    evenNumbers[j-1] = swapPlaceholder;
+                }
+            }
+            if (!foundSwap) {
+                break;
+            }
+        }
 
         // 7. Order the odd integers descending
 
