@@ -2,6 +2,7 @@ package MarkedAssignments.Assignment02RandomNumbers;
 
 // Imports
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 /**
  * PROGRAM DESCRIPTION
@@ -20,9 +21,12 @@ import java.util.Scanner;
 class Main {
 
     // Declare constants
-    static final String USER_INPUT_PROMPT = "How many random numbers in the range 0 - 999 are desired?";
-    static final String RANDOM_NUMBERS_LIST_MESSAGE = "Here are the random numbers:";
-    static final String RANDOM_NUMBERS_SORTED_MESSAGE = "Here are the random numbers arranged:";
+    static final String USER_INPUT_PROMPT = "How many random numbers in the"
+        + " range 0 - 999 are desired?";
+    static final String RANDOM_NUMBERS_LIST_MESSAGE = "Here are the random"
+        + " numbers:";
+    static final String RANDOM_NUMBERS_SORTED_MESSAGE = "Here are the random"
+        + " numbers arranged:";
     static final String NO_ODD_NUMBERS_MESSAGE = "No Odd Numbers";
     static final String NO_EVEN_NUMBERS_MESSAGE = "No Even Numbers";
     static final String INVALID_INPUT_MESSAGE = "Invalid Input";    
@@ -30,13 +34,25 @@ class Main {
     public static void main(final String[] args) {
 
         // Declare variables
-        Scanner userInput = new Scanner(System.in); // Used for reading user input
-        int[] randomNumbers = null;                 // Holds all random numbers
-        int[] evenNumers = null;                    // Holds the even numbers calculated
-        int[] oddNumbers = null;                    // Holds the odd numbers calculated
-        int evenNumberCount = 0;                    // Stores the number of even numbers calculated
-        int oddNumberCount = 0;                     // Stores the number of odd numbers calculated
+        Scanner userInput = new Scanner(System.in); // Reads user input
+        int numRandomNumbersToGenerate = 0;         // How many ints to create
+        int[] randomNumbers = null;                 // Holds random numbers
+        int[] evenNumers = null;                    // Holds even numbers
+        int[] oddNumbers = null;                    // Holds odd numbers
+        int evenNumberCount = 0;                    // Holds even number count
+        int oddNumberCount = 0;                     // Holds odd number count
 
-        System.out.println("Hello world!");
+        // 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
+        System.out.print(USER_INPUT_PROMPT + " ");
+        try {
+            numRandomNumbersToGenerate = userInput.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println(INVALID_INPUT_MESSAGE);
+            System.exit(0);
+        }
+        if (numRandomNumbersToGenerate > Integer.MAX_VALUE) {
+            System.out.println(INVALID_INPUT_MESSAGE);
+            System.exit(0);
+        }
     }
 } // end class
