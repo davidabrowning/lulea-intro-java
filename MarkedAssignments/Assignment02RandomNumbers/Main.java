@@ -15,6 +15,9 @@ import java.lang.OutOfMemoryError;
  * 5. Order the even integers ascending
  * 7. Order the odd integers descending
  * 8. Print the numbers with a punctuation mark between even and odd
+ * 8a. Print the even numbers
+ * 8b. Print the punctuation mark
+ * 8c. Print the odd numbers
  * 9. Print a summary of how many even and odd numbers were present
  * 10. Close the Scanner and exit
  * 
@@ -133,6 +136,13 @@ class Main {
         }        
 
         // 8. Print the numbers with a punctuation mark between even and odd
+        System.out.println(RANDOM_NUMBERS_SORTED_MESSAGE);
+
+        // 8a. Print the even numbers
+        
+        // 8b. Print the punctuation mark
+
+        // 8c. Print the odd numbers
 
         // 9. Print a summary of how many even and odd numbers were present
 
