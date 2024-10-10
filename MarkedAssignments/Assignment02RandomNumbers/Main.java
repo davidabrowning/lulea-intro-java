@@ -53,7 +53,8 @@ class Main {
         boolean foundSwap = false;                  // Tracks if ints swapped
         int swapPlaceholder = 0;                    // Helps swap integers
 
-        // 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
+        // 1. User enters how many random numbers are needed 
+        // range (1 - Integer.MAX_VALUE)
         System.out.print(USER_INPUT_PROMPT + " ");
         try {
             numRandomNumbersToGenerate = userInput.nextInt();
@@ -172,9 +173,11 @@ class Main {
         // 9. Print a summary of how many even and odd numbers were present
         System.out.printf("%n");
         if (numRandomNumbersToGenerate == 1) {
-            System.out.printf("Of the above %d number", numRandomNumbersToGenerate);
+            System.out.printf("Of the above %d number", 
+                numRandomNumbersToGenerate);
         } else {
-            System.out.printf("Of the above %d numbers", numRandomNumbersToGenerate);
+            System.out.printf("Of the above %d numbers", 
+                numRandomNumbersToGenerate);
         }
         System.out.printf(", ");
         if (evenNumberCount == 1) {
