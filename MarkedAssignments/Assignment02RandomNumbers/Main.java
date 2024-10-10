@@ -1,6 +1,7 @@
 package MarkedAssignments.Assignment02RandomNumbers;
 
-// Includes
+// Imports
+import java.util.Scanner;
 
 /**
  * PROGRAM DESCRIPTION
@@ -29,6 +30,12 @@ class Main {
     public static void main(final String[] args) {
 
         // Declare variables
+        Scanner userInput = new Scanner(System.in); // Used for reading user input
+        int[] randomNumbers = null;                 // Holds all random numbers
+        int[] evenNumers = null;                    // Holds the even numbers calculated
+        int[] oddNumbers = null;                    // Holds the odd numbers calculated
+        int evenNumberCount = 0;                    // Stores the number of even numbers calculated
+        int oddNumberCount = 0;                     // Stores the number of odd numbers calculated
 
         System.out.println("Hello world!");
     }
