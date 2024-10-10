@@ -62,6 +62,10 @@ class Main {
             System.out.println(INVALID_INPUT_MESSAGE);
             System.exit(0);
         }
+        if (numRandomNumbersToGenerate < 1) {
+            System.out.println(INVALID_INPUT_MESSAGE);
+            System.exit(0);            
+        }
         if (numRandomNumbersToGenerate > Integer.MAX_VALUE) {
             System.out.println(INVALID_INPUT_MESSAGE);
             System.exit(0);
