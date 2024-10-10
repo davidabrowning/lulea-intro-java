@@ -11,11 +11,12 @@ import java.lang.OutOfMemoryError;
  * 1b. Initialize arrays that will hold results
  * 2. Randomize the specified numbers
  * 3. Print the numbers in the order in which they were randomized
- * 4. Order the even integers ascending
- * 5. Order the odd integers descending
- * 6. Print the numbers with a punctuation mark between even and odd
- * 7. Print a summary of how many even and odd numbers were present
- * 8. Close the Scanner and exit
+ * 4. Sort the integers into evens and odds
+ * 5. Order the even integers ascending
+ * 7. Order the odd integers descending
+ * 8. Print the numbers with a punctuation mark between even and odd
+ * 9. Print a summary of how many even and odd numbers were present
+ * 10. Close the Scanner and exit
  * 
  * @author David Browning (davbro-4)
  * @version 1.0
@@ -85,6 +86,8 @@ class Main {
             }
             System.out.print(randomNumbers[i]);
         }
+
+
 
     }
 } // end class
