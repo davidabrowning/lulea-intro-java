@@ -53,7 +53,7 @@ class Main {
         boolean foundSwap = false;                  // Tracks if ints swapped
         int swapPlaceholder = 0;                    // Helps swap integers
 
-        // 1. User enters how many random numbers are needed 
+        // 1. User enters how many random numbers are needed
         // range (1 - Integer.MAX_VALUE)
         System.out.print(USER_INPUT_PROMPT + " ");
         try {
@@ -74,7 +74,7 @@ class Main {
             oddNumbers = new int[numRandomNumbersToGenerate];
         } catch (OutOfMemoryError e) {
             System.out.println(INVALID_INPUT_MESSAGE);
-            System.exit(0);            
+            System.exit(0);
         }
 
         // 2. Randomize the specified numbers
@@ -86,8 +86,8 @@ class Main {
         // 3. Print the numbers in the order in which they were randomized
         System.out.printf("%n%s%n", RANDOM_NUMBERS_LIST_MESSAGE);
         for (int i = 0; i < randomNumbers.length; i++) {
-            if (i > 0) {                
-                // If not the first element, print a leading space                
+            if (i > 0) {
+                // If not the first element, print a leading space
                 System.out.print(" ");
             }
             System.out.print(randomNumbers[i]);
@@ -135,7 +135,7 @@ class Main {
             if (!foundSwap) {
                 break;
             }
-        }        
+        }
 
         // 8. Print the numbers with a punctuation mark between even and odd
         System.out.printf("%n%s%n", RANDOM_NUMBERS_SORTED_MESSAGE);
@@ -173,19 +173,19 @@ class Main {
         // 9. Print a summary of how many even and odd numbers were present
         System.out.printf("%n");
         if (numRandomNumbersToGenerate == 1) {
-            System.out.printf("Of the above %d number", 
+            System.out.printf("Of the above %d number",
                 numRandomNumbersToGenerate);
         } else {
-            System.out.printf("Of the above %d numbers", 
+            System.out.printf("Of the above %d numbers",
                 numRandomNumbersToGenerate);
         }
         System.out.printf(", ");
         if (evenNumberCount == 1) {
-            System.out.printf("%d was even and %d odd", evenNumberCount, 
+            System.out.printf("%d was even and %d odd", evenNumberCount,
                 oddNumberCount);
         } else {
-            System.out.printf("%d were even and %d odd", evenNumberCount, 
-                oddNumberCount);            
+            System.out.printf("%d were even and %d odd", evenNumberCount,
+                oddNumberCount);
         }
 
         // 10. Close the Scanner and exit
