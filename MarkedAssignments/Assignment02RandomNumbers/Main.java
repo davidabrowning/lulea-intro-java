@@ -167,10 +167,25 @@ class Main {
                 }
             }
         }
+        System.out.printf("%n");
 
         // 9. Print a summary of how many even and odd numbers were present
+        System.out.printf("%n");
+        if (numRandomNumbersToGenerate == 1) {
+            System.out.printf("Of the above %d number", numRandomNumbersToGenerate);
+        } else {
+            System.out.printf("Of the above %d numbers", numRandomNumbersToGenerate);
+        }
+        System.out.printf(", ");
+        if (evenNumberCount == 1) {
+            System.out.printf("%d was even and %d odd", evenNumberCount, 
+                oddNumberCount);
+        } else {
+            System.out.printf("%d were even and %d odd", evenNumberCount, 
+                oddNumberCount);            
+        }
 
         // 10. Close the Scanner and exit
-
+        userInput.close();
     }
 } // end class
