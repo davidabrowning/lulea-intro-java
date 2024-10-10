@@ -3,10 +3,12 @@ package MarkedAssignments.Assignment02RandomNumbers;
 // Imports
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.lang.OutOfMemoryError;
 
 /**
  * PROGRAM DESCRIPTION
  * 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
+ * 1b. Initialize arrays that will hold results
  * 2. Randomize the specified numbers
  * 3. Print the numbers in the order in which they were randomized
  * 4. Order the even integers ascending
@@ -39,12 +41,13 @@ class Main {
         Scanner userInput = new Scanner(System.in); // Reads user input
         int numRandomNumbersToGenerate = 0;         // How many ints to create
         int[] randomNumbers = null;                 // Holds random numbers
-        int[] evenNumers = null;                    // Holds even numbers
+        int[] evenNumbers = null;                    // Holds even numbers
         int[] oddNumbers = null;                    // Holds odd numbers
         int evenNumberCount = 0;                    // Holds even number count
         int oddNumberCount = 0;                     // Holds odd number count
 
         // 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
+        System.out.println("\n" + Integer.MAX_VALUE);
         System.out.print(USER_INPUT_PROMPT + " ");
         try {
             numRandomNumbersToGenerate = userInput.nextInt();
@@ -57,8 +60,31 @@ class Main {
             System.exit(0);
         }
 
-        // 2. Randomize the specified numbers
+        // 1b. Initialize arrays that will hold results
+        try {
+            randomNumbers = new int[numRandomNumbersToGenerate];
+            evenNumbers = new int[numRandomNumbersToGenerate];
+            oddNumbers = new int[numRandomNumbersToGenerate];
+        } catch (OutOfMemoryError e) {
+            System.out.println(INVALID_INPUT_MESSAGE);
+            System.exit(0);            
+        }
 
+        // 2. Randomize the specified numbers
+        for (int i = 0; i < randomNumbers.length; i++) {
+            int randomNum = (int) (Math.random() * (RANDOM_INTEGER_MAX + 1));
+            randomNumbers[i] = randomNum;
+        }
+
+        // 3. Print the numbers in the order in which they were randomized
+        System.out.println(RANDOM_NUMBERS_LIST_MESSAGE);
+        for (int i = 0; i < randomNumbers.length; i++) {
+            if (i > 0) {                
+                // If not the first element, print a leading space                
+                System.out.print(" ");
+            }
+            System.out.print(randomNumbers[i]);
+        }
 
     }
 } // end class
