@@ -87,7 +87,17 @@ class Main {
             System.out.print(randomNumbers[i]);
         }
 
+        // 4. Sort the integers into evens and odds
 
+        // 5. Order the even integers ascending
+
+        // 7. Order the odd integers descending
+
+        // 8. Print the numbers with a punctuation mark between even and odd
+
+        // 9. Print a summary of how many even and odd numbers were present
+        
+        // 10. Close the Scanner and exit
 
     }
 } // end class
