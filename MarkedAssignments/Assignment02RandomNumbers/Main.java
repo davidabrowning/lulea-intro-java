@@ -29,7 +29,9 @@ class Main {
         + " numbers arranged:";
     static final String NO_ODD_NUMBERS_MESSAGE = "No Odd Numbers";
     static final String NO_EVEN_NUMBERS_MESSAGE = "No Even Numbers";
-    static final String INVALID_INPUT_MESSAGE = "Invalid Input";    
+    static final String INVALID_INPUT_MESSAGE = "Invalid Input";
+    static final int RANDOM_INTEGER_MIN = 0;
+    static final int RANDOM_INTEGER_MAX = 999;
 
     public static void main(final String[] args) {
 
@@ -54,5 +56,9 @@ class Main {
             System.out.println(INVALID_INPUT_MESSAGE);
             System.exit(0);
         }
+
+        // 2. Randomize the specified numbers
+
+
     }
 } // end class
