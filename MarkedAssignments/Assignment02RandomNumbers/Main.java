@@ -88,15 +88,32 @@ class Main {
         }
 
         // 4. Sort the integers into evens and odds
+        for (int i = 0; i < randomNumbers.length; i++) {
+            if (randomNumbers[i] % 2 == 0) {
+                evenNumbers[evenNumberCount] = randomNumbers[i];
+                evenNumberCount++;
+            } else {
+                oddNumbers[oddNumberCount] = randomNumbers[i];
+                oddNumberCount++;
+            }
+        }
 
         // 5. Order the even integers ascending
 
         // 7. Order the odd integers descending
 
         // 8. Print the numbers with a punctuation mark between even and odd
+        System.out.println("\nEvens:");
+        for(int i = 0; i < evenNumberCount; i++) {
+            System.out.print(evenNumbers[i] + " ");
+        }
+        System.out.println("\nOdds:");
+        for(int i = 0; i < oddNumberCount; i++) {
+            System.out.print(oddNumbers[i] + " ");
+        }
 
         // 9. Print a summary of how many even and odd numbers were present
-        
+
         // 10. Close the Scanner and exit
 
     }
