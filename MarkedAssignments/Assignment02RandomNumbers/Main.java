@@ -36,6 +36,7 @@ class Main {
     static final String NO_ODD_NUMBERS_MESSAGE = "No Odd Numbers";
     static final String NO_EVEN_NUMBERS_MESSAGE = "No Even Numbers";
     static final String INVALID_INPUT_MESSAGE = "Invalid Input";
+    static final String PUNCTUATION_MARK = "-";
     static final int RANDOM_INTEGER_MIN = 0;
     static final int RANDOM_INTEGER_MAX = 999;
 
@@ -53,7 +54,6 @@ class Main {
         int swapPlaceholder = 0;                    // Helps swap integers
 
         // 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
-        System.out.println("\n" + Integer.MAX_VALUE);
         System.out.print(USER_INPUT_PROMPT + " ");
         try {
             numRandomNumbersToGenerate = userInput.nextInt();
@@ -83,7 +83,7 @@ class Main {
         }
 
         // 3. Print the numbers in the order in which they were randomized
-        System.out.println(RANDOM_NUMBERS_LIST_MESSAGE);
+        System.out.printf("%n%s%n", RANDOM_NUMBERS_LIST_MESSAGE);
         for (int i = 0; i < randomNumbers.length; i++) {
             if (i > 0) {                
                 // If not the first element, print a leading space                
@@ -91,6 +91,7 @@ class Main {
             }
             System.out.print(randomNumbers[i]);
         }
+        System.out.printf("%n");
 
         // 4. Sort the integers into evens and odds
         for (int i = 0; i < randomNumbers.length; i++) {
@@ -136,13 +137,36 @@ class Main {
         }        
 
         // 8. Print the numbers with a punctuation mark between even and odd
-        System.out.println(RANDOM_NUMBERS_SORTED_MESSAGE);
+        System.out.printf("%n%s%n", RANDOM_NUMBERS_SORTED_MESSAGE);
 
         // 8a. Print the even numbers
-        
+        if (evenNumberCount == 0) {
+            System.out.print(NO_EVEN_NUMBERS_MESSAGE);
+        } else {
+            for (int i = 0; i < evenNumberCount; i++) {
+                System.out.print(evenNumbers[i]);
+                if (i < evenNumberCount - 1) {
+                    // If not the last item, print a buffer space
+                    System.out.print(" ");
+                }
+            }
+        }
+
         // 8b. Print the punctuation mark
+        System.out.printf(" %s ", PUNCTUATION_MARK);
 
         // 8c. Print the odd numbers
+        if (oddNumberCount == 0) {
+            System.out.print(NO_ODD_NUMBERS_MESSAGE);
+        } else {
+            for (int i = 0; i < oddNumberCount; i++) {
+                System.out.print(oddNumbers[i]);
+                if (i < oddNumberCount - 1) {
+                    // If not the last item, print a buffer space
+                    System.out.print(" ");
+                }
+            }
+        }
 
         // 9. Print a summary of how many even and odd numbers were present
 
