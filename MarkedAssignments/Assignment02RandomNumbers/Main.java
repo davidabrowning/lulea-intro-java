@@ -4,6 +4,12 @@ package MarkedAssignments.Assignment02RandomNumbers;
 
 /**
  * PROGRAM DESCRIPTION
+ * 1. User enters how many random numbers are needed (1 - Integer.MAX_VALUE)
+ * 2. Randomize the specified numbers
+ * 3. Print the numbers in the order in which they were randomized
+ * 4. Order the even integers ascending
+ * 5. Order the odd integers descending
+ * 6. Print the numbers with a punctuation mark between even and odd
  * 
  * @author David Browning (davbro-4)
  * @version 1.0
