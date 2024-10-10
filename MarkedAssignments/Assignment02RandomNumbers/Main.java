@@ -117,16 +117,22 @@ class Main {
         }
 
         // 7. Order the odd integers descending
+        for (int i = 0; i < oddNumberCount; i++) {
+            foundSwap = false;
+            for (int j = 1; j < oddNumberCount; j++) {
+                if (oddNumbers[j] > oddNumbers[j-1]) {
+                    foundSwap = true;
+                    swapPlaceholder = oddNumbers[j];
+                    oddNumbers[j] = oddNumbers[j-1];
+                    oddNumbers[j-1] = swapPlaceholder;
+                }
+            }
+            if (!foundSwap) {
+                break;
+            }
+        }        
 
         // 8. Print the numbers with a punctuation mark between even and odd
-        System.out.println("\nEvens:");
-        for(int i = 0; i < evenNumberCount; i++) {
-            System.out.print(evenNumbers[i] + " ");
-        }
-        System.out.println("\nOdds:");
-        for(int i = 0; i < oddNumberCount; i++) {
-            System.out.print(oddNumbers[i] + " ");
-        }
 
         // 9. Print a summary of how many even and odd numbers were present
 
