@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 /**
  * === Task description ===
- * Modify the dice program from the previous module on logic so that the frequency calculation is done using an array.
+ * Modify the dice program from the previous module on logic so that the
+ * frequency calculation is done using an array.
  * 
  * PROGRAM DESCRIPTION:
  * 1. Ask user for number of time to roll dice
