@@ -33,7 +33,6 @@ public class PP0301Dice {
         int timesToRoll = 0;            // User's desired number of dice rolls
         int thisRoll = 0;               // Stores the current roll's value
         int[] rollCount = new int[6];   // Count of each number rolled
-        int thisFrequency = 0;          // Number of times to print #
 
         // Declare Scanner
         Scanner userInput = new Scanner(System.in);
