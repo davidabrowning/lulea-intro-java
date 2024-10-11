@@ -2,6 +2,7 @@ package PracticeProblems.PracticeProblems03;
 
 // Imports
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * === Task description ===
