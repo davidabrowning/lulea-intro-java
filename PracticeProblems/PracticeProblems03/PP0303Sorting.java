@@ -25,21 +25,38 @@ public class PP0303Sorting {
         // 2. Declare variables
         int[] numbers = new int[NUMBERS_TO_GENERATE];   
                             // Stores numbers generated
+        int max = 0;        // Stores max value in array
         int temp = 0;       // Assists with swapping array elements
 
         // 3. Populate random number array
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = (int) (Math.random() * 99) + 1;
+            numbers[i] = (int) (Math.random() * 100) + 1;
         }
 
         // 4. Print unsorted random number array
+        System.out.println("\nUnsorted:");
         for(int i : numbers) {
             System.out.print(i + " ");
         }
 
         // 5. Sort array with selection sort
+        for (int i = 0; i < numbers.length - 1; i++) {
+            max = numbers[i];
+            for (int j = i + 1; j < numbers.length; j++) {
+                if (numbers[j] > max) {
+                    max = numbers[j];
+                    temp = numbers[i];
+                    numbers[i] = numbers[j];
+                    numbers[j] = temp;
+                }
+            }
+        }
 
         // 6. Print sorted array
+        System.out.println("\nSorted:");
+        for(int i : numbers) {
+            System.out.print(i + " ");
+        }
 
     }
 }
