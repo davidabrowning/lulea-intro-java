@@ -30,15 +30,10 @@ public class PP0301Dice {
     public static void main(final String[] args) {
 
         // Variables
-        int timesToRoll = 0;        // User's desired number of dice rolls
-        int thisRoll = 0;           // Stores the current roll's value
-        int count1 = 0;             // Number of 1s rolled
-        int count2 = 0;             // Number of 2s rolled
-        int count3 = 0;             // Number of 3s rolled
-        int count4 = 0;             // Number of 4s rolled
-        int count5 = 0;             // Number of 5s rolled
-        int count6 = 0;             // Number of 6s rolled
-        int thisFrequency = 0;      // Number of times to print #
+        int timesToRoll = 0;            // User's desired number of dice rolls
+        int thisRoll = 0;               // Stores the current roll's value
+        int[] rollCount = new int[6];   // Count of each number rolled
+        int thisFrequency = 0;          // Number of times to print #
 
         // Declare Scanner
         Scanner userInput = new Scanner(System.in);
