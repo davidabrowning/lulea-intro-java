@@ -57,65 +57,19 @@ public class PP0301Dice {
         for (int i = 0; i < timesToRoll; i++) {
             thisRoll = rand.nextInt(DIE_MIN, DIE_MAX + 1);
             System.out.printf("%d ", thisRoll);
-            switch (thisRoll) {
-                case 1:
-                    count1++;
-                    break;
-                case 2:
-                    count2++;
-                    break;
-                case 3:
-                    count3++;
-                    break;
-                case 4:
-                    count4++;
-                    break;
-                case 5:
-                    count5++;
-                    break;
-                case 6:
-                    count6++;
-                    break;
-                default:
-                    break;
-            }
+            rollCount[thisRoll - 1]++;
         }
 
         // 4. Display result
         System.out.printf("%n");
         for (int i = 1; i < 7; i++) {
             System.out.printf("%n%d: ", i);
-            switch (i) {
-                case 1:
-                    thisFrequency = count1;
-                    break;
-                case 2:
-                    thisFrequency = count2;
-                    break;
-                case 3:
-                    thisFrequency = count3;
-                    break;
-                case 4:
-                    thisFrequency = count4;
-                    break;
-                case 5:
-                    thisFrequency = count5;
-                    break;
-                case 6:
-                    thisFrequency = count6;
-                    break;
-                default:
-                    break;
-            }
-            for (int j = 0; j < thisFrequency; j++) {
+            for (int j = 0; j < rollCount[i - 1]; j++) {
                 System.out.print("#");
             }
         }
 
         // 5. Close and exit
         userInput.close();
-
     }
-
-    
 }
