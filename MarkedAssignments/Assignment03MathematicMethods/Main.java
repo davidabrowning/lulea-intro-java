@@ -92,6 +92,9 @@ public class Main {
             System.out.printf("%d/%d = ", numerator, denominator);
             printFraction(fraction(numerator, denominator));
         }
+
+        // Close Scanner
+        userInputScanner.close();
     }
 
     public static double area(final int radius) {
