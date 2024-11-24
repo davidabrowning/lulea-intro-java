@@ -34,9 +34,7 @@ public class Main {
     public static final int MENU_ITEM_5 = 5;
     public static final int MENU_ITEM_6 = 6;
     public static final int MENU_ITEM_Q = -1;
-
     public static final int INITIAL_ITEM_NUMBER = 999;
-
     private static Scanner userInputScanner = new Scanner(System.in);
 
     /**
@@ -56,5 +54,45 @@ public class Main {
         int lastItemNumber = INITIAL_ITEM_NUMBER; // Keep track of last added ItemNumber
 
         System.out.println("This is Marked Assignment 4");
+    }
+
+    public static int menu() {
+        return 0;
+    }
+
+    public static int input() {
+        return 0;
+    }
+
+    public static boolean checkFull(final int[][] items, final int noOfItems) {
+        return false;
+    }
+
+    public static int[][] extendArray(final int[][]items, final int noOfItems) {
+        return null;
+    }
+
+    public static int[][] insertItems(final int[][] items, final int lastItemId, final int noOfItems) {
+        return null;
+    }
+
+    public static int removeItem(final int[][] items, final int itemId) {
+        return 0;
+    }
+
+    public static void printItems(final int[][] items) {
+        return;
+    }
+
+    public static int sellItem(final int[][] sales, final Date[] salesDate, final int[][] items, final int itemIdToSell, final int amountToSell) {
+        return 0;
+    }
+
+    public static void printSales(final int[][] sales, final Date[] salesDate) {
+        return;
+    }
+
+    public static void sortedTable(final int[][] sales,  final Date[] salesDate) {
+        return;
     }
 }
