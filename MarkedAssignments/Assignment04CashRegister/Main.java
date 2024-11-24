@@ -49,7 +49,7 @@ public class Main {
         userInputScanner = inputScanner;
     }
 
-    public static void main(final String args[]) {
+    public static void main(final String[] args) {
         int[][] items = new int[INITIAL_ITEM_SIZE][ITEM_COLUMN_SIZE]; // Data structure to store items
         int[][] sales = new int[MAX_SALES][SALE_COLUMN_SIZE]; // Data structure to store sales
         Date[] saleDates = new Date[MAX_SALES]; // Data structure to store sale dates
