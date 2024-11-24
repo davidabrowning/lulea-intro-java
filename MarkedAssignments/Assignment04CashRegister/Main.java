@@ -1,11 +1,14 @@
 package MarkedAssignments.Assignment04CashRegister;
 
+// Imports
 import java.util.Scanner;
 import java.util.Date;
+
 /**
- * Describe briefly your program in steps.
+ * PROGRAM DESCRIPTION
  *
- @author Your Name (Your LTU username)
+ * @author David Browning (davbro-4)
+ * @version 1.0
  */
 public class Main {
 
