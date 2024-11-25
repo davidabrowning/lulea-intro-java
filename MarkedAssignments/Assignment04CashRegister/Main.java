@@ -147,11 +147,15 @@ public class Main {
 
                 // Sort and display sales history table
                 case MENU_ITEM_6:
+                    sortedTable(sales, saleDates);
+                    break;
 
                 // Quit
                 case MENU_ITEM_Q:
                     System.out.println("Thank you for using the cash register.");
                     break;
+
+                // Other unexpected input
                 default:
                     System.out.println("Unexpected menu behavior.");
                     break;
@@ -423,7 +427,41 @@ public class Main {
         }
     }
 
+    /**
+     * sort the selling table by item number, in ascending order
+     * @param sales
+     * @param salesDate
+     */
     public static void sortedTable(final int[][] sales,  final Date[] salesDate) {
-        return;
+        int[][] sortedSales = sales;
+        Date[] sortedSalesDate = salesDate;
+        int[] salesSwapHelper = new int[SALE_COLUMN_SIZE];
+        Date dateSwapHelper = null;
+
+        for (int i = 0; i < sortedSales.length; i++) {
+            for (int j = 0; j < sortedSales.length - 1; j++) {
+                if (sortedSales[j][SALE_ITEM_ID] > sortedSales[j+1][SALE_ITEM_ID]) {
+                    salesSwapHelper[SALE_ITEM_ID] = sortedSales[j][SALE_ITEM_ID];
+                    salesSwapHelper[SALE_ITEM_COUNT] = sortedSales[j][SALE_ITEM_COUNT];
+                    salesSwapHelper[SALE_ITEM_PRICE] = sortedSales[j][SALE_ITEM_PRICE];
+                    sortedSales[j][SALE_ITEM_ID] = sortedSales[j+1][SALE_ITEM_ID];
+                    sortedSales[j][SALE_ITEM_COUNT] = sortedSales[j+1][SALE_ITEM_COUNT];
+                    sortedSales[j][SALE_ITEM_PRICE] = sortedSales[j+1][SALE_ITEM_PRICE];
+                    sortedSales[j+1][SALE_ITEM_ID] = salesSwapHelper[SALE_ITEM_ID];
+                    sortedSales[j+1][SALE_ITEM_COUNT] = salesSwapHelper[SALE_ITEM_COUNT];
+                    sortedSales[j+1][SALE_ITEM_PRICE] = salesSwapHelper[SALE_ITEM_PRICE];
+                    dateSwapHelper = sortedSalesDate[j];
+                    sortedSalesDate[j] = sortedSalesDate[j+1];
+                    sortedSalesDate[j+1] = dateSwapHelper;
+                }
+            }
+        }
+
+        for (int i = 0; i < sortedSales.length; i++) {
+            if (sortedSales[i][SALE_ITEM_ID] == 0) {
+                continue;
+            }
+            System.out.printf("%d %d %d %s%n", sortedSales[i][SALE_ITEM_ID], sortedSales[i][SALE_ITEM_COUNT], sortedSales[i][SALE_ITEM_PRICE], sortedSalesDate[i]);
+        }
     }
 }
