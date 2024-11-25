@@ -49,6 +49,8 @@ public class Main {
     public static final String MENU_CHOICE_PROMPT = "Your selection: ";
     public static final String MENU_PROMPT_NUM_ITEMS_TO_ADD = "How many items to add? ";
     public static final String MENU_PROMPT_ITEM_TO_REMOVE = "Which item ID to remove? ";
+    public static final String MENU_PROMPT_ITEM_ID_TO_SELL = "Which item ID to sell? ";
+    public static final String MENU_PROMPT_ITEM_COUNT_TO_SELL = "How many copies of item to sell? ";
 
     // Constants for confirmation messages
     public static final String CONFIRMATION_ITEM_REMOVED = "Item %d successfully removed.%n";
@@ -129,9 +131,19 @@ public class Main {
 
                 // Register a sale
                 case MENU_ITEM_4:
+                    int soldItemId = 0;
+                    int soldItemCount = 0;
+                    System.out.print(MENU_PROMPT_ITEM_ID_TO_SELL);
+                    soldItemId = input();
+                    System.out.print(MENU_PROMPT_ITEM_COUNT_TO_SELL);
+                    soldItemCount = input();
+                    sellItem(sales, saleDates, items, soldItemId, soldItemCount);
+                    break;
 
                 // Display sales history
                 case MENU_ITEM_5:
+                    printSales(sales, saleDates);
+                    break;
 
                 // Sort and display sales history table
                 case MENU_ITEM_6:
@@ -315,12 +327,81 @@ public class Main {
         }
     }
 
+    public static int getFirstEmptySalesRowIndex(final int[][] sales) {
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i][SALE_ITEM_ID] == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void insertSale(final int[][] sales, final Date[] salesDate, final int itemIdToSell, final int amountToSell, final int unitPrice) {
+        int firstEmptySalesRowIndex = 0;
+        Date dateOfSale = null;
+        int totalPrice = 0;
+
+        firstEmptySalesRowIndex = getFirstEmptySalesRowIndex(sales);
+        dateOfSale = new Date();
+        totalPrice = amountToSell * unitPrice;
+
+        sales[firstEmptySalesRowIndex][SALE_ITEM_ID] = itemIdToSell;
+        sales[firstEmptySalesRowIndex][SALE_ITEM_COUNT] = amountToSell;
+        sales[firstEmptySalesRowIndex][SALE_ITEM_PRICE] = totalPrice;
+        salesDate[firstEmptySalesRowIndex] = dateOfSale;
+    }
+
     public static int sellItem(final int[][] sales, final Date[] salesDate, final int[][] items, final int itemIdToSell, final int amountToSell) {
-        return 0;
+
+        int inventory = 0;
+        int unitPrice = 0;
+
+        // Find item in items array and sell desired count
+        for (int i = 0; i < items.length; i++) {
+            if (items[i][ITEM_ID] == itemIdToSell) {
+
+                inventory = items[i][ITEM_COUNT];
+                unitPrice = items[i][ITEM_PRICE];
+
+                
+                // If inventory exceeds sell amount, sell some of the inventory and return 0
+                if (inventory > amountToSell) {
+                    insertSale(sales, salesDate, itemIdToSell, amountToSell, unitPrice);
+                    items[i][ITEM_COUNT] -= amountToSell;
+                    return 0;
+                }
+
+                // If inventory equals sell amount, sell full inventory and return 0
+                if (inventory == amountToSell) {
+                    insertSale(sales, salesDate, itemIdToSell, amountToSell, unitPrice);
+                    items[i][ITEM_ID] = 0;
+                    items[i][ITEM_COUNT] = 0;
+                    items[i][ITEM_PRICE] = 0;
+                    return 0;
+                }                
+
+                // If inventory is less than sell amount, sell full inventory and return amount sold
+                if (inventory < amountToSell) {
+                    insertSale(sales, salesDate, itemIdToSell, inventory, unitPrice);
+                    items[i][ITEM_ID] = 0;
+                    items[i][ITEM_COUNT] = 0;
+                    items[i][ITEM_PRICE] = 0;
+                    return items[i][ITEM_COUNT];
+                }                   
+            }
+        }
+
+        // If item is not found, return -1
+        return -1;
     }
 
     public static void printSales(final int[][] sales, final Date[] salesDate) {
-        return;
+        for (int i = 0; i < sales.length; i++) {
+            if (sales[i][SALE_ITEM_ID] == 0) {
+                continue;
+            }
+            System.out.printf("%d %d %d %s%n", sales[i][SALE_ITEM_ID], sales[i][SALE_ITEM_COUNT], sales[i][SALE_ITEM_PRICE], salesDate[i]);
+        }
     }
 
     public static void sortedTable(final int[][] sales,  final Date[] salesDate) {
