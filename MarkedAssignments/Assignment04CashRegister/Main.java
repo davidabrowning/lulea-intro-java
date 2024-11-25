@@ -209,8 +209,20 @@ public class Main {
         }
     }
 
+    public static int checkNumEmptyRows(final int[][] items) {
+        int numEmptyRows = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i][ITEM_ID] == 0) {
+                numEmptyRows++;
+            }
+        }
+        return numEmptyRows;
+    }
+
     public static boolean checkFull(final int[][] items, final int noOfItems) {
-        return false;
+        int numEmptyRows = 0;
+        numEmptyRows = checkNumEmptyRows(items);
+        return numEmptyRows < noOfItems;
     }
 
     public static int[][] extendArray(final int[][]items, final int noOfItems) {
@@ -224,16 +236,26 @@ public class Main {
         int nextItemId = lastItemId + 1;
         int[][] workingItemsArray = items;
 
+        // Extend the workingItemsArray if necessary
+        if (checkFull(workingItemsArray, noOfItems)) {
+            workingItemsArray = new int[items.length + noOfItems][ITEM_COLUMN_SIZE];
+            for (int i = 0; i < items.length; i++) {
+                workingItemsArray[i][ITEM_ID] = items[i][ITEM_ID];
+                workingItemsArray[i][ITEM_COUNT] = items[i][ITEM_COUNT];
+                workingItemsArray[i][ITEM_PRICE] = items[i][ITEM_PRICE];
+            }
+        }
+
+        // Add all of the new items
         for (int newItemNum = 0; newItemNum < noOfItems; newItemNum++) {
             int newItemId = nextItemId;
             int newItemCount = selectRandomInt(NEW_ITEM_BATCH_MIN_SIZE, NEW_ITEM_BATCH_MAX_SIZE);
             int newItemPrice = selectRandomInt(NEW_ITEM_MIN_PRICE, NEW_ITEM_MAX_PRICE);
 
-            // Check if workingItemsArray has at least one empty row
-
             // Insert this item into an empty row
             for (int itemRowNum = 0; itemRowNum < workingItemsArray.length; itemRowNum++) {
                 if (workingItemsArray[itemRowNum][ITEM_ID] == 0) {
+                    System.out.println("Item " + newItemId + " added.");
                     workingItemsArray[itemRowNum][ITEM_ID] = newItemId;
                     workingItemsArray[itemRowNum][ITEM_COUNT] = newItemCount;
                     workingItemsArray[itemRowNum][ITEM_PRICE] = newItemPrice;
@@ -259,7 +281,9 @@ public class Main {
      */
     public static void printItems(final int[][] items) {
         for (int i = 0; i < items.length; i++) {
-            System.out.printf("%d %d %d%n", items[i][ITEM_ID], items[i][ITEM_COUNT], items[i][ITEM_PRICE]);
+            if (items[i][ITEM_ID] != 0 ) {
+                System.out.printf("%d %d %d%n", items[i][ITEM_ID], items[i][ITEM_COUNT], items[i][ITEM_PRICE]);
+            }
         }
     }
 
