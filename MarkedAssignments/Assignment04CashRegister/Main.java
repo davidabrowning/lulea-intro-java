@@ -56,7 +56,7 @@ public class Main {
     public static final String CONFIRMATION_ITEM_REMOVED = "Item %d successfully removed.%n";
 
     // Constants for warning messages
-    public static final String WARNING_REMOVAL_ITEM_NOT_FOUND = "Item %d not found.%n";
+    public static final String WARNING_REMOVAL_ITEM_NOT_FOUND = "Could not find item %d.%n";
 
     // Constants for menu selection numbers
     public static final int MENU_ITEM_UNSELECTED = 0;
@@ -203,6 +203,8 @@ public class Main {
                 || userMenuSelection == MENU_ITEM_Q
             ) {
                 return userMenuSelection;
+            } else {
+                System.out.println("Invalid menu selection.");
             }
         }
     }
@@ -409,12 +411,14 @@ public class Main {
                     items[i][ITEM_ID] = 0;
                     items[i][ITEM_COUNT] = 0;
                     items[i][ITEM_PRICE] = 0;
-                    return items[i][ITEM_COUNT];
+                    System.out.println("Failed to sell specified amount. Sold " + inventory + " units.");
+                    return inventory;
                 }                   
             }
         }
 
         // If item is not found, return -1
+        System.out.println("Could not find item.");
         return -1;
     }
 
