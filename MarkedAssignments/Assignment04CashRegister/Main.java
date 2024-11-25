@@ -320,9 +320,28 @@ public class Main {
      * @param items an array of items
      */
     public static void printItems(final int[][] items) {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i][ITEM_ID] != 0 ) {
-                System.out.printf("%d %d %d%n", items[i][ITEM_ID], items[i][ITEM_COUNT], items[i][ITEM_PRICE]);
+        int[][] sortedItemArray = items;
+        int[] itemSwapHelper = new int[ITEM_COLUMN_SIZE];
+
+        for (int i = 0; i < sortedItemArray.length; i++) {
+            for (int j = 0; j < sortedItemArray.length - 1; j++) {
+                if (sortedItemArray[j][ITEM_ID] > sortedItemArray[j+1][ITEM_ID]) {
+                    itemSwapHelper[ITEM_ID] = sortedItemArray[j][ITEM_ID];
+                    itemSwapHelper[ITEM_COUNT] = sortedItemArray[j][ITEM_COUNT];
+                    itemSwapHelper[ITEM_PRICE] = sortedItemArray[j][ITEM_PRICE];
+                    sortedItemArray[j][ITEM_ID] = sortedItemArray[j+1][ITEM_ID];
+                    sortedItemArray[j][ITEM_COUNT] = sortedItemArray[j+1][ITEM_COUNT];
+                    sortedItemArray[j][ITEM_PRICE] = sortedItemArray[j+1][ITEM_PRICE];
+                    sortedItemArray[j+1][ITEM_ID] = itemSwapHelper[ITEM_ID];
+                    sortedItemArray[j+1][ITEM_COUNT] = itemSwapHelper[ITEM_COUNT];
+                    sortedItemArray[j+1][ITEM_PRICE] = itemSwapHelper[ITEM_PRICE];
+                }
+            }
+        }
+
+        for (int i = 0; i < sortedItemArray.length; i++) {
+            if (sortedItemArray[i][ITEM_ID] != 0 ) {
+                System.out.printf("%d %d %d%n", sortedItemArray[i][ITEM_ID], sortedItemArray[i][ITEM_COUNT], sortedItemArray[i][ITEM_PRICE]);
             }
         }
     }
