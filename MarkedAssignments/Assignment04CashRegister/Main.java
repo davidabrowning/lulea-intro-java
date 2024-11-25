@@ -85,6 +85,7 @@ public class Main {
         // Print menu
         while (lastItemNumber != MENU_ITEM_Q) {
             lastItemNumber = menu();
+            System.out.println("You entered valid menu selection " + lastItemNumber);
         }
     }
 
@@ -104,18 +105,27 @@ public class Main {
      * @return valid user input
      */
     public static int input() {
+
+        // Declare variables
         int userIntegerInput = 0;
         String userNonIntegerInput = "";
         int userSelection = 0;
         boolean validInput = false;
 
         // Collect and validate user input
+        // If integer input, check for valid integer range
+        // If non-integer input, check for valid "quit" menu input
         while(validInput == false) {
             System.out.printf("%s ", MENU_CHOICE_PROMPT);
             if (userInputScanner.hasNextInt()) {
                 userIntegerInput = userInputScanner.nextInt();
-                if (userIntegerInput == MENU_ITEM_1 || userIntegerInput == MENU_ITEM_2 || userIntegerInput == MENU_ITEM_3
-                    || userIntegerInput == MENU_ITEM_4 || userIntegerInput == MENU_ITEM_5 || userIntegerInput == MENU_ITEM_6) {
+                if (   userIntegerInput == MENU_ITEM_1 
+                    || userIntegerInput == MENU_ITEM_2 
+                    || userIntegerInput == MENU_ITEM_3
+                    || userIntegerInput == MENU_ITEM_4 
+                    || userIntegerInput == MENU_ITEM_5 
+                    || userIntegerInput == MENU_ITEM_6
+                ) {
                     userSelection = userIntegerInput;
                     validInput = true;
                 }
@@ -128,6 +138,7 @@ public class Main {
             }
         }
 
+        // Return valid user input
         return userSelection;
     }
 
