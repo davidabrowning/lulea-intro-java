@@ -226,7 +226,14 @@ public class Main {
     }
 
     public static int[][] extendArray(final int[][]items, final int noOfItems) {
-        return null;
+        int[][] workingItemsArray = null;
+        workingItemsArray = new int[items.length + noOfItems][ITEM_COLUMN_SIZE];
+        for (int i = 0; i < items.length; i++) {
+            workingItemsArray[i][ITEM_ID] = items[i][ITEM_ID];
+            workingItemsArray[i][ITEM_COUNT] = items[i][ITEM_COUNT];
+            workingItemsArray[i][ITEM_PRICE] = items[i][ITEM_PRICE];
+        }
+        return workingItemsArray;
     }
 
     public static int[][] insertItems(final int[][] items, final int lastItemId, final int noOfItems) {
@@ -237,13 +244,8 @@ public class Main {
         int[][] workingItemsArray = items;
 
         // Extend the workingItemsArray if necessary
-        if (checkFull(workingItemsArray, noOfItems)) {
-            workingItemsArray = new int[items.length + noOfItems][ITEM_COLUMN_SIZE];
-            for (int i = 0; i < items.length; i++) {
-                workingItemsArray[i][ITEM_ID] = items[i][ITEM_ID];
-                workingItemsArray[i][ITEM_COUNT] = items[i][ITEM_COUNT];
-                workingItemsArray[i][ITEM_PRICE] = items[i][ITEM_PRICE];
-            }
+        if (checkFull(items, noOfItems)) {
+            workingItemsArray = extendArray(items, noOfItems);
         }
 
         // Add all of the new items
