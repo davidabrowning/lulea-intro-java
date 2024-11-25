@@ -48,6 +48,13 @@ public class Main {
     public static final String MENU_CHOICE_Q = "q. Quit";
     public static final String MENU_CHOICE_PROMPT = "Your selection: ";
     public static final String MENU_PROMPT_NUM_ITEMS_TO_ADD = "How many items to add? ";
+    public static final String MENU_PROMPT_ITEM_TO_REMOVE = "Which item ID to remove? ";
+
+    // Constants for confirmation messages
+    public static final String CONFIRMATION_ITEM_REMOVED = "Item %d successfully removed.%n";
+
+    // Constants for warning messages
+    public static final String WARNING_REMOVAL_ITEM_NOT_FOUND = "Item %d not found.%n";
 
     // Constants for menu selection numbers
     public static final int MENU_ITEM_UNSELECTED = 0;
@@ -109,6 +116,11 @@ public class Main {
 
                 // Remove an item
                 case MENU_ITEM_2:
+                    int removedItemNumber = 0;
+                    System.out.print(MENU_PROMPT_ITEM_TO_REMOVE);
+                    removedItemNumber = input();
+                    removeItem(items, removedItemNumber);
+                    break;
 
                 // Display a list of items
                 case MENU_ITEM_3:
@@ -273,7 +285,21 @@ public class Main {
     }
 
     public static int removeItem(final int[][] items, final int itemId) {
-        return 0;
+
+        // Remove item if it exists in items and return 0
+        for (int i = 0; i < items.length; i++) {
+            if (items[i][ITEM_ID] == itemId) {
+                items[i][ITEM_ID] = 0;
+                items[i][ITEM_COUNT] = 0;
+                items[i][ITEM_PRICE] = 0;
+                System.out.printf(CONFIRMATION_ITEM_REMOVED, itemId);
+                return 0;
+            }
+        }
+
+        // Otherwise print warning that item was not found and return -1
+        System.out.printf(WARNING_REMOVAL_ITEM_NOT_FOUND, itemId);
+        return -1;
     }
 
     /**
