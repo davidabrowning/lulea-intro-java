@@ -456,7 +456,8 @@ public class Main {
         for (int i = 0; i < sortedItemArray.length; i++) {
             for (int j = 0; j < sortedItemArray.length - 1; j++) {
                 if (
-                    sortedItemArray[j][ITEM_ID] > sortedItemArray[j+1][ITEM_ID]
+                    sortedItemArray[j][ITEM_ID] >
+                    sortedItemArray[j + 1][ITEM_ID]
                 ) {
                     itemSwapHelper[ITEM_ID] =
                         sortedItemArray[j][ITEM_ID];
@@ -466,17 +467,17 @@ public class Main {
                         sortedItemArray[j][ITEM_PRICE];
 
                     sortedItemArray[j][ITEM_ID] =
-                        sortedItemArray[j+1][ITEM_ID];
+                        sortedItemArray[j + 1][ITEM_ID];
                     sortedItemArray[j][ITEM_COUNT] =
-                        sortedItemArray[j+1][ITEM_COUNT];
+                        sortedItemArray[j + 1][ITEM_COUNT];
                     sortedItemArray[j][ITEM_PRICE] =
-                        sortedItemArray[j+1][ITEM_PRICE];
+                        sortedItemArray[j + 1][ITEM_PRICE];
 
-                    sortedItemArray[j+1][ITEM_ID] =
+                    sortedItemArray[j + 1][ITEM_ID] =
                         itemSwapHelper[ITEM_ID];
-                    sortedItemArray[j+1][ITEM_COUNT] =
+                    sortedItemArray[j + 1][ITEM_COUNT] =
                         itemSwapHelper[ITEM_COUNT];
-                    sortedItemArray[j+1][ITEM_PRICE] =
+                    sortedItemArray[j + 1][ITEM_PRICE] =
                         itemSwapHelper[ITEM_PRICE];
                 }
             }
@@ -676,7 +677,7 @@ public class Main {
             for (int j = 0; j < sortedSales.length - 1; j++) {
                 if (
                     sortedSales[j][SALE_ITEM_ID] >
-                        sortedSales[j+1][SALE_ITEM_ID]
+                        sortedSales[j + 1][SALE_ITEM_ID]
                 ) {
                     salesSwapHelper[SALE_ITEM_ID] =
                         sortedSales[j][SALE_ITEM_ID];
@@ -686,22 +687,22 @@ public class Main {
                         sortedSales[j][SALE_ITEM_PRICE];
 
                     sortedSales[j][SALE_ITEM_ID] =
-                        sortedSales[j+1][SALE_ITEM_ID];
+                        sortedSales[j + 1][SALE_ITEM_ID];
                     sortedSales[j][SALE_ITEM_COUNT] =
-                        sortedSales[j+1][SALE_ITEM_COUNT];
+                        sortedSales[j + 1][SALE_ITEM_COUNT];
                     sortedSales[j][SALE_ITEM_PRICE] =
-                        sortedSales[j+1][SALE_ITEM_PRICE];
+                        sortedSales[j + 1][SALE_ITEM_PRICE];
 
-                    sortedSales[j+1][SALE_ITEM_ID] =
+                    sortedSales[j + 1][SALE_ITEM_ID] =
                         salesSwapHelper[SALE_ITEM_ID];
-                    sortedSales[j+1][SALE_ITEM_COUNT] =
+                    sortedSales[j + 1][SALE_ITEM_COUNT] =
                         salesSwapHelper[SALE_ITEM_COUNT];
-                    sortedSales[j+1][SALE_ITEM_PRICE] =
+                    sortedSales[j + 1][SALE_ITEM_PRICE] =
                         salesSwapHelper[SALE_ITEM_PRICE];
 
                     dateSwapHelper = sortedSalesDate[j];
-                    sortedSalesDate[j] = sortedSalesDate[j+1];
-                    sortedSalesDate[j+1] = dateSwapHelper;
+                    sortedSalesDate[j] = sortedSalesDate[j + 1];
+                    sortedSalesDate[j + 1] = dateSwapHelper;
                 }
             }
         }
