@@ -88,7 +88,7 @@ public class Main {
     public static final String CONFIRMATION_ITEM_SOLD =
         "Sold %d units of item %d at price of %d per unit.%n";
     public static final String CONFIRMATION_ITEM_SOLD_PARTIAL =
-        "Failed to sell specified amount. Sold %d units of item %d at unit " 
+        "Failed to sell specified amount. Sold %d units of item %d at unit "
         + "price of %d.%n";
 
     // Constants for warning messages
