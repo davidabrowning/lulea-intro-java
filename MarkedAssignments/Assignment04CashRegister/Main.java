@@ -39,24 +39,59 @@ public class Main {
     public static final int MAX_SALES = 1000;
 
     // Constants for menu options
-    public static final String MENU_CHOICE_1 = "1. Insert items";
-    public static final String MENU_CHOICE_2 = "2. Remove an item";
-    public static final String MENU_CHOICE_3 = "3. Display a list of items";
-    public static final String MENU_CHOICE_4 = "4. Register a sale";
-    public static final String MENU_CHOICE_5 = "5. Display sales history";
-    public static final String MENU_CHOICE_6 = "6. Sort and display sales history table";
-    public static final String MENU_CHOICE_Q = "q. Quit";
-    public static final String MENU_CHOICE_PROMPT = "Your selection: ";
-    public static final String MENU_PROMPT_NUM_ITEMS_TO_ADD = "How many items to add? ";
-    public static final String MENU_PROMPT_ITEM_TO_REMOVE = "Which item ID to remove? ";
-    public static final String MENU_PROMPT_ITEM_ID_TO_SELL = "Which item ID to sell? ";
-    public static final String MENU_PROMPT_ITEM_COUNT_TO_SELL = "How many copies of item to sell? ";
+    public static final String MENU_CHOICE_1 =
+        "1. Insert items";
+    public static final String MENU_CHOICE_2 =
+        "2. Remove an item";
+    public static final String MENU_CHOICE_3 =
+        "3. Display a list of items";
+    public static final String MENU_CHOICE_4 =
+        "4. Register a sale";
+    public static final String MENU_CHOICE_5 =
+        "5. Display sales history";
+    public static final String MENU_CHOICE_6 = 
+        "6. Sort and display sales history table";
+    public static final String MENU_CHOICE_Q =
+        "q. Quit";
+
+    // Constants for menu prompts
+    public static final String MENU_PROMPT_OPTIONS =
+        "%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n";
+    public static final String MENU_CHOICE_PROMPT =
+        "%nYour selection: ";
+    public static final String MENU_PROMPT_NUM_ITEMS_TO_ADD =
+        "How many items to add? ";
+    public static final String MENU_PROMPT_ITEM_TO_REMOVE =
+        "Which item ID to remove? ";
+    public static final String MENU_PROMPT_ITEM_ID_TO_SELL =
+        "Which item ID to sell? ";
+    public static final String MENU_PROMPT_ITEM_COUNT_TO_SELL =
+        "How many copies of item to sell? ";
 
     // Constants for confirmation messages
-    public static final String CONFIRMATION_ITEM_REMOVED = "Item %d successfully removed.%n";
+    public static final String CONFIRMATION_WELCOME_ASSIGNMENT_FOUR =
+        "%nThis is Marked Assignment 4%n";
+    public static final String CONFIRMATION_PROGRAM_EXIT =
+        "Thank you for using the cash register.";
+    public static final String CONFIRMATION_ITEM_ADDED =
+        "Item %d added.%n";
+    public static final String CONFIRMATION_ITEM_REMOVED =
+        "Item %d removed.%n";
+    public static final String CONFIRMATION_ITEM_SOLD =
+        "Sold %d units of item %d at price of %d per unit.%n";
+    public static final String CONFIRMATION_ITEM_SOLD_PARTIAL =
+        "Failed to sell specified amount. Sold %d units of item %d at unit " +
+        "price of %d.%n";
 
     // Constants for warning messages
-    public static final String WARNING_REMOVAL_ITEM_NOT_FOUND = "Could not find item %d.%n";
+    public static final String WARNING_UNEXPECTED_MENU_BEHAVIOR =
+        "Unexpected menu behavior.";
+    public static final String WARNING_INVALID_MENU_SELECTION =
+        "Invalid menu selection.";
+    public static final String WARNING_INVALID_INPUT =
+        "Invalid input. Please try again: ";
+    public static final String WARNING_REMOVAL_ITEM_NOT_FOUND =
+        "Could not find item %d.%n";
 
     // Constants for menu selection numbers
     public static final int MENU_ITEM_UNSELECTED = 0;
@@ -74,11 +109,14 @@ public class Main {
     public static final int NEW_ITEM_BATCH_MAX_SIZE = 10;
     public static final int NEW_ITEM_MIN_PRICE = 100;
     public static final int NEW_ITEM_MAX_PRICE = 1000;
+    public static final String MENU_QUIT_KEY = "q";
     private static Scanner userInputScanner = new Scanner(System.in);
 
     /**
-     * This method should be used only for unit testing on CodeGrade. Do not change this method!
-     * Swaps userInputScanner with a custom scanner object bound to a test input stream
+     * This method should be used only for unit testing on CodeGrade.
+     * Do not change this method!
+     * Swaps userInputScanner with a custom scanner object bound to a test
+     * input stream
      *
      * @param inputScanner  test scanner object
      */
@@ -93,14 +131,24 @@ public class Main {
     public static void main(final String[] args) {
 
         // Variables
-        int userMenuSelection = MENU_ITEM_UNSELECTED; // Stores user's menu selection
-        int[][] items = new int[INITIAL_ITEM_SIZE][ITEM_COLUMN_SIZE]; // Data structure to store items (itemId, itemCount, itemPrice)
-        int[][] sales = new int[MAX_SALES][SALE_COLUMN_SIZE]; // Data structure to store sales (itemId, numberOfItems, sum)
-        Date[] saleDates = new Date[MAX_SALES]; // Data structure to store sale dates
-        int lastItemNumber = INITIAL_ITEM_NUMBER; // Keep track of last added ItemNumber
+
+        // Stores user's menu selection
+        int userMenuSelection = MENU_ITEM_UNSELECTED;
+
+        // Data structure to store items (itemId, itemCount, itemPrice)
+        int[][] items = new int[INITIAL_ITEM_SIZE][ITEM_COLUMN_SIZE];
+
+        // Data structure to store sales (itemId, numberOfItems, sum)
+        int[][] sales = new int[MAX_SALES][SALE_COLUMN_SIZE];
+
+        // Data structure to store sale dates
+        Date[] saleDates = new Date[MAX_SALES];
+
+        // Keep track of last added ItemNumber
+        int lastItemNumber = INITIAL_ITEM_NUMBER;
 
         // Print assignment title
-        System.out.println("This is Marked Assignment 4");
+        System.out.printf(CONFIRMATION_WELCOME_ASSIGNMENT_FOUR);
 
         // Print menu and handle user menu selection
         while (userMenuSelection != MENU_ITEM_Q) {
@@ -137,7 +185,9 @@ public class Main {
                     soldItemId = input();
                     System.out.print(MENU_PROMPT_ITEM_COUNT_TO_SELL);
                     soldItemCount = input();
-                    sellItem(sales, saleDates, items, soldItemId, soldItemCount);
+                    sellItem(
+                        sales, saleDates, items, soldItemId, soldItemCount
+                    );
                     break;
 
                 // Display sales history
@@ -152,12 +202,12 @@ public class Main {
 
                 // Quit
                 case MENU_ITEM_Q:
-                    System.out.println("Thank you for using the cash register.");
+                    System.out.println(CONFIRMATION_PROGRAM_EXIT);
                     break;
 
                 // Other unexpected input
                 default:
-                    System.out.println("Unexpected menu behavior.");
+                    System.out.println(WARNING_UNEXPECTED_MENU_BEHAVIOR);
                     break;
             }
         }
@@ -185,14 +235,14 @@ public class Main {
         int userMenuSelection = 0; // Stores user's menu selection
 
         // Print menu options
-        System.out.printf("%s%n%s%n%s%n%s%n%s%n%s%n%s%n", 
+        System.out.printf(MENU_PROMPT_OPTIONS, 
             MENU_CHOICE_1, MENU_CHOICE_2, MENU_CHOICE_3, 
             MENU_CHOICE_4, MENU_CHOICE_5, MENU_CHOICE_6, 
             MENU_CHOICE_Q);
 
         // Collect and return user menu selection
         while(true) {
-            System.out.print(MENU_CHOICE_PROMPT);
+            System.out.printf(MENU_CHOICE_PROMPT);
             userMenuSelection = input();
             if (userMenuSelection == MENU_ITEM_1 
                 || userMenuSelection == MENU_ITEM_2 
@@ -204,7 +254,7 @@ public class Main {
             ) {
                 return userMenuSelection;
             } else {
-                System.out.println("Invalid menu selection.");
+                System.out.println(WARNING_INVALID_MENU_SELECTION);
             }
         }
     }
@@ -230,10 +280,10 @@ public class Main {
                 return userIntegerInput;
             } else {
                 userNonIntegerInput = userInputScanner.next();
-                if (userNonIntegerInput.equals("q")) {
+                if (userNonIntegerInput.equals(MENU_QUIT_KEY)) {
                     return MENU_ITEM_Q;
                 } else {
-                    System.out.printf("Invalid input. Please try again: ");
+                    System.out.printf(WARNING_INVALID_INPUT);
                 }
             }
         }
@@ -266,9 +316,9 @@ public class Main {
         return workingItemsArray;
     }
 
-    public static int[][] insertItems(final int[][] items, final int lastItemId, final int noOfItems) {
-        System.out.println("Now adding " + noOfItems + " items.");
-
+    public static int[][] insertItems(
+        final int[][] items, final int lastItemId, final int noOfItems
+    ) {
         // Variables
         int nextItemId = lastItemId + 1;
         int[][] workingItemsArray = items;
@@ -281,13 +331,21 @@ public class Main {
         // Add all of the new items
         for (int newItemNum = 0; newItemNum < noOfItems; newItemNum++) {
             int newItemId = nextItemId;
-            int newItemCount = selectRandomInt(NEW_ITEM_BATCH_MIN_SIZE, NEW_ITEM_BATCH_MAX_SIZE);
-            int newItemPrice = selectRandomInt(NEW_ITEM_MIN_PRICE, NEW_ITEM_MAX_PRICE);
+            int newItemCount = selectRandomInt(
+                NEW_ITEM_BATCH_MIN_SIZE, NEW_ITEM_BATCH_MAX_SIZE
+            );
+            int newItemPrice = selectRandomInt(
+                NEW_ITEM_MIN_PRICE, NEW_ITEM_MAX_PRICE
+            );
 
             // Insert this item into an empty row
-            for (int itemRowNum = 0; itemRowNum < workingItemsArray.length; itemRowNum++) {
+            for (
+                int itemRowNum = 0; 
+                itemRowNum < workingItemsArray.length; 
+                itemRowNum++
+            ) {
                 if (workingItemsArray[itemRowNum][ITEM_ID] == 0) {
-                    System.out.println("Item " + newItemId + " added.");
+                    System.out.printf(CONFIRMATION_ITEM_ADDED, newItemId);
                     workingItemsArray[itemRowNum][ITEM_ID] = newItemId;
                     workingItemsArray[itemRowNum][ITEM_COUNT] = newItemCount;
                     workingItemsArray[itemRowNum][ITEM_PRICE] = newItemPrice;
@@ -321,7 +379,7 @@ public class Main {
     }
 
     /**
-     * Prints item number, number, and price for all items that have an item number. 
+     * Prints item number, number, and price for all items. 
      * The printout is sorted into ascending item numbers.
      * @param items an array of items
      */
@@ -331,23 +389,41 @@ public class Main {
 
         for (int i = 0; i < sortedItemArray.length; i++) {
             for (int j = 0; j < sortedItemArray.length - 1; j++) {
-                if (sortedItemArray[j][ITEM_ID] > sortedItemArray[j+1][ITEM_ID]) {
-                    itemSwapHelper[ITEM_ID] = sortedItemArray[j][ITEM_ID];
-                    itemSwapHelper[ITEM_COUNT] = sortedItemArray[j][ITEM_COUNT];
-                    itemSwapHelper[ITEM_PRICE] = sortedItemArray[j][ITEM_PRICE];
-                    sortedItemArray[j][ITEM_ID] = sortedItemArray[j+1][ITEM_ID];
-                    sortedItemArray[j][ITEM_COUNT] = sortedItemArray[j+1][ITEM_COUNT];
-                    sortedItemArray[j][ITEM_PRICE] = sortedItemArray[j+1][ITEM_PRICE];
-                    sortedItemArray[j+1][ITEM_ID] = itemSwapHelper[ITEM_ID];
-                    sortedItemArray[j+1][ITEM_COUNT] = itemSwapHelper[ITEM_COUNT];
-                    sortedItemArray[j+1][ITEM_PRICE] = itemSwapHelper[ITEM_PRICE];
+                if (
+                    sortedItemArray[j][ITEM_ID] > sortedItemArray[j+1][ITEM_ID]
+                ) {
+                    itemSwapHelper[ITEM_ID] = 
+                        sortedItemArray[j][ITEM_ID];
+                    itemSwapHelper[ITEM_COUNT] =
+                        sortedItemArray[j][ITEM_COUNT];
+                    itemSwapHelper[ITEM_PRICE] =
+                        sortedItemArray[j][ITEM_PRICE];
+                    
+                    sortedItemArray[j][ITEM_ID] =
+                        sortedItemArray[j+1][ITEM_ID];
+                    sortedItemArray[j][ITEM_COUNT] =
+                        sortedItemArray[j+1][ITEM_COUNT];
+                    sortedItemArray[j][ITEM_PRICE] =
+                        sortedItemArray[j+1][ITEM_PRICE];
+                    
+                    sortedItemArray[j+1][ITEM_ID] =
+                        itemSwapHelper[ITEM_ID];
+                    sortedItemArray[j+1][ITEM_COUNT] =
+                        itemSwapHelper[ITEM_COUNT];
+                    sortedItemArray[j+1][ITEM_PRICE] =
+                        itemSwapHelper[ITEM_PRICE];
                 }
             }
         }
 
         for (int i = 0; i < sortedItemArray.length; i++) {
             if (sortedItemArray[i][ITEM_ID] != 0 ) {
-                System.out.printf("%d %d %d%n", sortedItemArray[i][ITEM_ID], sortedItemArray[i][ITEM_COUNT], sortedItemArray[i][ITEM_PRICE]);
+                System.out.printf(
+                    "%d %d %d%n",
+                    sortedItemArray[i][ITEM_ID],
+                    sortedItemArray[i][ITEM_COUNT],
+                    sortedItemArray[i][ITEM_PRICE]
+                );
             }
         }
     }
@@ -361,7 +437,13 @@ public class Main {
         return -1;
     }
 
-    public static void insertSale(final int[][] sales, final Date[] salesDate, final int itemIdToSell, final int amountToSell, final int unitPrice) {
+    public static void insertSale(
+        final int[][] sales,
+        final Date[] salesDate,
+        final int itemIdToSell,
+        final int amountToSell,
+        final int unitPrice
+    ) {
         int firstEmptySalesRowIndex = 0;
         Date dateOfSale = null;
         int totalPrice = 0;
@@ -376,7 +458,13 @@ public class Main {
         salesDate[firstEmptySalesRowIndex] = dateOfSale;
     }
 
-    public static int sellItem(final int[][] sales, final Date[] salesDate, final int[][] items, final int itemIdToSell, final int amountToSell) {
+    public static int sellItem(
+        final int[][] sales,
+        final Date[] salesDate,
+        final int[][] items,
+        final int itemIdToSell,
+        final int amountToSell
+    ) {
 
         int inventory = 0;
         int unitPrice = 0;
@@ -393,6 +481,7 @@ public class Main {
                 if (inventory > amountToSell) {
                     insertSale(sales, salesDate, itemIdToSell, amountToSell, unitPrice);
                     items[i][ITEM_COUNT] -= amountToSell;
+                    System.out.printf(CONFIRMATION_ITEM_SOLD, amountToSell, itemIdToSell, unitPrice);
                     return 0;
                 }
 
@@ -402,6 +491,7 @@ public class Main {
                     items[i][ITEM_ID] = 0;
                     items[i][ITEM_COUNT] = 0;
                     items[i][ITEM_PRICE] = 0;
+                    System.out.printf(CONFIRMATION_ITEM_SOLD, amountToSell, itemIdToSell, unitPrice);
                     return 0;
                 }                
 
@@ -411,7 +501,7 @@ public class Main {
                     items[i][ITEM_ID] = 0;
                     items[i][ITEM_COUNT] = 0;
                     items[i][ITEM_PRICE] = 0;
-                    System.out.println("Failed to sell specified amount. Sold " + inventory + " units.");
+                    System.out.printf(CONFIRMATION_ITEM_SOLD_PARTIAL, inventory, itemIdToSell, unitPrice);
                     return inventory;
                 }                   
             }
