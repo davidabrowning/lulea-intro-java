@@ -477,31 +477,55 @@ public class Main {
                 unitPrice = items[i][ITEM_PRICE];
 
                 
-                // If inventory exceeds sell amount, sell some of the inventory and return 0
+                // If inventory exceeds sell amount, sell some of the inventory
+                // and return 0
                 if (inventory > amountToSell) {
-                    insertSale(sales, salesDate, itemIdToSell, amountToSell, unitPrice);
+                    insertSale(
+                        sales, salesDate, itemIdToSell, amountToSell, unitPrice
+                    );
                     items[i][ITEM_COUNT] -= amountToSell;
-                    System.out.printf(CONFIRMATION_ITEM_SOLD, amountToSell, itemIdToSell, unitPrice);
+                    System.out.printf(
+                        CONFIRMATION_ITEM_SOLD,
+                        amountToSell,
+                        itemIdToSell,
+                        unitPrice
+                    );
                     return 0;
                 }
 
-                // If inventory equals sell amount, sell full inventory and return 0
+                // If inventory equals sell amount, sell full inventory
+                // and return 0
                 if (inventory == amountToSell) {
-                    insertSale(sales, salesDate, itemIdToSell, amountToSell, unitPrice);
+                    insertSale(
+                        sales, salesDate, itemIdToSell, amountToSell, unitPrice
+                    );
                     items[i][ITEM_ID] = 0;
                     items[i][ITEM_COUNT] = 0;
                     items[i][ITEM_PRICE] = 0;
-                    System.out.printf(CONFIRMATION_ITEM_SOLD, amountToSell, itemIdToSell, unitPrice);
+                    System.out.printf(
+                        CONFIRMATION_ITEM_SOLD,
+                        amountToSell,
+                        itemIdToSell,
+                        unitPrice
+                    );
                     return 0;
                 }                
 
-                // If inventory is less than sell amount, sell full inventory and return amount sold
+                // If inventory is less than sell amount, sell full inventory
+                // and return amount sold
                 if (inventory < amountToSell) {
-                    insertSale(sales, salesDate, itemIdToSell, inventory, unitPrice);
+                    insertSale(
+                        sales, salesDate, itemIdToSell, inventory, unitPrice
+                    );
                     items[i][ITEM_ID] = 0;
                     items[i][ITEM_COUNT] = 0;
                     items[i][ITEM_PRICE] = 0;
-                    System.out.printf(CONFIRMATION_ITEM_SOLD_PARTIAL, inventory, itemIdToSell, unitPrice);
+                    System.out.printf(
+                        CONFIRMATION_ITEM_SOLD_PARTIAL,
+                        inventory,
+                        itemIdToSell,
+                        unitPrice
+                    );
                     return inventory;
                 }                   
             }
@@ -517,7 +541,13 @@ public class Main {
             if (sales[i][SALE_ITEM_ID] == 0) {
                 continue;
             }
-            System.out.printf("%d %d %d %s%n", sales[i][SALE_ITEM_ID], sales[i][SALE_ITEM_COUNT], sales[i][SALE_ITEM_PRICE], salesDate[i]);
+            System.out.printf(
+                "%d %d %d %s%n",
+                sales[i][SALE_ITEM_ID],
+                sales[i][SALE_ITEM_COUNT],
+                sales[i][SALE_ITEM_PRICE],
+                salesDate[i]
+            );
         }
     }
 
@@ -534,16 +564,31 @@ public class Main {
 
         for (int i = 0; i < sortedSales.length; i++) {
             for (int j = 0; j < sortedSales.length - 1; j++) {
-                if (sortedSales[j][SALE_ITEM_ID] > sortedSales[j+1][SALE_ITEM_ID]) {
-                    salesSwapHelper[SALE_ITEM_ID] = sortedSales[j][SALE_ITEM_ID];
-                    salesSwapHelper[SALE_ITEM_COUNT] = sortedSales[j][SALE_ITEM_COUNT];
-                    salesSwapHelper[SALE_ITEM_PRICE] = sortedSales[j][SALE_ITEM_PRICE];
-                    sortedSales[j][SALE_ITEM_ID] = sortedSales[j+1][SALE_ITEM_ID];
-                    sortedSales[j][SALE_ITEM_COUNT] = sortedSales[j+1][SALE_ITEM_COUNT];
-                    sortedSales[j][SALE_ITEM_PRICE] = sortedSales[j+1][SALE_ITEM_PRICE];
-                    sortedSales[j+1][SALE_ITEM_ID] = salesSwapHelper[SALE_ITEM_ID];
-                    sortedSales[j+1][SALE_ITEM_COUNT] = salesSwapHelper[SALE_ITEM_COUNT];
-                    sortedSales[j+1][SALE_ITEM_PRICE] = salesSwapHelper[SALE_ITEM_PRICE];
+                if (
+                    sortedSales[j][SALE_ITEM_ID] >
+                        sortedSales[j+1][SALE_ITEM_ID]
+                ) {
+                    salesSwapHelper[SALE_ITEM_ID] =
+                        sortedSales[j][SALE_ITEM_ID];
+                    salesSwapHelper[SALE_ITEM_COUNT] =
+                        sortedSales[j][SALE_ITEM_COUNT];
+                    salesSwapHelper[SALE_ITEM_PRICE] =
+                        sortedSales[j][SALE_ITEM_PRICE];
+
+                    sortedSales[j][SALE_ITEM_ID] =
+                        sortedSales[j+1][SALE_ITEM_ID];
+                    sortedSales[j][SALE_ITEM_COUNT] =
+                        sortedSales[j+1][SALE_ITEM_COUNT];
+                    sortedSales[j][SALE_ITEM_PRICE] =
+                        sortedSales[j+1][SALE_ITEM_PRICE];
+
+                    sortedSales[j+1][SALE_ITEM_ID] =
+                        salesSwapHelper[SALE_ITEM_ID];
+                    sortedSales[j+1][SALE_ITEM_COUNT] =
+                        salesSwapHelper[SALE_ITEM_COUNT];
+                    sortedSales[j+1][SALE_ITEM_PRICE] =
+                        salesSwapHelper[SALE_ITEM_PRICE];
+
                     dateSwapHelper = sortedSalesDate[j];
                     sortedSalesDate[j] = sortedSalesDate[j+1];
                     sortedSalesDate[j+1] = dateSwapHelper;
@@ -555,7 +600,13 @@ public class Main {
             if (sortedSales[i][SALE_ITEM_ID] == 0) {
                 continue;
             }
-            System.out.printf("%d %d %d %s%n", sortedSales[i][SALE_ITEM_ID], sortedSales[i][SALE_ITEM_COUNT], sortedSales[i][SALE_ITEM_PRICE], sortedSalesDate[i]);
+            System.out.printf(
+                "%d %d %d %s%n",
+                sortedSales[i][SALE_ITEM_ID],
+                sortedSales[i][SALE_ITEM_COUNT],
+                sortedSales[i][SALE_ITEM_PRICE],
+                sortedSalesDate[i]
+            );
         }
     }
 }
