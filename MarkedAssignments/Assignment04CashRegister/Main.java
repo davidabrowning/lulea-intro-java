@@ -88,8 +88,8 @@ public class Main {
     public static final String CONFIRMATION_ITEM_SOLD =
         "Sold %d units of item %d at price of %d per unit.%n";
     public static final String CONFIRMATION_ITEM_SOLD_PARTIAL =
-        "Failed to sell specified amount. Sold %d units of item %d at unit " +
-        "price of %d.%n";
+        "Failed to sell specified amount. Sold %d units of item %d at unit " 
+        + "price of %d.%n";
 
     // Constants for warning messages
     public static final String WARNING_UNEXPECTED_MENU_BEHAVIOR =
@@ -676,8 +676,8 @@ public class Main {
         for (int i = 0; i < sortedSales.length; i++) {
             for (int j = 0; j < sortedSales.length - 1; j++) {
                 if (
-                    sortedSales[j][SALE_ITEM_ID] >
-                        sortedSales[j + 1][SALE_ITEM_ID]
+                    sortedSales[j][SALE_ITEM_ID]
+                        > sortedSales[j + 1][SALE_ITEM_ID]
                 ) {
                     salesSwapHelper[SALE_ITEM_ID] =
                         sortedSales[j][SALE_ITEM_ID];
