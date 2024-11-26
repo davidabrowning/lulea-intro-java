@@ -177,7 +177,7 @@ public class Main {
         // Print menu and handle user menu selection
         while (userMenuSelection != MENU_ITEM_Q) {
             userMenuSelection = menu();
-            switch(userMenuSelection) {
+            switch (userMenuSelection) {
 
                 // Insert items and increment lastItemNumber
                 case MENU_ITEM_1:
