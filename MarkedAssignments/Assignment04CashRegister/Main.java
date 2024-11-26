@@ -238,7 +238,7 @@ public class Main {
     }
 
     /**
-     * Return a randomly selected int between min and max, inclusive.
+     * Return a randomly selected int from min to max.
      * @param min lower bound, inclusive
      * @param max upper bound, inclusive
      * @return randomly selected int within range
@@ -250,7 +250,7 @@ public class Main {
     }
 
     /**
-     * Present menu. Collect and return user's selection.
+     * Prints menu and returns user's selection.
      * @return user's menu selection
      */
     public static int menu() {
@@ -313,6 +313,11 @@ public class Main {
         }
     }
 
+    /**
+     * Returns an int representing the number of empty rows in an item array.
+     * @param items array to check
+     * @return number of empty rows
+     */
     public static int checkNumEmptyRows(final int[][] items) {
         int numEmptyRows = 0;
         for (int i = 0; i < items.length; i++) {
@@ -323,12 +328,26 @@ public class Main {
         return numEmptyRows;
     }
 
+    /**
+     * Checks if items array can hold noOfItems new items. Returns true if yes
+     * or false if no.
+     * @param items array to check
+     * @param noOfItems number of new items to add
+     * @return true if array cannot hold new items (array would be full),
+     * or false if array can hold the new items (array would not be full)
+     */
     public static boolean checkFull(final int[][] items, final int noOfItems) {
         int numEmptyRows = 0;
         numEmptyRows = checkNumEmptyRows(items);
         return numEmptyRows < noOfItems;
     }
 
+    /**
+     * Extends an array by int noOfItems and return the extended array
+     * @param items the original array
+     * @param noOfItems size to increase array by
+     * @return new larger array
+     */
     public static int[][] extendArray(final int[][]items, final int noOfItems) {
         int[][] workingItemsArray = null;
         workingItemsArray = new int[items.length + noOfItems][ITEM_COLUMN_SIZE];
@@ -340,6 +359,13 @@ public class Main {
         return workingItemsArray;
     }
 
+    /**
+     * Inserts new items into the items database
+     * @param items array representing items database
+     * @param lastItemId id of last item inserted into items database
+     * @param noOfItems number of items to insert
+     * @return updated array representing items database
+     */
     public static int[][] insertItems(
         final int[][] items, final int lastItemId, final int noOfItems
     ) {
@@ -384,6 +410,13 @@ public class Main {
         return workingItemsArray;
     }
 
+    /**
+     * Removes an item from the items database.
+     * Returns 0 if items was found or -1 if item was not found.
+     * @param items items database array
+     * @param itemId item id to remove
+     * @return 0 if item found, -1 if item not found
+     */
     public static int removeItem(final int[][] items, final int itemId) {
 
         // Remove item if it exists in items and return 0
@@ -419,7 +452,7 @@ public class Main {
             TABLE_HEADER_ITEM_PRICE
         );
 
-        // Print items
+        // Sort items by item id
         for (int i = 0; i < sortedItemArray.length; i++) {
             for (int j = 0; j < sortedItemArray.length - 1; j++) {
                 if (
@@ -449,6 +482,7 @@ public class Main {
             }
         }
 
+        // Print items
         for (int i = 0; i < sortedItemArray.length; i++) {
             if (sortedItemArray[i][ITEM_ID] != 0 ) {
                 System.out.printf(
@@ -461,6 +495,11 @@ public class Main {
         }
     }
 
+    /**
+     * Identifies the first empty row in sales database array
+     * @param sales sales database array
+     * @return int representing first empty row in sales database array
+     */
     public static int getFirstEmptySalesRowIndex(final int[][] sales) {
         for (int i = 0; i < sales.length; i++) {
             if (sales[i][SALE_ITEM_ID] == 0) {
@@ -470,6 +509,14 @@ public class Main {
         return -1;
     }
 
+    /**
+     * Inserts a new sale into the sales database array
+     * @param sales sales database array
+     * @param salesDate sales dates database array
+     * @param itemIdToSell sale's item id
+     * @param amountToSell sale's unit count
+     * @param unitPrice sale's unit price
+     */
     public static void insertSale(
         final int[][] sales,
         final Date[] salesDate,
@@ -477,20 +524,33 @@ public class Main {
         final int amountToSell,
         final int unitPrice
     ) {
+
+        // Initialize variables
         int firstEmptySalesRowIndex = 0;
         Date dateOfSale = null;
         int totalPrice = 0;
 
+        // Calculate variables' values
         firstEmptySalesRowIndex = getFirstEmptySalesRowIndex(sales);
         dateOfSale = new Date();
         totalPrice = amountToSell * unitPrice;
 
+        // Log the sale in the sales database array and sales dates array
         sales[firstEmptySalesRowIndex][SALE_ITEM_ID] = itemIdToSell;
         sales[firstEmptySalesRowIndex][SALE_ITEM_COUNT] = amountToSell;
         sales[firstEmptySalesRowIndex][SALE_ITEM_PRICE] = totalPrice;
         salesDate[firstEmptySalesRowIndex] = dateOfSale;
     }
 
+    /**
+     * Sells an item
+     * @param sales sales database array
+     * @param salesDate sales dates database array
+     * @param items items database array
+     * @param itemIdToSell sale's item id
+     * @param amountToSell sale's intended unit count
+     * @return actual number of units sold, or -1 if item id not found
+     */
     public static int sellItem(
         final int[][] sales,
         final Date[] salesDate,
@@ -499,6 +559,7 @@ public class Main {
         final int amountToSell
     ) {
 
+        // Initialize variables
         int inventory = 0;
         int unitPrice = 0;
 
@@ -510,8 +571,8 @@ public class Main {
                 unitPrice = items[i][ITEM_PRICE];
 
                 
-                // If inventory exceeds sell amount, sell some of the inventory
-                // and return 0
+                // If inventory exceeds sell amount,
+                // sell some of the inventory and return 0
                 if (inventory > amountToSell) {
                     insertSale(
                         sales, salesDate, itemIdToSell, amountToSell, unitPrice
@@ -526,8 +587,8 @@ public class Main {
                     return 0;
                 }
 
-                // If inventory equals sell amount, sell full inventory
-                // and return 0
+                // If inventory equals sell amount,
+                // sell full inventory and return 0
                 if (inventory == amountToSell) {
                     insertSale(
                         sales, salesDate, itemIdToSell, amountToSell, unitPrice
@@ -544,8 +605,8 @@ public class Main {
                     return 0;
                 }                
 
-                // If inventory is less than sell amount, sell full inventory
-                // and return amount sold
+                // If inventory is less than sell amount,
+                // sell full inventory and return amount sold
                 if (inventory < amountToSell) {
                     insertSale(
                         sales, salesDate, itemIdToSell, inventory, unitPrice
@@ -569,6 +630,11 @@ public class Main {
         return -1;
     }
 
+    /**
+     * Print sales table
+     * @param sales sales database array
+     * @param salesDate sales dates database array
+     */
     public static void printSales(final int[][] sales, final Date[] salesDate) {
         // Print table header
         System.out.printf(
@@ -595,9 +661,9 @@ public class Main {
     }
 
     /**
-     * sort the selling table by item number, in ascending order
-     * @param sales
-     * @param salesDate
+     * Print sales tablse sorted by item id ascending
+     * @param sales sales database array
+     * @param salesDate sales dates database array
      */
     public static void sortedTable(final int[][] sales,  final Date[] salesDate) {
         int[][] sortedSales = sales;
