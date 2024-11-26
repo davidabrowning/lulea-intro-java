@@ -284,7 +284,7 @@ public class Main {
     }
 
     /**
-     * Collect user input. Valid inputs are integers and q to quit.
+     * Collects user input. Valid inputs are integers and q to quit.
      * Repeat until valid input is received.
      * @return valid user input
      */
@@ -671,15 +671,6 @@ public class Main {
         int[] salesSwapHelper = new int[SALE_COLUMN_SIZE];
         Date dateSwapHelper = null;
 
-        // Print table header
-        System.out.printf(
-            TABLE_ROW_SALES_HEADER,
-            TABLE_HEADER_SALES_ID,
-            TABLE_HEADER_SALES_COUNT,
-            TABLE_HEADER_SALES_PRICE,
-            TABLE_HEADER_SALES_DATE
-        );
-
         // Sort sales
         for (int i = 0; i < sortedSales.length; i++) {
             for (int j = 0; j < sortedSales.length - 1; j++) {
@@ -715,18 +706,7 @@ public class Main {
             }
         }
 
-        // Print each sales
-        for (int i = 0; i < sortedSales.length; i++) {
-            if (sortedSales[i][SALE_ITEM_ID] == 0) {
-                continue;
-            }
-            System.out.printf(
-                TABLE_ROW_SALES,
-                sortedSales[i][SALE_ITEM_ID],
-                sortedSales[i][SALE_ITEM_COUNT],
-                sortedSales[i][SALE_ITEM_PRICE],
-                sortedSalesDate[i]
-            );
-        }
+        // Print sales table
+        printSales(sortedSales, sortedSalesDate);
     }
 }
