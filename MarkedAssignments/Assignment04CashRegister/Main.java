@@ -9,15 +9,23 @@ import java.util.Date;
  * Print menu
  * Collect and validate user input
  * If user chooses "1. Insert items"
+ *      Ask user how many items to insert
+ *      Insert desired number of items into the items database
  * If user chooses "2. Remove an item"
+ *      Ask user which item id to remove
+ *      Remove an item from the items database
  * If user chooses "3. Display a list of items"
+ *      Display all items in the items databse
  * If user chooses "4. Register a sale"
+ *      Ask user which item to sell
+ *      Ask user how many units to sell
+ *      Log a sale of that many units of that item
  * If user chooses "5. Display sales history"
+ *      Show all sales sorted by sale date
  * If user chooses "6. Sort and display sales history table"
+ *      Show all sales sorted by item id
  * If user chooses "q. Quit"
- * SWITCH menu choice
- * 
- * END SWITCH
+ *      Quit the cash register program
  *
  * @author David Browning (davbro-4)
  * @version 1.0
@@ -606,7 +614,7 @@ public class Main {
             TABLE_HEADER_SALES_DATE
         );
 
-        // Print each sale
+        // Sort sales
         for (int i = 0; i < sortedSales.length; i++) {
             for (int j = 0; j < sortedSales.length - 1; j++) {
                 if (
@@ -641,6 +649,7 @@ public class Main {
             }
         }
 
+        // Print each sales
         for (int i = 0; i < sortedSales.length; i++) {
             if (sortedSales[i][SALE_ITEM_ID] == 0) {
                 continue;
