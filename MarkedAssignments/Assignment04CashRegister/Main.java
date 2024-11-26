@@ -485,7 +485,7 @@ public class Main {
 
         // Print items
         for (int i = 0; i < sortedItemArray.length; i++) {
-            if (sortedItemArray[i][ITEM_ID] != 0 ) {
+            if (sortedItemArray[i][ITEM_ID] != 0) {
                 System.out.printf(
                     TABLE_ROW_ITEMS,
                     sortedItemArray[i][ITEM_ID],
