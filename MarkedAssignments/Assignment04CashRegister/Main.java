@@ -456,8 +456,8 @@ public class Main {
         for (int i = 0; i < sortedItemArray.length; i++) {
             for (int j = 0; j < sortedItemArray.length - 1; j++) {
                 if (
-                    sortedItemArray[j][ITEM_ID] >
-                    sortedItemArray[j + 1][ITEM_ID]
+                    sortedItemArray[j][ITEM_ID]
+                        > sortedItemArray[j + 1][ITEM_ID]
                 ) {
                     itemSwapHelper[ITEM_ID] =
                         sortedItemArray[j][ITEM_ID];
