@@ -265,7 +265,7 @@ public class Main {
             MENU_CHOICE_Q);
 
         // Collect and return user menu selection
-        while(true) {
+        while (true) {
             System.out.printf(MENU_CHOICE_PROMPT);
             userMenuSelection = input();
             if (userMenuSelection == MENU_ITEM_1
@@ -298,7 +298,7 @@ public class Main {
         // If integer input, return integer
         // If non-integer input, check for valid "quit" menu input
         // Otherwise, ask user to try again
-        while(true) {
+        while (true) {
             if (userInputScanner.hasNextInt()) {
                 userIntegerInput = userInputScanner.nextInt();
                 return userIntegerInput;
