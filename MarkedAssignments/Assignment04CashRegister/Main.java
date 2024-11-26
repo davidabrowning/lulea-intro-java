@@ -57,7 +57,7 @@ public class Main {
         "4. Register a sale";
     public static final String MENU_CHOICE_5 =
         "5. Display sales history";
-    public static final String MENU_CHOICE_6 = 
+    public static final String MENU_CHOICE_6 =
         "6. Sort and display sales history table";
     public static final String MENU_CHOICE_Q =
         "q. Quit";
@@ -259,20 +259,20 @@ public class Main {
         int userMenuSelection = 0; // Stores user's menu selection
 
         // Print menu options
-        System.out.printf(MENU_PROMPT_OPTIONS, 
-            MENU_CHOICE_1, MENU_CHOICE_2, MENU_CHOICE_3, 
-            MENU_CHOICE_4, MENU_CHOICE_5, MENU_CHOICE_6, 
+        System.out.printf(MENU_PROMPT_OPTIONS,
+            MENU_CHOICE_1, MENU_CHOICE_2, MENU_CHOICE_3,
+            MENU_CHOICE_4, MENU_CHOICE_5, MENU_CHOICE_6,
             MENU_CHOICE_Q);
 
         // Collect and return user menu selection
         while(true) {
             System.out.printf(MENU_CHOICE_PROMPT);
             userMenuSelection = input();
-            if (userMenuSelection == MENU_ITEM_1 
-                || userMenuSelection == MENU_ITEM_2 
+            if (userMenuSelection == MENU_ITEM_1
+                || userMenuSelection == MENU_ITEM_2
                 || userMenuSelection == MENU_ITEM_3
-                || userMenuSelection == MENU_ITEM_4 
-                || userMenuSelection == MENU_ITEM_5 
+                || userMenuSelection == MENU_ITEM_4
+                || userMenuSelection == MENU_ITEM_5
                 || userMenuSelection == MENU_ITEM_6
                 || userMenuSelection == MENU_ITEM_Q
             ) {
@@ -390,8 +390,8 @@ public class Main {
 
             // Insert this item into an empty row
             for (
-                int itemRowNum = 0; 
-                itemRowNum < workingItemsArray.length; 
+                int itemRowNum = 0;
+                itemRowNum < workingItemsArray.length;
                 itemRowNum++
             ) {
                 if (workingItemsArray[itemRowNum][ITEM_ID] == 0) {
@@ -406,7 +406,7 @@ public class Main {
             // Increment nextItemId counter
             nextItemId++;
         }
-        
+
         return workingItemsArray;
     }
 
@@ -436,7 +436,7 @@ public class Main {
     }
 
     /**
-     * Prints item number, number, and price for all items. 
+     * Prints item number, number, and price for all items.
      * The printout is sorted into ascending item numbers.
      * @param items an array of items
      */
@@ -458,20 +458,20 @@ public class Main {
                 if (
                     sortedItemArray[j][ITEM_ID] > sortedItemArray[j+1][ITEM_ID]
                 ) {
-                    itemSwapHelper[ITEM_ID] = 
+                    itemSwapHelper[ITEM_ID] =
                         sortedItemArray[j][ITEM_ID];
                     itemSwapHelper[ITEM_COUNT] =
                         sortedItemArray[j][ITEM_COUNT];
                     itemSwapHelper[ITEM_PRICE] =
                         sortedItemArray[j][ITEM_PRICE];
-                    
+
                     sortedItemArray[j][ITEM_ID] =
                         sortedItemArray[j+1][ITEM_ID];
                     sortedItemArray[j][ITEM_COUNT] =
                         sortedItemArray[j+1][ITEM_COUNT];
                     sortedItemArray[j][ITEM_PRICE] =
                         sortedItemArray[j+1][ITEM_PRICE];
-                    
+
                     sortedItemArray[j+1][ITEM_ID] =
                         itemSwapHelper[ITEM_ID];
                     sortedItemArray[j+1][ITEM_COUNT] =
@@ -570,7 +570,7 @@ public class Main {
                 inventory = items[i][ITEM_COUNT];
                 unitPrice = items[i][ITEM_PRICE];
 
-                
+
                 // If inventory exceeds sell amount,
                 // sell some of the inventory and return 0
                 if (inventory > amountToSell) {
@@ -603,7 +603,7 @@ public class Main {
                         unitPrice
                     );
                     return 0;
-                }                
+                }
 
                 // If inventory is less than sell amount,
                 // sell full inventory and return amount sold
@@ -621,7 +621,7 @@ public class Main {
                         unitPrice
                     );
                     return inventory;
-                }                   
+                }
             }
         }
 
