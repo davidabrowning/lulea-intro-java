@@ -666,7 +666,9 @@ public class Main {
      * @param sales sales database array
      * @param salesDate sales dates database array
      */
-    public static void sortedTable(final int[][] sales,  final Date[] salesDate) {
+    public static void sortedTable(
+        final int[][] sales,  final Date[] salesDate
+    ) {
         int[][] sortedSales = sales;
         Date[] sortedSalesDate = salesDate;
         int[] salesSwapHelper = new int[SALE_COLUMN_SIZE];
