@@ -72,7 +72,7 @@ public class Main {
     public static final String CONFIRMATION_WELCOME_ASSIGNMENT_FOUR =
         "%nThis is Marked Assignment 4%n";
     public static final String CONFIRMATION_PROGRAM_EXIT =
-        "Thank you for using the cash register.";
+        "Thank you for using the cash register.%n%n";
     public static final String CONFIRMATION_ITEM_ADDED =
         "Item %d added.%n";
     public static final String CONFIRMATION_ITEM_REMOVED =
@@ -92,6 +92,8 @@ public class Main {
         "Invalid input. Please try again: ";
     public static final String WARNING_REMOVAL_ITEM_NOT_FOUND =
         "Could not find item %d.%n";
+    public static final String WARNING_SELL_ITEM_NOT_FOUND =
+        "Could not find item %d.%n";
 
     // Constants for menu selection numbers
     public static final int MENU_ITEM_UNSELECTED = 0;
@@ -102,6 +104,20 @@ public class Main {
     public static final int MENU_ITEM_5 = 5;
     public static final int MENU_ITEM_6 = 6;
     public static final int MENU_ITEM_Q = -1;
+
+    // Constants for output tables
+    public static final String TABLE_HEADER_ITEM_ID = "ID";
+    public static final String TABLE_HEADER_ITEM_COUNT = "Units";
+    public static final String TABLE_HEADER_ITEM_PRICE = "Unit price (SEK)";
+    public static final String TABLE_ROW_ITEMS_HEADER = "%5s %10s %20s%n";
+    public static final String TABLE_ROW_ITEMS = "%5d %10d %20d%n";
+    public static final String TABLE_HEADER_SALES_ID = "ID";
+    public static final String TABLE_HEADER_SALES_COUNT = "Units";
+    public static final String TABLE_HEADER_SALES_PRICE = "Total price (SEK)";
+    public static final String TABLE_HEADER_SALES_DATE = "Date of sale";
+    public static final String TABLE_ROW_SALES_HEADER = "%5s %10s %20s %35s%n";
+    public static final String TABLE_ROW_SALES = "%5d %10d %20d %35s%n";
+
 
     // Other constants
     public static final int INITIAL_ITEM_NUMBER = 999;
@@ -202,7 +218,7 @@ public class Main {
 
                 // Quit
                 case MENU_ITEM_Q:
-                    System.out.println(CONFIRMATION_PROGRAM_EXIT);
+                    System.out.printf(CONFIRMATION_PROGRAM_EXIT);
                     break;
 
                 // Other unexpected input
@@ -387,6 +403,15 @@ public class Main {
         int[][] sortedItemArray = items;
         int[] itemSwapHelper = new int[ITEM_COLUMN_SIZE];
 
+        // Print table heading
+        System.out.printf(
+            TABLE_ROW_ITEMS_HEADER,
+            TABLE_HEADER_ITEM_ID,
+            TABLE_HEADER_ITEM_COUNT,
+            TABLE_HEADER_ITEM_PRICE
+        );
+
+        // Print items
         for (int i = 0; i < sortedItemArray.length; i++) {
             for (int j = 0; j < sortedItemArray.length - 1; j++) {
                 if (
@@ -419,7 +444,7 @@ public class Main {
         for (int i = 0; i < sortedItemArray.length; i++) {
             if (sortedItemArray[i][ITEM_ID] != 0 ) {
                 System.out.printf(
-                    "%d %d %d%n",
+                    TABLE_ROW_ITEMS,
                     sortedItemArray[i][ITEM_ID],
                     sortedItemArray[i][ITEM_COUNT],
                     sortedItemArray[i][ITEM_PRICE]
@@ -532,17 +557,27 @@ public class Main {
         }
 
         // If item is not found, return -1
-        System.out.println("Could not find item.");
+        System.out.printf(WARNING_SELL_ITEM_NOT_FOUND, itemIdToSell);
         return -1;
     }
 
     public static void printSales(final int[][] sales, final Date[] salesDate) {
+        // Print table header
+        System.out.printf(
+            TABLE_ROW_SALES_HEADER,
+            TABLE_HEADER_SALES_ID,
+            TABLE_HEADER_SALES_COUNT,
+            TABLE_HEADER_SALES_PRICE,
+            TABLE_HEADER_SALES_DATE
+        );
+
+        // Print each sale
         for (int i = 0; i < sales.length; i++) {
             if (sales[i][SALE_ITEM_ID] == 0) {
                 continue;
             }
             System.out.printf(
-                "%d %d %d %s%n",
+                TABLE_ROW_SALES,
                 sales[i][SALE_ITEM_ID],
                 sales[i][SALE_ITEM_COUNT],
                 sales[i][SALE_ITEM_PRICE],
@@ -562,6 +597,16 @@ public class Main {
         int[] salesSwapHelper = new int[SALE_COLUMN_SIZE];
         Date dateSwapHelper = null;
 
+        // Print table header
+        System.out.printf(
+            TABLE_ROW_SALES_HEADER,
+            TABLE_HEADER_SALES_ID,
+            TABLE_HEADER_SALES_COUNT,
+            TABLE_HEADER_SALES_PRICE,
+            TABLE_HEADER_SALES_DATE
+        );
+
+        // Print each sale
         for (int i = 0; i < sortedSales.length; i++) {
             for (int j = 0; j < sortedSales.length - 1; j++) {
                 if (
@@ -601,7 +646,7 @@ public class Main {
                 continue;
             }
             System.out.printf(
-                "%d %d %d %s%n",
+                TABLE_ROW_SALES,
                 sortedSales[i][SALE_ITEM_ID],
                 sortedSales[i][SALE_ITEM_COUNT],
                 sortedSales[i][SALE_ITEM_PRICE],
