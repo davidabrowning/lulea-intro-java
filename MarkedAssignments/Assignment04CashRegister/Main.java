@@ -459,26 +459,9 @@ public class Main {
                     sortedItemArray[j][ITEM_ID]
                         > sortedItemArray[j + 1][ITEM_ID]
                 ) {
-                    itemSwapHelper[ITEM_ID] =
-                        sortedItemArray[j][ITEM_ID];
-                    itemSwapHelper[ITEM_COUNT] =
-                        sortedItemArray[j][ITEM_COUNT];
-                    itemSwapHelper[ITEM_PRICE] =
-                        sortedItemArray[j][ITEM_PRICE];
-
-                    sortedItemArray[j][ITEM_ID] =
-                        sortedItemArray[j + 1][ITEM_ID];
-                    sortedItemArray[j][ITEM_COUNT] =
-                        sortedItemArray[j + 1][ITEM_COUNT];
-                    sortedItemArray[j][ITEM_PRICE] =
-                        sortedItemArray[j + 1][ITEM_PRICE];
-
-                    sortedItemArray[j + 1][ITEM_ID] =
-                        itemSwapHelper[ITEM_ID];
-                    sortedItemArray[j + 1][ITEM_COUNT] =
-                        itemSwapHelper[ITEM_COUNT];
-                    sortedItemArray[j + 1][ITEM_PRICE] =
-                        itemSwapHelper[ITEM_PRICE];
+                    itemSwapHelper = sortedItemArray[j];
+                    sortedItemArray[j] = sortedItemArray[j + 1];
+                    sortedItemArray[j + 1] = itemSwapHelper;
                 }
             }
         }
@@ -681,27 +664,12 @@ public class Main {
                     sortedSales[j][SALE_ITEM_ID]
                         > sortedSales[j + 1][SALE_ITEM_ID]
                 ) {
-                    salesSwapHelper[SALE_ITEM_ID] =
-                        sortedSales[j][SALE_ITEM_ID];
-                    salesSwapHelper[SALE_ITEM_COUNT] =
-                        sortedSales[j][SALE_ITEM_COUNT];
-                    salesSwapHelper[SALE_ITEM_PRICE] =
-                        sortedSales[j][SALE_ITEM_PRICE];
+                    // Swap sales database array
+                    salesSwapHelper = sortedSales[j];
+                    sortedSales[j] = sortedSales[j + 1];
+                    sortedSales[j + 1] = salesSwapHelper;
 
-                    sortedSales[j][SALE_ITEM_ID] =
-                        sortedSales[j + 1][SALE_ITEM_ID];
-                    sortedSales[j][SALE_ITEM_COUNT] =
-                        sortedSales[j + 1][SALE_ITEM_COUNT];
-                    sortedSales[j][SALE_ITEM_PRICE] =
-                        sortedSales[j + 1][SALE_ITEM_PRICE];
-
-                    sortedSales[j + 1][SALE_ITEM_ID] =
-                        salesSwapHelper[SALE_ITEM_ID];
-                    sortedSales[j + 1][SALE_ITEM_COUNT] =
-                        salesSwapHelper[SALE_ITEM_COUNT];
-                    sortedSales[j + 1][SALE_ITEM_PRICE] =
-                        salesSwapHelper[SALE_ITEM_PRICE];
-
+                    // Swap sales dates database array
                     dateSwapHelper = sortedSalesDate[j];
                     sortedSalesDate[j] = sortedSalesDate[j + 1];
                     sortedSalesDate[j + 1] = dateSwapHelper;
