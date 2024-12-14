@@ -1,38 +1,43 @@
 package PracticeExam;
 
+// Imports
 import java.util.Scanner;
 
 /**
  * PROGRAM DESCRIPTION
+ * Menu simulating flight management system for a local airport called LTU
+ * Airport. Handles the scheduling and management of flight departures and
+ * arrivals.
+ *
  * @author David Browning (davbro-4)
  * @version 1.0
  */
 public class Main {
 
     // Constants: Scanner object
-    private static final Scanner userInputRetriever = new Scanner(System.in);
+    private static Scanner userInputRetriever = new Scanner(System.in);
 
     // Constants: Data values
-    private static int FLIGHT_NUMBER_LENGTH = 5;
-    private static int FLIGHT_TIME_LENGTH = 5;
-    private static String FLIGHT_TIME_HH_MIN = "00";
-    private static String FLIGHT_TIME_HH_MAX = "23";
-    private static String FLIGHT_TIME_HHMM_SEPARATOR = ":";
-    private static String FLIGHT_TIME_MM_MIN = "00";
-    private static String FLIGHT_TIME_MM_MAX = "59";
-    private static int MAX_FLIGHTS_PER_DAY = 100;
-    private static int TEXT_FIELDS_PER_FLIGHT = 5;
-    private static int FIELD_FLIGHT_TYPE = 0;
-    private static int FIELD_FLIGHT_NUMBER = 1;
-    private static int FIELD_FLIGHT_AIRPORT = 2;
-    private static int FIELD_FLIGHT_SCHEDULED = 3;
-    private static int FIELD_FLIGHT_ACTUAL = 4;
-    private static String FLIGHT_TYPE_ARRIVAL = "arrival";
-    private static String FLIGHT_TYPE_DEPARTURE = "departure";
+    private static final int FLIGHT_NUMBER_LENGTH = 5;
+    private static final int FLIGHT_TIME_LENGTH = 5;
+    private static final String FLIGHT_TIME_HH_MIN = "00";
+    private static final String FLIGHT_TIME_HH_MAX = "23";
+    private static final String FLIGHT_TIME_HHMM_SEPARATOR = ":";
+    private static final String FLIGHT_TIME_MM_MIN = "00";
+    private static final String FLIGHT_TIME_MM_MAX = "59";
+    private static final int MAX_FLIGHTS_PER_DAY = 100;
+    private static final int TEXT_FIELDS_PER_FLIGHT = 5;
+    private static final int FIELD_FLIGHT_TYPE = 0;
+    private static final int FIELD_FLIGHT_NUMBER = 1;
+    private static final int FIELD_FLIGHT_AIRPORT = 2;
+    private static final int FIELD_FLIGHT_SCHEDULED = 3;
+    private static final int FIELD_FLIGHT_ACTUAL = 4;
+    private static final String FLIGHT_TYPE_ARRIVAL = "arrival";
+    private static final String FLIGHT_TYPE_DEPARTURE = "departure";
 
     // Constants: Menu text
-    private static final String MENU_MAIN = 
-        "\n-----------------------------------"
+    private static final String MENU_MAIN =
+        "\n\n-----------------------------------"
         + "\n# LTU Airport AD Management System"
         + "\n-----------------------------------"
         + "\n1. Register the scheduled arrival"
@@ -42,7 +47,25 @@ public class Main {
         + "\n5. Print operations summary"
         + "\nq. End program"
         + "\n> Enter your option: ";
+    private static final String PROMPT_ENTER_FLIGHT_NUM = "> Enter flight number: ";
+    private static final String PROMPT_ENTER_AIRPORT = "> Enter airport: ";
+    private static final String PROMPT_ENTER_SCHEDULED_TIME = "> Enter scheduled time: ";
+    private static final String PROMPT_ENTER_ACTUAL_TIME = "> Enter actual time: ";
+    private static final String CONFIRMATION_FLIGHT_SCHEDULED = "%nThe %s of flight %s from/to %s is scheduled for %s.";
     private static final String MENU_FLIGHT_INFO = "%-8s %-15s %-8s %-8s%n";
+    private static final String MENU_HEADING_OPERATIONS = "\nLTU Airport operations summary:";
+    private static final String MENU_HEADING_ARRIVALS = "\nArrivals:";
+    private static final String MENU_HEADING_DEPARTURES = "\nDepartures:";
+    private static final String MENU_HEADING_FLIGHT = "Flight";
+    private static final String MENU_HEADING_FROM = "From";
+    private static final String MENU_HEADING_TO = "To";
+    private static final String MENU_HEADING_STA = "STA";
+    private static final String MENU_HEADING_ATA = "ATA";
+    private static final String MENU_HEADING_STD = "STD";
+    private static final String MENU_HEADING_ATD = "ATD";
+    private static final String MENU_HEADING_NUM_FLIGHTS = "%nTotal number of flights: %d";
+    private static final String MENU_HEADING_NUM_DELAYS = "%nTotal number of delayed flights: %d";
+    private static final String MESSAGE_END_PROGRAM = "Closing and exiting program.";
 
     // Constants: Menu options
     private static final String OPTION_QUIT = "q";
@@ -58,12 +81,25 @@ public class Main {
     private static final int SELECTION_MIN_VALUE = 0;
     private static final int SELECTION_MAX_VALUE = 5;
 
+    // Constants: Warnings
+    private static final String WARNING_UNEXPECTED_INPUT = "Warning: Unexpected input.";
+    private static final String WARNING_INVALID_TIME_FORMAT = "Invalid time format.";
+    private static final String WARNING_INVALID_FLIGHT_NUMBER_FORMAT = "Invalid flight number format.";
+    private static final String WARNING_FLIGHT_ALREADY_EXISTS = "Flight number already exists.";
+    private static final String WARNING_FLIGHT_DOES_NOT_EXIST = "Flight number does not exist.";
 
+    /**
+     * Main method. Entry point for the program. Accepts a String[] args which
+     * is not used. Shows a menu for user to interact with flight arrivals
+     * and departures.
+     * @param args
+     */
     public static void main(final String[] args) {
 
         String[][] flights = new String[MAX_FLIGHTS_PER_DAY][TEXT_FIELDS_PER_FLIGHT];
         boolean run = true; // If program should keep running
         int userMenuChoice = 0; // For use in menu switch statement
+        userInputRetriever.useDelimiter("\\n"); // Configure Scanner
 
         while (run) {
             printMainMenu();
@@ -87,27 +123,32 @@ public class Main {
                     printOperations(flights);
                     break;
                 case SELECTION_END_PROGRAM:
-                    System.out.println("End program.");
+                    System.out.println(MESSAGE_END_PROGRAM);
                     run = false;
                     break;
                 default:
-                    System.out.println("Unexpected input.");
+                    System.out.println(WARNING_UNEXPECTED_INPUT);
                     break;
             }
 
         }
 
-        userInputRetriever.close(); // Close the Scanner object
-        
+        // Close the Scanner object
+        userInputRetriever.close();
     }
 
-    // Done
-    private static void printMainMenu() {
+    /**
+     * Prints the airport's main menu. Returns void.
+     */
+    public static void printMainMenu() {
         System.out.print(MENU_MAIN);
     }
 
-    // Done
-    private static int getMainMenuSelection() {
+    /**
+     * Collecs and validates user's menu selection.
+     * @return the user's menu selection as an int
+     */
+    public static int getMainMenuSelection() {
         String userInput = "";
         int userSelection = -1;
 
@@ -124,36 +165,41 @@ public class Main {
 
         // Validate user's menu selection: Must not be outside range of possible
         // menu selections.
-        if (userSelection < SELECTION_MIN_VALUE ||
-            userSelection > SELECTION_MAX_VALUE) {
-                userSelection = SELECTION_INVALID;
+        if (userSelection < SELECTION_MIN_VALUE
+            || userSelection > SELECTION_MAX_VALUE) {
+            userSelection = SELECTION_INVALID;
         }
 
         // Return user's menu selection
         return userSelection;
     }
 
-    // Done
-    private static void registerScheduledFlight(final String[][] flights, String flightType) {
+    /**
+     * Registers a new flight
+     * @param flights array of existing flights
+     * @param flightType String representing new flight's type (arrival or
+     * departure)
+     */
+    public static void registerScheduledFlight(final String[][] flights, final String flightType) {
         String[] flight = new String[TEXT_FIELDS_PER_FLIGHT]; // New flight
         flight[FIELD_FLIGHT_TYPE] = flightType; // Arrival or departure
         flight[FIELD_FLIGHT_ACTUAL] = ""; // Will hold actual arrival time
 
         // Collect and validate flight number
-        System.out.print("Enter flight number: ");
+        System.out.print(PROMPT_ENTER_FLIGHT_NUM);
         flight[FIELD_FLIGHT_NUMBER] = userInputRetriever.next();
         if (isValidFlightNumber(flight[FIELD_FLIGHT_NUMBER], flights) == false) {
             return;
         }
 
         // Collect airport name
-        System.out.print("Enter airport: ");
+        System.out.print(PROMPT_ENTER_AIRPORT);
         flight[FIELD_FLIGHT_AIRPORT] = userInputRetriever.next();
 
-        // Collect and validate arrival time
-        System.out.print("Enter scheduled time: ");
+        // Collect and validate scheduled time
+        System.out.print(PROMPT_ENTER_SCHEDULED_TIME);
         flight[FIELD_FLIGHT_SCHEDULED] = userInputRetriever.next();
-        if (isValidFlightTime(flight[FIELD_FLIGHT_SCHEDULED], flights) == false) {
+        if (isValidFlightTime(flight[FIELD_FLIGHT_SCHEDULED]) == false) {
             return;
         }
 
@@ -162,20 +208,25 @@ public class Main {
 
         // Print confirmation for user
         System.out.printf(
-            "The %s of flight %s from %s is scheduled for %s.",
+            CONFIRMATION_FLIGHT_SCHEDULED,
             flightType,
-            flight[FIELD_FLIGHT_NUMBER], 
-            flight[FIELD_FLIGHT_AIRPORT], 
+            flight[FIELD_FLIGHT_NUMBER],
+            flight[FIELD_FLIGHT_AIRPORT],
             flight[FIELD_FLIGHT_SCHEDULED]
         );
     }
 
-    // Done, remove magic numbers
-    static boolean isValidFlightNumber(String flightNum, String[][] flights) {
-        
+    /**
+     * Checks if a flight number is valid
+     * @param flightNum flight number to check
+     * @param flights array of existing flights
+     * @return true if number is valid, false otherwise
+     */
+    public static boolean isValidFlightNumber(final String flightNum, final String[][] flights) {
+
         // Validate that flight number is exactly five characters long
         if (flightNum.length() != FLIGHT_NUMBER_LENGTH) {
-            System.out.println("Flight number incorrect length.");
+            System.out.println(WARNING_INVALID_FLIGHT_NUMBER_FORMAT);
             return false;
         }
 
@@ -183,21 +234,21 @@ public class Main {
         // with three numeric digits
         String flightNumLetters = flightNum.substring(0, 2);
         String flightNumDigits = flightNum.substring(2, 5);
-        if (flightNumLetters.compareTo("AA") < 0 
+        if (flightNumLetters.compareTo("AA") < 0
             || flightNumLetters.compareTo("ZZ") > 0
             || flightNumDigits.compareTo("000" ) < 0
             || flightNumDigits.compareTo("999") > 0) {
-                System.out.println("Flight number must start with two capital letters and end with three digits.");
-                return false;
+            System.out.println(WARNING_INVALID_FLIGHT_NUMBER_FORMAT);
+            return false;
         }
-        
+
         // Validate that flight does not already exist
         for (String[] existingFlight : flights) {
             if (existingFlight[FIELD_FLIGHT_NUMBER] == null) {
                 continue;
             }
             if (existingFlight[FIELD_FLIGHT_NUMBER].equals(flightNum)) {
-                System.out.println("Flight number already exists.");
+                System.out.println(WARNING_FLIGHT_ALREADY_EXISTS);
                 return false;
             }
         }
@@ -206,49 +257,52 @@ public class Main {
         return true;
     }
 
-    // Done, use String constants
-    static boolean isValidFlightTime(String flightTime, String[][] flights) {
+    /**
+     * Checks if a flight time is valid
+     * @param flightTime the String flight time
+     * @return true if flight time is valid, false otherwise
+     */
+    public static boolean isValidFlightTime(final String flightTime) {
+
         // Validate that time length is correct
         if (flightTime.length() != FLIGHT_TIME_LENGTH) {
-            System.out.println("Invalid time format.");
+            System.out.println(WARNING_INVALID_TIME_FORMAT);
             return false;
         }
 
         // Validate that the time is in the range 00:00 - 23:59
-        if (isValidTimeFormat(flightTime) == false) {
+        String arrivalTimeHH = flightTime.substring(0, 2);
+        String arrivalTimeHHMMSeparator = flightTime.substring(2, 3);
+        String arrivalTimeMM = flightTime.substring(3, 5);
+        if (arrivalTimeHH.compareTo(FLIGHT_TIME_HH_MIN) < 0
+            || arrivalTimeHH.compareTo(FLIGHT_TIME_HH_MAX) > 0
+            || arrivalTimeHHMMSeparator.equals(FLIGHT_TIME_HHMM_SEPARATOR) == false
+            || arrivalTimeMM.compareTo(FLIGHT_TIME_MM_MIN) < 0
+            || arrivalTimeMM.compareTo(FLIGHT_TIME_MM_MAX) > 0) {
+            System.out.println(WARNING_INVALID_TIME_FORMAT);
             return false;
         }
-        
+
         // If no tests have failed, return true
         return true;
     }
 
-    // Validate that the time is in the range 00:00 - 23:59
-    private static boolean isValidTimeFormat(String time) {
-        String arrivalTimeHH = time.substring(0, 2);
-        String arrivalTimeHHMMSeparator = time.substring(2, 3);
-        String arrivalTimeMM = time.substring(3, 5);
-        if (arrivalTimeHH.compareTo(FLIGHT_TIME_HH_MIN) >= 0
-            || arrivalTimeHH.compareTo(FLIGHT_TIME_HH_MAX) <= 0
-            || arrivalTimeHHMMSeparator.equals(FLIGHT_TIME_HHMM_SEPARATOR) == true
-            || arrivalTimeMM.compareTo(FLIGHT_TIME_MM_MIN) >= 0 
-            || arrivalTimeMM.compareTo(FLIGHT_TIME_MM_MAX) >= 0) {
-                
-                return true;
-        } else {
-            System.out.println("Invalid time format.");
-            return false;
-        }  
-    }
-
-    // Done
-    private static void logFlight(String[] flight, String[][] flights) {
+    /**
+     * Adds a flight to the "database"
+     * @param flight flight to add
+     * @param flights array of all current existing flights
+     */
+    public static void logFlight(final String[] flight, final String[][] flights) {
         int nextFlightIndex = getFirstEmptyIndex(flights);
         flights[nextFlightIndex] = flight;
     }
 
-    // Done
-    private static int getFirstEmptyIndex(String[][] twoDArray) {
+    /**
+     * Checks for the first empty row in a 2D array
+     * @param twoDArray array to check
+     * @return int representing first empty row
+     */
+    public static int getFirstEmptyIndex(final String[][] twoDArray) {
         for (int i = 0; i < twoDArray.length; i++) {
             if (twoDArray[i][0] == null) {
                 return i;
@@ -257,13 +311,18 @@ public class Main {
         return -1;
     }
 
-    private static void registerActualFlight(String[][] flights, String flightType) {
+    /**
+     * Registers a flight's actual arrival or departure time
+     * @param flights array of existing flights
+     * @param flightType the type of the new flight to be registers (arrival or departure)
+     */
+    private static void registerActualFlight(final String[][] flights, final String flightType) {
         String flightNum = "";
         String actualFlightTime = "";
         boolean flightExists = false;
 
         // Collect and validate flight number
-        System.out.print("Enter flight number: ");
+        System.out.print(PROMPT_ENTER_FLIGHT_NUM);
         flightNum = userInputRetriever.next();
         for (String[] flight : flights) {
             if (flight[FIELD_FLIGHT_NUMBER] == null) {
@@ -274,14 +333,14 @@ public class Main {
             }
         }
         if (flightExists == false) {
-            System.out.println("Flight number does not exist. Unable to find " + flightType + " with that flight number.");
+            System.out.println(WARNING_FLIGHT_DOES_NOT_EXIST);
             return;
         }
 
         // Collect and validate actual flight time
-        System.out.print("Enter actual time of " + flightType + ": ");
+        System.out.print(PROMPT_ENTER_ACTUAL_TIME);
         actualFlightTime = userInputRetriever.next();
-        if (isValidTimeFormat(actualFlightTime) == false) {
+        if (isValidFlightTime(actualFlightTime) == false) {
             return;
         }
 
@@ -289,7 +348,13 @@ public class Main {
 
     }
 
-    private static void logActualTime(String flightNum, String actualFlightTime, String[][] flights) {
+    /**
+     * Logs the actual flight time of a flight
+     * @param flightNum actual flight number
+     * @param actualFlightTime the actual flight arrival/departure time
+     * @param flights an array of existing flights
+     */
+    private static void logActualTime(final String flightNum, final String actualFlightTime, final String[][] flights) {
         for (String[] flight : flights) {
             if (flight[FIELD_FLIGHT_NUMBER] == null) {
                 continue;
@@ -300,47 +365,100 @@ public class Main {
         }
     }
 
-    // In progress, add total flights and delayed flights
-    private static void printOperations(String[][] flights) {
-        System.out.println("\nLTU Airport operations summary:");
+    /**
+     * Prints a summary of all flights
+     * @param flights array of existing flights
+     */
+    private static void printOperations(final String[][] flights) {
+        System.out.println(MENU_HEADING_OPERATIONS);
         printArrivals(flights);
         printDepartures(flights);
+        printNumFlights(flights);
+        printNumDelays(flights);
     }
 
-    // Done
-    private static void printArrivals(String[][] flights) {
-        System.out.println("\nArrivals:");
-        System.out.printf(MENU_FLIGHT_INFO, "Flight", "From", "STA", "ATA");
+    /**
+     * Prints list of arrivals
+     * @param flights array of existing flights
+     */
+    private static void printArrivals(final String[][] flights) {
+        System.out.println(MENU_HEADING_ARRIVALS);
+        System.out.printf(
+            MENU_FLIGHT_INFO,
+            MENU_HEADING_FLIGHT,
+            MENU_HEADING_FROM,
+            MENU_HEADING_STA,
+            MENU_HEADING_ATA
+        );
         for (String[] flight : flights) {
             if (flight[FIELD_FLIGHT_NUMBER] != null
                 && flight[FIELD_FLIGHT_TYPE].equals(FLIGHT_TYPE_ARRIVAL)) {
-                    System.out.printf(
-                        MENU_FLIGHT_INFO,
-                        flight[FIELD_FLIGHT_NUMBER],
-                        flight[FIELD_FLIGHT_AIRPORT],
-                        flight[FIELD_FLIGHT_SCHEDULED],
-                        flight[FIELD_FLIGHT_ACTUAL]
-                    );
+                System.out.printf(
+                    MENU_FLIGHT_INFO,
+                    flight[FIELD_FLIGHT_NUMBER],
+                    flight[FIELD_FLIGHT_AIRPORT],
+                    flight[FIELD_FLIGHT_SCHEDULED],
+                    flight[FIELD_FLIGHT_ACTUAL]
+                );
             }
         }
     }
 
-    // Done
-    private static void printDepartures(String[][] flights) {
-        System.out.println("\nDepartures:");
-        System.out.printf(MENU_FLIGHT_INFO, "Flight", "To", "STD", "ATD");
+    /**
+     * Prints list of departures
+     * @param flights array of existing flights
+     */
+    private static void printDepartures(final String[][] flights) {
+        System.out.println(MENU_HEADING_DEPARTURES);
+        System.out.printf(
+            MENU_FLIGHT_INFO,
+            MENU_HEADING_FLIGHT,
+            MENU_HEADING_TO,
+            MENU_HEADING_STD,
+            MENU_HEADING_ATD
+        );
         for (String[] flight : flights) {
             if (flight[FIELD_FLIGHT_NUMBER] != null
                 && flight[FIELD_FLIGHT_TYPE].equals(FLIGHT_TYPE_DEPARTURE)) {
-                    System.out.printf(
-                        MENU_FLIGHT_INFO,
-                        flight[FIELD_FLIGHT_NUMBER],
-                        flight[FIELD_FLIGHT_AIRPORT],
-                        flight[FIELD_FLIGHT_SCHEDULED],
-                        flight[FIELD_FLIGHT_ACTUAL]
-                    );
+                System.out.printf(
+                    MENU_FLIGHT_INFO,
+                    flight[FIELD_FLIGHT_NUMBER],
+                    flight[FIELD_FLIGHT_AIRPORT],
+                    flight[FIELD_FLIGHT_SCHEDULED],
+                    flight[FIELD_FLIGHT_ACTUAL]
+                );
             }
         }
     }
     
+    /**
+     * Prints the total number of flights
+     * @param flights array of existing flights
+     */
+    private static void printNumFlights(final String[][] flights) {
+        int numFlights = 0;
+        for (String[] flight : flights) {
+            if (flight[FIELD_FLIGHT_NUMBER] != null) {
+                numFlights++;
+            }
+        }
+        System.out.printf(MENU_HEADING_NUM_FLIGHTS, numFlights);
+    }
+
+    /**
+     * Prints the total number of delayed flights
+     * @param flights array of existing flights
+     */
+    private static void printNumDelays(final String[][] flights) {
+        int numDelays = 0;
+        for (String[] flight : flights) {
+            if (flight[FIELD_FLIGHT_NUMBER] != null
+                && flight[FIELD_FLIGHT_ACTUAL] != ""
+                && flight[FIELD_FLIGHT_ACTUAL].compareTo(flight[FIELD_FLIGHT_SCHEDULED]) > 0
+            ) {
+                numDelays++;
+            }
+        }
+        System.out.printf(MENU_HEADING_NUM_DELAYS, numDelays);
+    }
 }
