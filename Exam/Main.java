@@ -85,17 +85,18 @@ import java.util.Scanner;
     private static final String PROMPT_ENTER_RETURN_DATE = "> Enter return date: ";
 
     // Constants: Confirmations
-    private static final String CONFIRMATION_BOOK_ADDED = "Book with the title %s was assigned ID %s and added to the system.";
+    private static final String CONFIRMATION_BOOK_ADDED = "Book with the title %s was assigned ID %s and added to the system.%n";
+    private static final String CONFIRMATION_LOAN_ADDED = "Book %s was loaned by %s on %s%n";
 
     // Constants: Error messages
     private static final String ERROR_INVALID_MENU_ITEM = "Invalid menu item";
     private static final String ERROR_INVALID_ISBN = "Invalid ISBN";
-    private static final String ERROR_ISBN_EXISTS = "ISBN %s already exists";
+    private static final String ERROR_ISBN_EXISTS = "ISBN %s already exists%n";
     private static final String ERROR_INVALID_ID = "Invalid ID";
     private static final String ERROR_INVALID_TITLE = "Invalid title";
     private static final String ERROR_INVALID_DATE = "Invalid date";
     private static final String ERROR_INVALID_LENDER_NAME = "Invalid lender name";
-    private static final String ERROR_ID_DOES_NOT_EXIST = "ID %s does not exist";
+    private static final String ERROR_ID_DOES_NOT_EXIST = "ID %s does not exist%n";
     private static final String ERROR_ID_NOT_AVAILABLE = "Book not available to loan";
 
     // Constants: Output
@@ -163,26 +164,26 @@ import java.util.Scanner;
                 System.out.println(addBook(books));
                 break;
             case MENU_OPTION_REMOVE:
-                System.out.println("Remove book");
+                System.out.println(removeBook(books, loans));
                 break;
             case MENU_OPTION_LOAN:
                 System.out.println(loanBook(books, loans));
                 break;
             case MENU_OPTION_RETURN:
-                System.out.println("Return a book.");
+                System.out.println(returnBook(books, loans));
                 break;
             case MENU_OPTION_PRINT_BOOK_LIST:
                 printBookList(books);
                 break;
             case MENU_OPTION_PRINT_LOAN_LIST:
-                printLoanList(books, loans);
+                printLoanList(loans);
                 break;
             case MENU_OPTION_QUIT:
                 System.out.println("End program.");
                 runProgramAgain = false;
                 break;
             default:
-                System.out.println("Unknown");
+                System.out.println(ERROR_INVALID_MENU_ITEM);
                 break;    
         }
         return runProgramAgain;
@@ -324,11 +325,12 @@ import java.util.Scanner;
     }
 
     private static void printLoan(String[] loan) {
-        System.out.printf(FORMAT_ROW_LOAN, LOAN_BOOK_ID, LOAN_NAME, LOAN_START, LOAN_END, calculateCost(loan));
+        System.out.printf(FORMAT_ROW_LOAN, loan[LOAN_BOOK_ID], loan[LOAN_NAME], loan[LOAN_START], loan[LOAN_END], calculateCost(loan));
     }
 
     private static String loanBook(String[][] books, String[][] loans) {
         String[] newLoan = new String[LOAN_NUM_FIELDS];
+        String[] loanedBook = null;
 
         // Collect and validate book ID
         System.out.print(PROMPT_ENTER_ID);
@@ -336,9 +338,10 @@ import java.util.Scanner;
         if (!isValidId(newLoan[LOAN_BOOK_ID])) {
             return ERROR_INVALID_ID;
         }
+        loanedBook = getBookById(books, newLoan[LOAN_BOOK_ID]);
 
         // Check if book is available
-        if (!isAvailable(books, newLoan[LOAN_BOOK_ID])) {
+        if (!isAvailable(books, loanedBook[BOOK_ID])) {
             return ERROR_ID_NOT_AVAILABLE;
         }
 
@@ -362,21 +365,25 @@ import java.util.Scanner;
         // Add loan
         loans[nextAvailableIndex(loans)] = newLoan;
 
-        return "Loaned!";
+        // Return confirmation message
+        return String.format(CONFIRMATION_LOAN_ADDED, loanedBook[BOOK_TITLE], newLoan[LOAN_NAME], newLoan[LOAN_START]);
     }
 
-    private static boolean isAvailable(String[][] books, String bookId) {
+    private static String[] getBookById(String[][] books, String bookId) {
         for (int i = 0; i < books.length; i++) {
             if (books[i][BOOK_ID] == null) {
                 continue;
             }
             if (books[i][BOOK_ID].equals(bookId)) {
-                if (books[i][BOOK_STATUS].equals(STATUS_AVAILABLE)) {
-                    return true;
-                }
+                return books[i];
             }
         }
-        return false;
+        return null;        
+    }
+
+    private static boolean isAvailable(String[][] books, String bookId) {
+        String[] book = getBookById(books, bookId);
+        return book[BOOK_STATUS].equals(STATUS_AVAILABLE);
     }
 
     private static boolean isValidName(String name) {
@@ -434,7 +441,7 @@ import java.util.Scanner;
         return Integer.parseInt(dateAsString.substring(DATE_DAY_START_POS, DATE_DAY_END_POS + 1));
     }
 
-    private int calculateCost(String[] loan) {
+    private static int calculateCost(String[] loan) {
         if (loan[LOAN_END].equals("")) {
             return 0;
         }
@@ -450,5 +457,13 @@ import java.util.Scanner;
         } else {
             return 15 * (daysElapsed - NUM_FREE_DAYS);
         }
+    }
+
+    private static String removeBook(String[][] books, String[][] loans) {
+        return "Book removed!";
+    }
+
+    private static String returnBook(String[][] books, String[][] loans) {
+        return "Book returned!";
     }
 }
