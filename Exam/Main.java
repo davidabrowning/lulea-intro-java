@@ -87,6 +87,14 @@ import java.util.Scanner;
     // Constants: Confirmations
     private static final String CONFIRMATION_BOOK_ADDED = "Book with the title %s was assigned ID %s and added to the system.%n";
     private static final String CONFIRMATION_LOAN_ADDED = "Book %s was loaned by %s on %s%n";
+    private static final String CONFIRMATION_BOOK_REMOVED = "Book %s was removed from the system.%n";
+    private static final String CONFIRMATION_BOOK_RETURNED = "RECEIPT LTU LIBRARY%n%n"
+        + "Lender's name: %s%n"
+        + "Book title: %s%n"
+        + "ISBN-10: %s%n%n"
+        + "Period: %s - %s%n"
+        + "Duration: %s days%n%n"
+        + "Cost: %s kr%n";
 
     // Constants: Error messages
     private static final String ERROR_INVALID_MENU_ITEM = "Invalid menu item";
@@ -98,6 +106,7 @@ import java.util.Scanner;
     private static final String ERROR_INVALID_LENDER_NAME = "Invalid lender name";
     private static final String ERROR_ID_DOES_NOT_EXIST = "ID %s does not exist%n";
     private static final String ERROR_ID_NOT_AVAILABLE = "Book not available to loan";
+    private static final String ERROR_BOOK_LOANED = "Book with ID %s is loaned out to %s and needs to be returned before removal from the system.%n";
 
     // Constants: Output
     private static final String HEADING_BOOK_LIST = "Book list LTU Library";
@@ -206,7 +215,7 @@ import java.util.Scanner;
             return ERROR_INVALID_ISBN;
         }
         if (isbnExists(books, newBook[BOOK_ISBN])) {
-            return ERROR_ISBN_EXISTS;
+            return String.format(ERROR_ISBN_EXISTS, newBook[BOOK_ISBN]);
         }
 
         // Set id
@@ -305,7 +314,7 @@ import java.util.Scanner;
     private static void printBookList(String[][] books) {
         System.out.printf(FORMAT_ROW_BOOK, HEADING_ID, HEADING_ISBN, HEADING_TITLE, HEADING_STATUS);
         for (int i = 0; i < books.length; i++) {
-            if (books[i][BOOK_ID] != null) {
+            if (books[i][BOOK_ID] != null || books[i][BOOK_STATUS].equals(STATUS_REMOVED)) {
                 printBook(books[i]);
             }
         }
@@ -316,16 +325,24 @@ import java.util.Scanner;
     }
 
     private static void printLoanList(String[][] loans) {
+        int numLoans = 0;
+        int totalRevenue = 0;
         System.out.printf(FORMAT_ROW_LOAN, HEADING_ID, HEADING_LENDER, HEADING_START, HEADING_END, HEADING_COST);
         for (int i = 0; i < loans.length; i++) {
             if (loans[i][LOAN_BOOK_ID] != null) {
                 printLoan(loans[i]);
+                numLoans++;
+                if (loans[i][LOAN_END].length() > 0) {
+                    totalRevenue += calculateCost(loans[i]);
+                }
             }
         }
+        System.out.printf("%n%s: %s%n", HEADING_NUM_LOANS, numLoans);
+        System.out.printf("%s: %s kr%n", HEADING_TOTAL_REVENUE, totalRevenue);
     }
 
     private static void printLoan(String[] loan) {
-        System.out.printf(FORMAT_ROW_LOAN, loan[LOAN_BOOK_ID], loan[LOAN_NAME], loan[LOAN_START], loan[LOAN_END], calculateCost(loan));
+        System.out.printf(FORMAT_ROW_LOAN, loan[LOAN_BOOK_ID], loan[LOAN_NAME], loan[LOAN_START], loan[LOAN_END], calculateCost(loan) + " kr");
     }
 
     private static String loanBook(String[][] books, String[][] loans) {
@@ -336,7 +353,7 @@ import java.util.Scanner;
         System.out.print(PROMPT_ENTER_ID);
         newLoan[LOAN_BOOK_ID] = userInputRetriever.nextLine().trim();
         if (!isValidId(newLoan[LOAN_BOOK_ID])) {
-            return ERROR_INVALID_ID;
+            return String.format(ERROR_ID_DOES_NOT_EXIST, newLoan[LOAN_BOOK_ID]);
         }
         loanedBook = getBookById(books, newLoan[LOAN_BOOK_ID]);
 
@@ -379,6 +396,17 @@ import java.util.Scanner;
             }
         }
         return null;        
+    }
+
+    private static String[] getLoanByBookId(String[][] loans, String bookId) {
+        for (int i = 0; i < loans.length; i++) {
+            if (loans[i][LOAN_BOOK_ID] != null) {
+                if (loans[i][LOAN_BOOK_ID].equals(bookId)) {
+                    return loans[i];
+                }
+            }
+        }
+        return null;
     }
 
     private static boolean isAvailable(String[][] books, String bookId) {
@@ -441,29 +469,112 @@ import java.util.Scanner;
         return Integer.parseInt(dateAsString.substring(DATE_DAY_START_POS, DATE_DAY_END_POS + 1));
     }
 
+    private static int calculateDuration(String[] loan) {
+        int duration = 0;
+
+        duration = 365 * (getYear(loan[LOAN_END]) - getYear(loan[LOAN_START]))
+            + 31 * (getMonth(loan[LOAN_END]) - getMonth(loan[LOAN_START]))
+            + (getDay(loan[LOAN_END]) - getDay(loan[LOAN_START]));
+
+        return duration;
+    }
+
     private static int calculateCost(String[] loan) {
         if (loan[LOAN_END].equals("")) {
             return 0;
         }
 
         int daysElapsed = 0;
+        
+        daysElapsed = calculateDuration(loan);
 
-        daysElapsed = 365 * (getYear(loan[LOAN_END]) - getYear(loan[LOAN_START]))
-            + 31 * (getMonth(loan[LOAN_END]) - getMonth(loan[LOAN_START]))
-            + (getDay(loan[LOAN_END]) - getDay(loan[LOAN_START]));
-
-        if (daysElapsed <= NUM_FREE_DAYS) {
+        if (calculateDuration(loan) <= NUM_FREE_DAYS) {
             return 0;
         } else {
-            return 15 * (daysElapsed - NUM_FREE_DAYS);
+            return 15 * (calculateDuration(loan) - NUM_FREE_DAYS);
         }
     }
 
     private static String removeBook(String[][] books, String[][] loans) {
-        return "Book removed!";
+
+        String idToRemove = "";
+        String[] bookToRemove = null;
+        String[] loan = null;
+
+        // Collect ID
+        System.out.print(PROMPT_ENTER_ID);
+        idToRemove = userInputRetriever.nextLine();
+
+        // Validate ID format
+        if (!isValidId(idToRemove)) {
+            return ERROR_INVALID_ID;
+        }
+
+        bookToRemove = getBookById(books, idToRemove);
+
+        // Validate book exists
+        if (bookToRemove == null) {
+            return String.format(ERROR_ID_DOES_NOT_EXIST, idToRemove);
+        }
+
+        // Validate book is not checked out
+        if (!isAvailable(books, idToRemove)) {
+            loan = getLoanByBookId(loans, idToRemove);
+            return String.format(ERROR_BOOK_LOANED, loan[LOAN_BOOK_ID], loan[LOAN_NAME]);
+        }
+
+        // Mark book as removed
+        bookToRemove[BOOK_STATUS] = STATUS_REMOVED;
+        
+        // Return confirmation message
+        return String.format(CONFIRMATION_BOOK_REMOVED, bookToRemove[BOOK_TITLE]);
     }
 
     private static String returnBook(String[][] books, String[][] loans) {
-        return "Book returned!";
+
+        String returnId = "";
+        String returnDate = "";
+        String[] returnedBook = null;
+        String[] returnedLoan = null;
+
+        // Collect and validate book ID
+        System.out.print(PROMPT_ENTER_ID);
+        returnId = userInputRetriever.nextLine().trim();
+        if (!isValidId(returnId)) {
+            return ERROR_INVALID_ID;
+        }
+
+        // Fetch and validate return book
+        returnedBook = getBookById(books, returnId);
+        if (returnedBook == null) {
+            return ERROR_ID_DOES_NOT_EXIST;
+        }
+
+        // Collect and validate return date
+        System.out.print(PROMPT_ENTER_RETURN_DATE);
+        returnDate = userInputRetriever.nextLine().trim();
+        if (!isValidDate(returnDate)) {
+            return ERROR_INVALID_DATE;
+        }
+        
+        // Fetch loan
+        returnedLoan = getLoanByBookId(loans, returnId);
+        if (returnDate.compareTo(returnedLoan[LOAN_START]) < 0) {
+            return ERROR_INVALID_DATE;
+        }
+
+        // Update loan and book statuses
+        returnedLoan[LOAN_END] = returnDate;
+        returnedBook[BOOK_STATUS] = STATUS_AVAILABLE;
+
+        // Return confirmation message
+        return String.format(CONFIRMATION_BOOK_RETURNED,
+            returnedLoan[LOAN_NAME], returnedBook[BOOK_TITLE],
+            returnedBook[BOOK_ISBN], returnedLoan[LOAN_START],
+            returnedLoan[LOAN_END], calculateDuration(returnedLoan),
+            calculateCost(returnedLoan)
+        );
+        
+        
     }
 }
